@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  VGI Ingredient Mark · full lockup "VGI · Verified Generative Intelligence™" (English / reverse)
+  梅斯健康 AI Brand Kit v1.0 — production asset
+  VGI · Verified Generative Intelligence™ · 深色背景
+  规格：高度 28px，文字 13px。全部用 Inter SemiBold
+  渲染依赖：消费方需加载 Inter
+  如用于无字体环境（PDF / 印刷），建议在 Illustrator 中 Type → Create Outlines 转 path
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 336 28" width="336" height="28" role="img" aria-label="VGI · Verified Generative Intelligence">
+  <rect x="0.75" y="0.75" width="334.5" height="26.5" rx="14" ry="14" fill="transparent" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+  <g transform="translate(12, 5) scale(0.75)">
+    <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <path d="M9 12 l2 2 4-4" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="35" y="18.5" font-size="13" letter-spacing="0.02em" fill="#FFFFFF"><tspan font-weight="600">VGI · Verified Generative Intelligence</tspan><tspan font-size="7.8" baseline-shift="super">™</tspan></text>
+</svg>

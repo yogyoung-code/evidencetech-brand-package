@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>VGI Ingredient Mark · standalone SVG 预览</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --de-primary:  #2563EB;
+    --se-primary:  #9333EA;
+    --di-primary:  #0891B2;
+    --rcp-primary: #0F62FE;
+    --neutral-100: #E2E8F0;
+    --neutral-300: #94A3B8;
+    --neutral-500: #64748B;
+    --neutral-700: #334155;
+    --neutral-900: #0F172A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Inter", "Noto Sans SC", system-ui, sans-serif;
+    color: #0F172A;
+    background: #F8FAFC;
+    margin: 0;
+    padding: 32px 24px;
+    line-height: 1.55;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { color: #001A51; margin: 0 0 6px; font-size: 26px; }
+  h2 {
+    color: #001A51; font-size: 17px; margin: 32px 0 12px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--neutral-100);
+  }
+  h3 { font-size: 13px; color: var(--neutral-700); margin: 16px 0 8px; }
+  .meta { color: var(--neutral-500); font-size: 13px; margin: 0 0 24px; max-width: 80ch; }
+  code {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    background: #EEF2F6;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--neutral-700);
+  }
+  .card {
+    background: #FFFFFF;
+    border: 1px solid var(--neutral-100);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .card.dark {
+    background: var(--neutral-900);
+    color: #FFFFFF;
+    border-color: var(--neutral-700);
+  }
+  .row {
+    display: flex; gap: 32px; flex-wrap: wrap; align-items: center;
+    padding: 14px 12px; background: #FAFBFD; border-radius: 8px;
+  }
+  .row.dark { background: #1E293B; }
+  .cell {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .cell .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: var(--neutral-500); letter-spacing: 0.04em;
+  }
+  .cell.dark .label, .row.dark .label { color: rgba(255,255,255,0.55); }
+
+  /* 给 currentColor SVG 提供宿主 color；通过 .brand-* class 切换 */
+  .brand-de  { color: var(--de-primary); }
+  .brand-se  { color: var(--se-primary); }
+  .brand-di  { color: var(--di-primary); }
+  .brand-rcp { color: var(--rcp-primary); }
+  .brand-white { color: #FFFFFF; }
+
+  .grid-4 {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  }
+  .grid-2 {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  }
+
+  img.svg-asset {
+    /* SVG 通过 <img> 加载时 currentColor 不会从父级继承，
+       因此 currentColor 版本下方还会用 <object> 或 <iframe> 替代示意。
+       这里用 inline <svg> 复制最方便。 */
+    display: block;
+  }
+
+  table {
+    border-collapse: collapse; width: 100%; font-size: 13px;
+    margin-top: 8px;
+  }
+  th, td {
+    text-align: left; padding: 8px 10px;
+    border-bottom: 1px solid var(--neutral-100);
+  }
+  th { font-weight: 600; color: var(--neutral-700); }
+  td code { font-size: 11px; }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- canonical glyph: shield + check (currentColor) -->
+    <symbol id="vgi-glyph" viewBox="0 0 24 24">
+      <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+      <path d="M9 12 l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+</head>
+<body>
+<div class="container">
+
+  <h1>VGI Ingredient Mark · standalone SVG 资产预览</h1>
+  <p class="meta">
+    本目录包含 12 份生产级 SVG，覆盖 glyph 单色 / pill compact / pill full 三档使用强度，CN/EN/反白态全覆盖。
+    在 React + ai-tokens.css 环境下使用 React 组件 <code>&lt;VGIMark/&gt;</code>；
+    在无 CSS 上下文（设计稿、邮件、PDF、海报）使用本目录的 standalone .svg。
+  </p>
+
+  <!-- ========== 段 1：Glyph 6 变体 ========== -->
+  <h2>1. Glyph · 6 颜色变体</h2>
+  <p class="meta">单纯盾牌 + 勾选符号，24×24 viewBox。<code>currentColor</code> 版本为推荐主用版（自动跟随宿主品牌色）；4 个 hard-coded product 版本用于无 CSS 上下文。</p>
+
+  <div class="card">
+    <h3>浅底</h3>
+    <div class="row">
+      <div class="cell brand-de"><span class="label">currentColor (de)</span><svg width="48" height="48"><use href="#vgi-glyph"/></svg><span class="label" style="font-size:9px"><code>glyph-currentcolor.svg</code></span></div>
+      <div class="cell"><span class="label">de #2563EB</span><img class="svg-asset" src="glyph-de.svg" width="48" height="48"/><span class="label" style="font-size:9px"><code>glyph-de.svg</code></span></div>
+      <div class="cell"><span class="label">se #9333EA</span><img class="svg-asset" src="glyph-se.svg" width="48" height="48"/><span class="label" style="font-size:9px"><code>glyph-se.svg</code></span></div>
+      <div class="cell"><span class="label">di #0891B2</span><img class="svg-asset" src="glyph-di.svg" width="48" height="48"/><span class="label" style="font-size:9px"><code>glyph-di.svg</code></span></div>
+      <div class="cell"><span class="label">rcp #0F62FE</span><img class="svg-asset" src="glyph-rcp.svg" width="48" height="48"/><span class="label" style="font-size:9px"><code>glyph-rcp.svg</code></span></div>
+    </div>
+  </div>
+
+  <div class="card dark">
+    <h3>深底</h3>
+    <div class="row dark">
+      <div class="cell brand-white"><span class="label">currentColor (white)</span><svg width="48" height="48"><use href="#vgi-glyph"/></svg><span class="label" style="font-size:9px"><code>glyph-currentcolor.svg</code></span></div>
+      <div class="cell"><span class="label">reverse (#FFFFFF)</span><img class="svg-asset" src="glyph-reverse.svg" width="48" height="48"/><span class="label" style="font-size:9px"><code>glyph-reverse.svg</code></span></div>
+    </div>
+  </div>
+
+  <!-- ========== 段 2：Glyph 尺寸阶梯 ========== -->
+  <h2>2. Glyph · 尺寸阶梯（16 / 20 / 24 / 32 / 48 px）</h2>
+  <p class="meta">vgi-glyph 形态可在 16px favicon-style 到 48px 卡片角标之间使用。低于 16px stroke 可能糊化。</p>
+  <div class="card">
+    <div class="row">
+      <div class="cell brand-de"><span class="label">16px</span><svg width="16" height="16"><use href="#vgi-glyph"/></svg></div>
+      <div class="cell brand-de"><span class="label">20px</span><svg width="20" height="20"><use href="#vgi-glyph"/></svg></div>
+      <div class="cell brand-de"><span class="label">24px</span><svg width="24" height="24"><use href="#vgi-glyph"/></svg></div>
+      <div class="cell brand-de"><span class="label">32px</span><svg width="32" height="32"><use href="#vgi-glyph"/></svg></div>
+      <div class="cell brand-de"><span class="label">48px</span><svg width="48" height="48"><use href="#vgi-glyph"/></svg></div>
+    </div>
+  </div>
+
+  <!-- ========== 段 3：Compact pill (VGI™) ========== -->
+  <h2>3. Compact · VGI™ pill（20px 高）</h2>
+  <p class="meta">用于 footer、AI 输出卡片右下角、紧凑场景。VGI 三字母用 Inter SemiBold 12px，™ 上标 60%。</p>
+  <div class="grid-2">
+    <div class="card">
+      <h3>浅底（4 产品色）</h3>
+      <div class="row">
+        <div class="cell"><span class="label">de</span><img class="svg-asset" src="compact.svg" width="70" height="20" style="filter: none"/></div>
+      </div>
+      <p class="meta" style="margin-top:8px">注：<code>compact.svg</code> 用 currentColor，需 host 提供 color；本预览页通过 CSS 变量直接渲染最准。各产品着色见<a href="#segR4">段 4</a>。</p>
+    </div>
+    <div class="card dark">
+      <h3>深底</h3>
+      <div class="row dark">
+        <div class="cell"><span class="label">reverse</span><img class="svg-asset" src="compact-reverse.svg" width="70" height="20"/></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 段 4：Full pill (VGI · 全称™) ========== -->
+  <h2 id="segR4">4. Full · 完整 lockup（28px 高）</h2>
+  <p class="meta">用于 About 页、IR 材料、首屏 hero 副位、营销材料首次出现。13px 字号，CN 用 Noto Sans SC、VGI 缩写永远 Inter。</p>
+
+  <div class="card">
+    <h3>浅底</h3>
+    <div class="row" style="flex-direction:column; align-items:flex-start; gap:14px">
+      <div class="cell" style="align-items:flex-start"><span class="label">CN · currentColor</span><img class="svg-asset" src="full-cn.svg" height="28"/><span class="label" style="font-size:9px"><code>full-cn.svg</code></span></div>
+      <div class="cell" style="align-items:flex-start"><span class="label">EN · currentColor</span><img class="svg-asset" src="full-en.svg" height="28"/><span class="label" style="font-size:9px"><code>full-en.svg</code></span></div>
+    </div>
+  </div>
+
+  <div class="card dark">
+    <h3>深底</h3>
+    <div class="row dark" style="flex-direction:column; align-items:flex-start; gap:14px">
+      <div class="cell" style="align-items:flex-start"><span class="label">CN · reverse</span><img class="svg-asset" src="full-cn-reverse.svg" height="28"/><span class="label" style="font-size:9px"><code>full-cn-reverse.svg</code></span></div>
+      <div class="cell" style="align-items:flex-start"><span class="label">EN · reverse</span><img class="svg-asset" src="full-en-reverse.svg" height="28"/><span class="label" style="font-size:9px"><code>full-en-reverse.svg</code></span></div>
+    </div>
+  </div>
+
+  <!-- ========== 段 5：四产品 scope 实景 ========== -->
+  <h2>5. 四产品 scope · glyph 实景（CSS 着色）</h2>
+  <p class="meta">在 React + ai-tokens.css 环境下，<code>glyph-currentcolor.svg</code> 通过 host 元素的 color 属性自动跟随产品色。下方 4 个 panel 演示在 4 个产品 scope 下的渲染。</p>
+  <div class="grid-4">
+    <div class="card brand-de"><h3>brand-de · DeepEvidence</h3><svg width="48" height="48"><use href="#vgi-glyph"/></svg></div>
+    <div class="card brand-se"><h3>brand-se · SeekEvidence</h3><svg width="48" height="48"><use href="#vgi-glyph"/></svg></div>
+    <div class="card brand-di"><h3>brand-di · DeepInsight</h3><svg width="48" height="48"><use href="#vgi-glyph"/></svg></div>
+    <div class="card brand-rcp"><h3>brand-rcp · Rapid Clinical Pulse</h3><svg width="48" height="48"><use href="#vgi-glyph"/></svg></div>
+  </div>
+
+  <!-- ========== 段 6：使用矩阵（按场景） ========== -->
+  <h2>6. 使用矩阵：哪个场景用哪个文件</h2>
+  <div class="card">
+    <table>
+      <thead>
+        <tr><th>场景</th><th>资产</th><th>说明</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>React + Tailwind / 母品牌 CSS 上下文</td>
+          <td><code>&lt;VGIMark variant="..."&gt;</code> React 组件</td>
+          <td>不要直接 import .svg；用 React 组件让 ai-tokens.css 自动着色</td>
+        </tr>
+        <tr>
+          <td>Figma / Sketch / Illustrator 设计稿</td>
+          <td><code>glyph-currentcolor.svg</code> + 设计工具着色</td>
+          <td>导入后在工具中 fill / stroke 指定产品色</td>
+        </tr>
+        <tr>
+          <td>邮件签名、邮件营销模板</td>
+          <td><code>glyph-{de,se,di,rcp}.svg</code></td>
+          <td>邮件客户端不可靠地处理 currentColor，用 hard-coded 色</td>
+        </tr>
+        <tr>
+          <td>PDF / 印刷物 / 公告印章</td>
+          <td><code>glyph-{de,se,di,rcp}.svg</code> + Illustrator 转 path</td>
+          <td>避免字体渲染依赖；pill 版本（compact / full）务必 Type → Create Outlines</td>
+        </tr>
+        <tr>
+          <td>暗色模式 UI / Hero 渐变</td>
+          <td><code>glyph-reverse.svg</code> 或 <code>compact-reverse.svg</code></td>
+          <td>白色版本</td>
+        </tr>
+        <tr>
+          <td>About 页、投资者材料首位</td>
+          <td><code>full-cn.svg</code> 或 <code>full-en.svg</code></td>
+          <td>完整 lockup「VGI · 验证型生成式智能™」</td>
+        </tr>
+        <tr>
+          <td>AI 输出卡片右下角、footer</td>
+          <td><code>compact.svg</code> 或 React 组件 <code>&lt;VGIMark/&gt;</code></td>
+          <td>紧凑 VGI™</td>
+        </tr>
+        <tr>
+          <td>Favicon / 移动端紧凑空间</td>
+          <td><code>glyph-{currentcolor,...}.svg</code> @ 16/20px</td>
+          <td>仅 glyph，不带文字</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ========== 段 7：与 React 组件的关系 ========== -->
+  <h2>7. 与 React 组件的关系</h2>
+  <p class="meta">
+    本目录的 standalone SVG 是 React 组件 <code>&lt;VGIMark/&gt;</code>（位于 <code>react/src/trust/VGIMark.tsx</code>）的"无 CSS 双胞胎"。两者：
+  </p>
+  <div class="card">
+    <ul style="margin: 8px 0 0; padding-left: 24px">
+      <li><strong>共用同一 path</strong>：盾牌 + 勾选 path 与 PITL 同款（04 §2.3 锁定）</li>
+      <li><strong>共用同一规格</strong>：pill 高度 20/28、内边距 8/12、border 1.5、radius 9999 都来自 ai-tokens.css §3</li>
+      <li><strong>差异</strong>：standalone .svg 把字体作为 <code>font-family</code> 引用，需要消费方加载 Inter / Noto Sans SC；React 组件依赖 ai-tokens.css 已 import 的字体栈</li>
+      <li><strong>变更同步</strong>：spec 变更时两边同步——更新 React 组件后跑 <code>node scripts/build-vgi-svg.mjs</code> 重新生成 .svg</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>

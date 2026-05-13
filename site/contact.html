@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>联系 · Contact · 梅斯 AI</title>
+<meta name="description" content="预约梅斯 AI 企业 demo · 联系销售 · 申请 PITL 验证医生资质 · 邮箱 ai@medscihealthcare.com">
+<link rel="icon" type="image/svg+xml" href="../assets/master-brand/default-en.svg">
+<link rel="stylesheet" href="./assets/css/site.css">
+<style>
+  .contact-grid {
+    display: grid; grid-template-columns: 1.2fr 1fr; gap: clamp(32px, 5vw, 60px);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .contact-grid { grid-template-columns: 1fr; } }
+  .form-card {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: 32px;
+  }
+  .field-group { margin-bottom: 18px; }
+  .field-group label {
+    display: block; font-size: 13px; font-weight: 500;
+    color: var(--ink-1); margin-bottom: 6px;
+  }
+  .field-group label .req { color: #DC2626; margin-left: 4px; }
+  .field-group input, .field-group select, .field-group textarea {
+    width: 100%; padding: 10px 14px;
+    font-size: 14px; font-family: inherit;
+    border: 1px solid var(--line); border-radius: var(--r-sm);
+    background: #fff;
+    transition: border-color var(--dur-1) var(--ease-standard), box-shadow var(--dur-1) var(--ease-standard);
+  }
+  .field-group input:focus, .field-group select:focus, .field-group textarea:focus {
+    outline: 0; border-color: var(--master-blue);
+    box-shadow: 0 0 0 3px rgba(0,90,164,0.15);
+  }
+  .field-group textarea { min-height: 90px; resize: vertical; }
+  .row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 600px) { .row-2 { grid-template-columns: 1fr; } }
+  .consent {
+    font-size: 12px; color: var(--ink-3);
+    line-height: 1.5; margin: 12px 0 18px;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .consent input { width: auto; margin-top: 3px; }
+  .channel-card {
+    background: var(--bg-tint);
+    border-radius: var(--r-md);
+    padding: 22px 24px; margin-bottom: 14px;
+  }
+  .channel-card h3 { margin: 0 0 6px; font-size: 16px; }
+  .channel-card p { margin: 0 0 8px; font-size: 14px; color: var(--ink-2); }
+  .channel-card a { font-weight: 500; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">梅</span><span class="brand-name">梅斯 AI<span class="en">MedSci AI</span></span></a>
+    <nav class="nav" aria-label="主导航">
+      <a href="./enterprise.html">企业方案</a>
+      <a href="./clinicians.html">医生网络</a>
+      <a href="./capabilities.html">能力矩阵</a>
+      <a href="./cases.html">客户实证</a>
+      <a href="./contact.html" aria-current="page">联系</a>
+      <span class="lang-toggle" role="group" aria-label="语言切换">
+        <a href="./contact.html" class="active" aria-current="true">CN</a>
+        <a href="./en/contact.html">EN</a>
+      </span>
+      <a href="./contact.html#book-demo" class="nav-cta nav-mobile-keep">预约 demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section style="padding:60px 0 32px;">
+  <div class="container">
+    <span class="section-eyebrow">联系 · Contact</span>
+    <h1>
+      <span class="lang-cn">告诉我们你想解决的问题</span>
+      <span class="lang-en">Tell us the problem you're solving</span>
+    </h1>
+    <p class="lead">
+      <span class="lang-cn">销售团队在 1 个工作日内回复。表单仅用于联系沟通，不会用于营销推送（详见隐私政策）。</span>
+      <span class="lang-en">Our sales team replies within one business day. We use this form only to contact you back — not for marketing.</span>
+    </p>
+  </div>
+</section>
+
+<section style="padding-top:24px;" id="book-demo">
+  <div class="container contact-grid">
+
+    <!-- 表单 -->
+    <form class="form-card" aria-labelledby="form-title" onsubmit="event.preventDefault(); alert('感谢提交，销售将在 1 工作日内联系（demo 占位 · 后端待接入）。');">
+      <h2 id="form-title" style="font-size:22px;margin:0 0 22px;">
+        <span class="lang-cn">预约 demo / 联系销售</span>
+      </h2>
+
+      <div class="row-2">
+        <div class="field-group">
+          <label for="name">姓名 <span class="req">*</span> · Name</label>
+          <input id="name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field-group">
+          <label for="email">企业邮箱 <span class="req">*</span> · Work email</label>
+          <input id="email" name="email" type="email" required autocomplete="email">
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field-group">
+          <label for="company">公司 / 机构 · Company</label>
+          <input id="company" name="company" type="text" autocomplete="organization">
+        </div>
+        <div class="field-group">
+          <label for="role">职能 · Role</label>
+          <select id="role" name="role">
+            <option value="">请选择…</option>
+            <option>市场 / Marketing</option>
+            <option>医学事务 / Medical Affairs</option>
+            <option>KA / Account</option>
+            <option>临床运营 / Clinical Ops</option>
+            <option>战略咨询 / Consulting</option>
+            <option>研发 / R&amp;D</option>
+            <option>其他 / Other</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label for="interest">感兴趣的产品 · Interest</label>
+        <select id="interest" name="interest">
+          <option value="">请选择…</option>
+          <option value="DI">DeepInsight · KOL 发现</option>
+          <option value="RCP">Rapid Clinical Pulse · 任务发起</option>
+          <option value="DESE">DeepEvidence / SeekEvidence · 证据问答</option>
+          <option value="WP">下载白皮书 · Whitepaper</option>
+          <option value="multiple">多个产品 / 不确定</option>
+        </select>
+      </div>
+
+      <div class="field-group">
+        <label for="message">想解决的问题（可选） · Your goal</label>
+        <textarea id="message" name="message" placeholder="例：我们在 II 期入组前需要快速完成 n=150 名肿瘤医生的认知调研…"></textarea>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox" required>
+        <span>
+          <span class="lang-cn">我同意梅斯健康按《隐私政策》处理本表单信息以回应本次咨询；不会用于营销邮件推送。</span>
+          <span class="lang-en" style="color:var(--ink-3);">I consent to MedSci Healthcare processing this form per its Privacy Policy. We won't use it for marketing emails.</span>
+        </span>
+      </label>
+
+      <button type="submit" class="btn btn-primary" style="width:100%;">提交 · Submit</button>
+      <p style="font-size:11px;color:var(--ink-3);margin:14px 0 0;text-align:center;">
+        提交即表示同意双向 opt-in；销售团队 1 工作日内通过提交邮箱回复。
+      </p>
+    </form>
+
+    <!-- 直接渠道 -->
+    <aside aria-labelledby="channels-title">
+      <h2 id="channels-title" style="font-size:22px;margin:0 0 18px;">直接渠道 · Direct channels</h2>
+
+      <div class="channel-card" id="sales">
+        <h3>联系销售 · Sales</h3>
+        <p><span class="lang-cn">面向药企 / CRO / 咨询 / AI 公司的企业咨询。</span></p>
+        <a href="mailto:ai@medscihealthcare.com">ai@medscihealthcare.com</a>
+      </div>
+
+      <div class="channel-card" id="whitepaper">
+        <h3>白皮书获取 · Whitepaper</h3>
+        <p><span class="lang-cn">《医生互联网生活调研 2025》完整版。</span></p>
+        <a href="mailto:research@medscihealthcare.com?subject=Whitepaper%20Request">research@medscihealthcare.com</a>
+      </div>
+
+      <div class="channel-card" id="join-pitl">
+        <h3>申请 PITL 验证医生 · Clinicians</h3>
+        <p><span class="lang-cn">通过 AIO Official 资质认证后，加入梅斯 AI 验证池。</span></p>
+        <a href="https://www.medsci.cn/" target="_blank" rel="noopener noreferrer">通过 DE / SE 入口注册 ↗</a>
+      </div>
+
+      <div class="channel-card" style="background:transparent;border:1px solid var(--line);">
+        <h3 style="color:var(--master-navy);">公司信息</h3>
+        <p style="font-size:13px;line-height:1.7;color:var(--ink-2);">
+          <strong>梅斯健康集团</strong> · MedSci Healthcare<br>
+          HKEX: 2415<br>
+          <span class="lang-en" style="color:var(--ink-3);">Listed on Hong Kong Stock Exchange · 2415.HK</span>
+        </p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="endorsement">由 <strong>梅斯健康</strong> 出品<br>by <strong>MedSci Healthcare</strong></p>
+        <p style="font-size:13px;line-height:1.6;color:#A8B5CC;margin:0;">梅斯 AI 是 梅斯健康集团（HKEX: 2415）旗下的 AI 子品牌系统。</p>
+      </div>
+      <div><h4>产品 · Products</h4><ul>
+        <li><a href="./capabilities.html#de">DeepEvidence</a></li>
+        <li><a href="./capabilities.html#se">SeekEvidence</a></li>
+        <li><a href="./capabilities.html#di">DeepInsight</a></li>
+        <li><a href="./capabilities.html#rcp">Rapid Clinical Pulse</a></li>
+      </ul></div>
+      <div><h4>方案 · Solutions</h4><ul>
+        <li><a href="./enterprise.html">企业方案</a></li>
+        <li><a href="./clinicians.html">医生网络</a></li>
+        <li><a href="./cases.html">客户实证</a></li>
+        <li><a href="./cases.html#whitepaper">实证白皮书</a></li>
+      </ul></div>
+      <div><h4>联系 · Contact</h4><ul>
+        <li><a href="#book-demo">预约 demo</a></li>
+        <li><a href="#sales">联系销售</a></li>
+        <li><a href="mailto:ai@medscihealthcare.com">ai@medscihealthcare.com</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 MedSci Healthcare · 梅斯健康集团</span>
+      <span><a href="#">隐私 · Privacy</a> &nbsp;·&nbsp; <a href="#">条款 · Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

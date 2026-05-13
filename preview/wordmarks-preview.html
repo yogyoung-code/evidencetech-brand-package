@@ -1,0 +1,958 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>梅斯健康 AI · Logo & Endorsement Preview v0.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Teko:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Wordmark / logo / UI 主色统一 */
+    --de-wordmark:  #2563EB;
+    --se-wordmark:  #9333EA;
+    --di-wordmark:  #0891B2;   /* 暂定 */
+    --rcp-wordmark: #0F62FE;
+
+    /* 中性 */
+    --neutral-700: #334155;
+    --endorsement-color: #666666; /* v0.6: neutral-600，与母品牌 Logo Slogan grey 同源 */
+    --neutral-500: #64748B;
+    --neutral-300: #CBD5E1;
+    --neutral-100: #F1F5F9;
+    --neutral-50:  #F8FAFC;
+    --neutral-900: #0F172A;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans SC", "Inter", system-ui, sans-serif;
+    background: var(--neutral-50);
+    color: var(--neutral-900);
+    line-height: 1.5;
+  }
+
+  .doc {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 64px 32px 128px;
+  }
+
+  .doc-header {
+    border-bottom: 1px solid var(--neutral-300);
+    padding-bottom: 32px;
+    margin-bottom: 64px;
+  }
+  .doc-eyebrow {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--neutral-500);
+    margin: 0 0 12px;
+  }
+  .doc-title {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .doc-subtitle {
+    font-size: 16px;
+    color: var(--neutral-500);
+    margin: 0;
+  }
+
+  .section { margin-bottom: 96px; }
+  .section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 8px;
+    letter-spacing: -0.005em;
+  }
+  .section-desc {
+    font-size: 14px;
+    color: var(--neutral-500);
+    margin: 0 0 32px;
+    max-width: 720px;
+  }
+
+  /* ============================================ */
+  /*  Logo system: icon + bicolor wordmark         */
+  /* ============================================ */
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0.85;
+    /* spacing between icon and wordmark = wordmark size × 0.20 (set per size) */
+  }
+  .logo-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-icon svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+  .wordmark {
+    font-family: "Teko", sans-serif;
+    font-weight: 600;
+    line-height: 0.85;
+    white-space: nowrap;
+  }
+  .wm-prefix { font-weight: 600; }
+  .wm-suffix { font-weight: 600; color: #000; }
+
+  /* Per-product prefix colors */
+  .logo--de  .wm-prefix,
+  .logo--de  .logo-icon { color: var(--de-wordmark); }
+  .logo--se  .wm-prefix,
+  .logo--se  .logo-icon { color: var(--se-wordmark); }
+  .logo--di  .wm-prefix,
+  .logo--di  .logo-icon { color: var(--di-wordmark); }
+  .logo--rcp .wm-prefix,
+  .logo--rcp .logo-icon { color: var(--rcp-wordmark); }
+
+  /* Reverse / on-dark */
+  .logo--reverse .wm-prefix,
+  .logo--reverse .wm-suffix,
+  .logo--reverse .logo-icon { color: #fff !important; }
+
+  /* Sizes (wordmark font-size + matching icon size + matching gap) */
+  .size-xl { font-size: 88px; }
+  .size-xl .logo-icon { width: 95px; height: 95px; }
+  .size-xl { gap: 18px; }
+
+  .size-lg { font-size: 48px; }
+  .size-lg .logo-icon { width: 52px; height: 52px; }
+  .size-lg { gap: 10px; }
+
+  .size-md { font-size: 32px; }
+  .size-md .logo-icon { width: 34px; height: 34px; }
+  .size-md { gap: 7px; }
+
+  .size-sm { font-size: 28px; }
+  .size-sm .logo-icon { width: 30px; height: 30px; }
+  .size-sm { gap: 6px; }
+
+  .size-xs { font-size: 20px; }
+  .size-xs .logo-icon { width: 22px; height: 22px; }
+  .size-xs { gap: 4px; }
+
+  .size-min { font-size: 16px; }
+  .size-min .logo-icon { width: 18px; height: 18px; }
+  .size-min { gap: 3px; }
+
+  /* ============================================ */
+  /*  Lockup with endorsement                      */
+  /* ============================================ */
+  .lockup {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .endorsement {
+    font-family: "Noto Sans SC", "Inter", system-ui, sans-serif;
+    font-weight: 500;
+    color: var(--endorsement-color);
+    line-height: 1.0;
+  }
+  .endorsement--en {
+    font-family: "Inter", system-ui, sans-serif;
+    letter-spacing: 0.005em;
+  }
+  .endorsement--reverse { color: rgba(255,255,255,0.78); }
+
+  /* signature size by lockup size; margin-top derived from wordmark size × 0.30 */
+  .lockup-xl { gap: 26px; }
+  .lockup-xl .endorsement { font-size: 36px; }
+
+  .lockup-lg { gap: 14px; }
+  .lockup-lg .endorsement { font-size: 20px; }
+
+  .lockup-md { gap: 10px; }
+  .lockup-md .endorsement { font-size: 13px; }
+
+  .lockup-sm { gap: 8px; }
+  .lockup-sm .endorsement { font-size: 12px; }
+
+  /* ============================================ */
+  /*  Surface tiles                                */
+  /* ============================================ */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--neutral-300);
+    border: 1px solid var(--neutral-300);
+  }
+  @media (min-width: 760px) {
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .surface {
+    background: #fff;
+    padding: 48px 24px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    position: relative;
+  }
+  .surface--dark { background: var(--neutral-900); }
+  .surface--gray { background: var(--neutral-100); }
+  .surface--de   { background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%); }
+  .surface--se   { background: linear-gradient(135deg, #6B21A8 0%, #9333EA 100%); }
+  .surface--di   { background: linear-gradient(135deg, #155E75 0%, #0891B2 100%); }
+  .surface--rcp  { background: linear-gradient(135deg, #002D9C 0%, #0F62FE 100%); }
+
+  .surface-label {
+    position: absolute;
+    bottom: 8px;
+    left: 12px;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--neutral-500);
+    font-weight: 600;
+  }
+  .surface--dark .surface-label,
+  .surface--de   .surface-label,
+  .surface--se   .surface-label,
+  .surface--di   .surface-label,
+  .surface--rcp  .surface-label { color: rgba(255,255,255,0.55); }
+
+  /* ============================================ */
+  /*  Size ladder                                  */
+  /* ============================================ */
+  .ladder {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 32px;
+  }
+  .ladder-row {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    padding: 20px 0;
+    border-bottom: 1px dashed var(--neutral-100);
+  }
+  .ladder-row:last-child { border-bottom: 0; }
+  .ladder-spec {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--neutral-500);
+    text-transform: uppercase;
+    min-width: 150px;
+    flex-shrink: 0;
+  }
+
+  /* ============================================ */
+  /*  VGI ingredient mark                          */
+  /* ============================================ */
+  .vgi {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1.5px solid currentColor;
+    border-radius: 9999px;
+    padding: 4px 10px 4px 8px;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+    background: rgba(255,255,255,0.5);
+    line-height: 1.0;
+  }
+  .vgi--de  { color: var(--de-wordmark); }
+  .vgi--se  { color: var(--se-wordmark); }
+  .vgi--di  { color: var(--di-wordmark); }
+  .vgi--rcp { color: var(--rcp-wordmark); }
+  .vgi-glyph { width: 12px; height: 12px; flex-shrink: 0; }
+  .vgi-cn { font-family: "Noto Sans SC", sans-serif; font-weight: 600; }
+  .vgi-sep { opacity: 0.5; margin: 0 2px; }
+  .vgi-tm {
+    font-size: 0.6em;
+    vertical-align: super;
+    margin-left: 2px;
+    opacity: 0.7;
+  }
+  .vgi--full    { font-size: 13px; padding: 6px 12px 6px 10px; }
+  .vgi--compact { font-size: 11px; }
+
+  /* ============================================ */
+  /*  Family lockup                                */
+  /* ============================================ */
+  .family-lockup {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 64px 32px;
+    text-align: center;
+  }
+  .family-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 56px;
+    margin-bottom: 40px;
+  }
+  .family-endorsement {
+    font-family: "Noto Sans SC", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: var(--endorsement-color);
+  }
+
+  /* ============================================ */
+  /*  Co-brand                                     */
+  /* ============================================ */
+  .cobrand {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 48px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+  }
+  .cobrand-divider {
+    width: 1px;
+    background: var(--neutral-300);
+    height: 64px;
+  }
+  .cobrand-master {
+    font-family: "Footlight MT Pro", "Noto Serif SC", Georgia, serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: #001A51;
+    letter-spacing: -0.01em;
+    line-height: 1.0;
+  }
+  .cobrand-master-tag {
+    font-family: "Footlight MT Pro", "Noto Serif SC", Georgia, serif;
+    font-style: italic;
+    font-size: 11px;
+    color: #666666;
+    margin-top: 4px;
+  }
+
+  /* ============================================ */
+  /*  Note + Forbidden                             */
+  /* ============================================ */
+  .note {
+    background: #fff;
+    border-left: 3px solid var(--neutral-700);
+    padding: 16px 20px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: var(--neutral-700);
+    line-height: 1.6;
+  }
+  .note strong { color: var(--neutral-900); }
+  .note-warn {
+    background: #FEF3C7;
+    border-left-color: #B45309;
+  }
+
+  .forbidden {
+    background: #FEF2F2;
+    border: 1px solid #FECACA;
+    padding: 32px 16px 40px;
+    text-align: center;
+    position: relative;
+  }
+  .forbidden::after {
+    content: "✕ 禁止";
+    position: absolute;
+    top: 8px; right: 8px;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #DC2626;
+    letter-spacing: 0.08em;
+  }
+  .forbidden-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  @media (min-width: 720px) {
+    .forbidden-row { grid-template-columns: repeat(4, 1fr); }
+  }
+  .forbidden-caption {
+    font-size: 11px;
+    color: #B91C1C;
+    margin-top: 14px;
+    font-family: "Noto Sans SC", sans-serif;
+  }
+
+  /* ============================================ */
+  /*  Spec table                                   */
+  /* ============================================ */
+  .spec-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+  }
+  .spec-table th, .spec-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--neutral-100);
+  }
+  .spec-table th {
+    background: var(--neutral-100);
+    font-weight: 600;
+    color: var(--neutral-700);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .spec-table td:first-child {
+    font-family: "Inter", monospace;
+    font-weight: 500;
+  }
+  .swatch {
+    display: inline-block;
+    width: 14px; height: 14px;
+    border-radius: 3px;
+    vertical-align: middle;
+    margin-right: 6px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  /* ===== RCP v0.5 logo（"RCP" 三字母全黑 + 彩色贯穿横线）===== */
+  .rcp-logo {
+    display: inline-flex;
+    align-items: center;
+    font-family: "Teko", sans-serif;
+    font-weight: 600;
+    line-height: 0.85;
+    position: relative;
+    white-space: nowrap;
+    isolation: isolate;
+  }
+  .rcp-logo .rcp-icon {
+    flex-shrink: 0;
+    color: var(--rcp-wordmark);
+    position: relative;
+    z-index: 2;
+  }
+  .rcp-logo .rcp-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+  .rcp-logo .rcp-text {
+    color: #000;
+    position: relative;
+    padding-left: 6px;
+  }
+  .rcp-logo .rcp-text::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    right: -0.15em;
+    bottom: 40%;
+    height: 0.09em;
+    background: var(--rcp-wordmark);
+    z-index: -1;
+    border-radius: 2px;
+  }
+  .rcp-logo--reverse .rcp-icon { color: #fff !important; }
+  .rcp-logo--reverse .rcp-text { color: #fff !important; }
+  .rcp-logo--reverse .rcp-text::before { background: #fff !important; }
+
+  .rcp-logo-xl { font-size: 88px; }
+  .rcp-logo-xl .rcp-icon { width: 95px; height: 95px; }
+  .rcp-logo-lg { font-size: 48px; }
+  .rcp-logo-lg .rcp-icon { width: 52px; height: 52px; }
+  .rcp-logo-md { font-size: 32px; }
+  .rcp-logo-md .rcp-icon { width: 34px; height: 34px; }
+  .rcp-logo-sm { font-size: 28px; }
+  .rcp-logo-sm .rcp-icon { width: 30px; height: 30px; }
+
+  /* Provisional badge */
+  .provisional {
+    display: inline-block;
+    background: #FEF3C7;
+    color: #92400E;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    padding: 2px 6px;
+    border-radius: 3px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <header class="doc-header">
+    <p class="doc-eyebrow">梅斯健康 AI Brand Kit · v0.6 修订</p>
+    <h1 class="doc-title">Logo & Endorsement · 视觉验证</h1>
+    <p class="doc-subtitle">基于 DE/SE 实际 logo 动效文件修订。Wordmark = 图标 + mixed-case 双色 Teko 文字。</p>
+  </header>
+
+  <!-- ===== SVG defs：DE 心跳描线 / SE 5 柱波形 / DI 占位 / RCP 占位 ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- DE: ECG / heartbeat trace（自动效文件） -->
+      <symbol id="ic-de" viewBox="0 0 24 24">
+        <path
+          d="M 2 12 H 4.48 A 2 2 0 0 1 6.41 13.46 L 8.76 21.82 A 0.25 0.25 0 0 0 9.24 21.82 L 14.76 2.18 A 0.25 0.25 0 0 1 15.24 2.18 L 17.59 10.54 A 2 2 0 0 0 19.51 12 H 22"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          transform="translate(0, 1)"
+        />
+      </symbol>
+      <!-- SE: 5 柱波形（自动效文件，已统一 currentColor） -->
+      <symbol id="ic-se" viewBox="20 20 280 170">
+        <path fill="currentColor" d="M67.18,136.25 C60.12,141.84 52.62,142.68 44.87,139.26 C37.04,135.80 33.56,129.01 33.26,120.86 C32.88,110.88 32.86,100.86 33.28,90.89 C33.75,79.86 40.05,72.48 49.78,70.47 C58.47,68.67 67.75,72.86 71.57,80.86 C73.02,83.91 73.88,87.51 73.98,90.90 C74.28,100.71 74.10,110.54 74.05,120.37 C74.01,126.47 71.94,131.76 67.18,136.25 Z"/>
+        <path fill="currentColor" d="M125.00,158.75 C124.22,173.22 116.86,179.27 100.93,179.00 C91.24,178.83 83.98,170.04 83.95,158.19 C83.87,123.06 83.82,87.93 83.84,52.80 C83.84,39.77 92.00,31.10 104.04,31.02 C116.22,30.94 124.84,39.87 124.88,52.88 C124.97,88.02 124.97,123.15 125.00,158.75 Z"/>
+        <path fill="currentColor" d="M175.97,90.00 C175.94,104.83 176.11,119.15 175.82,133.47 C175.62,142.91 168.54,151.18 159.94,152.91 C150.33,154.84 140.96,150.15 137.05,141.00 C135.84,138.18 135.22,134.90 135.19,131.82 C135.03,114.50 135.00,97.18 135.17,79.86 C135.30,67.24 144.19,57.96 155.65,58.00 C167.12,58.04 175.75,67.38 175.96,80.01 C176.01,83.18 175.97,86.34 175.97,90.00 Z"/>
+        <path fill="currentColor" d="M196.12,33.91 C212.03,26.28 227.08,35.33 227.11,52.40 C227.17,87.87 227.04,123.35 227.05,158.83 C227.05,166.40 224.56,173.08 217.87,176.54 C205.50,182.93 186.65,179.39 186.28,160.63 C185.57,124.17 186.06,87.68 186.20,51.21 C186.23,43.91 189.59,38.10 196.12,33.91 Z"/>
+        <path fill="currentColor" d="M277.91,117.89 C279.11,133.68 266.97,143.68 252.20,140.37 C243.21,138.35 237.28,130.97 237.13,121.67 C236.96,111.35 237.00,101.02 237.08,90.70 C237.17,78.77 245.31,70.81 257.30,70.75 C269.32,70.70 277.56,78.47 277.83,90.43 C278.04,99.42 277.90,108.41 277.91,117.89 Z"/>
+      </symbol>
+      <!-- DI: 星座 Constellation · production v1.0 (variant C, 2026-05-06)
+           Hub-as-Star · 节点统一 r=1.3，hub 双环（内 1.4 实心 + 外 2.4 stroke=1.0），
+           连线 trim 到节点外缘 stroke=1.3 opacity=0.5。决策档案见 preview/di-iconography/。 -->
+      <symbol id="ic-di" viewBox="0 0 24 24">
+        <line x1="5.7481" y1="8.8321" x2="9.2519" y2="11.1679" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+        <line x1="9.9615" y1="13.4" x2="8.5385" y2="17.1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+        <line x1="11.4" y1="10.8" x2="14.1" y2="7.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+        <line x1="15.6012" y1="7.3742" x2="17.2575" y2="11.1599" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+        <line x1="19.2519" y1="17.0074" x2="19.6362" y2="18.5448" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="18.5" cy="14" r="2.4" fill="none" stroke="currentColor" stroke-width="1"/>
+        <circle cx="4.5" cy="8" r="1.3" fill="currentColor"/>
+        <circle cx="10.5" cy="12" r="1.3" fill="currentColor"/>
+        <circle cx="8" cy="18.5" r="1.3" fill="currentColor"/>
+        <circle cx="15" cy="6" r="1.3" fill="currentColor"/>
+        <circle cx="18.5" cy="14" r="1.4" fill="currentColor"/>
+        <circle cx="20" cy="20" r="1.3" fill="currentColor"/>
+      </symbol>
+      <!-- RCP: 锐脉 Sharp Pulse · production v1.0 (variant C, 2026-05-06)
+           Corner fillet 与 DE icon 共用配方：peak/trough/次峰 r=0.25 / baseline 转换 r=1.5。
+           决策档案见 preview/rcp-iconography/。 -->
+      <symbol id="ic-rcp" viewBox="0 0 24 24">
+        <path
+          d="M 2 12 L 7.8288 12 A 1.5 1.5 0 0 0 9.284 10.8638 L 10.6516 5.3935 A 0.25 0.25 0 0 1 11.1429 5.4292 L 12.3009 17.0087 A 0.25 0.25 0 0 0 12.7969 17.0209 L 13.857 9.953 A 0.25 0.25 0 0 1 14.3384 9.9023 L 15.135 12.0267 A 1.5 1.5 0 0 0 16.5395 13 L 22 13"
+          fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round"
+        />
+      </symbol>
+      <!-- VGI shield -->
+      <symbol id="ic-vgi" viewBox="0 0 24 24">
+        <path d="M12 2L4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M9 12l2 2 4-4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ============================== -->
+  <!-- 一、四产品 logo + endorsement -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">1. 四产品完整 Logo + Endorsement Signature</h2>
+    <p class="section-desc">每个 logo = 专属图标（产品色）+ 双色 wordmark（prefix 产品色 / suffix 黑色）。下方签名用思源黑体 Medium，色值固定 <code>#334155</code>。CN 主版本如下。</p>
+    <div class="ladder">
+      <div class="ladder-row">
+        <span class="ladder-spec">DeepEvidence · #2563EB</span>
+        <div class="lockup lockup-md">
+          <span class="logo logo--de size-md">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">SeekEvidence · #9333EA</span>
+        <div class="lockup lockup-md">
+          <span class="logo logo--se size-md">
+            <span class="logo-icon"><svg><use href="#ic-se"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Seek</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">DeepInsight · #0891B2 <span class="provisional">PROVISIONAL</span></span>
+        <div class="lockup lockup-md">
+          <span class="logo logo--di size-md">
+            <span class="logo-icon"><svg><use href="#ic-di"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Insight</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">RCP · #0F62FE</span>
+        <div class="lockup lockup-md">
+          <span class="rcp-logo rcp-logo-md">
+            <span class="rcp-icon"><svg><use href="#ic-rcp"/></svg></span>
+            <span class="rcp-text">RCP</span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+    </div>
+    <div class="note">
+      <strong>v0.5 状态</strong>：DI 选定星座图标，RCP 选定锐脉图标 + "RCP" 三字母全黑 wordmark + 彩色贯穿横线（独特识别）。"Rapid Clinical Pulse" 全称仅作为 product full name 用于正文与首次提及；logo 视觉永远使用 RCP 缩写。
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 二、英文版 endorsement -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">2. EN 版本（技术文档 / 国际场景）</h2>
+    <p class="section-desc">英文版 endorsement 用 Inter Medium，色值与 CN 版相同。同一界面内不允许 CN 与 EN 混用。</p>
+    <div class="ladder">
+      <div class="ladder-row">
+        <span class="ladder-spec">DeepEvidence (EN)</span>
+        <div class="lockup lockup-md">
+          <span class="logo logo--de size-md">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement endorsement--en">by MedSci Healthcare</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">RCP (EN)</span>
+        <div class="lockup lockup-md">
+          <span class="rcp-logo rcp-logo-md">
+            <span class="rcp-icon"><svg><use href="#ic-rcp"/></svg></span>
+            <span class="rcp-text">RCP</span>
+          </span>
+          <span class="endorsement endorsement--en">by MedSci Healthcare</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 三、尺寸阶梯 -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">3. 尺寸阶梯（DeepEvidence 示例）</h2>
+    <p class="section-desc">六档字号；28px 以下不显示 endorsement signature。88px 用于 hero，16px 是最小可用尺寸。</p>
+    <div class="ladder">
+      <div class="ladder-row">
+        <span class="ladder-spec">wm-xl · 88px</span>
+        <div class="lockup lockup-xl">
+          <span class="logo logo--de size-xl">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">wm-lg · 48px</span>
+        <div class="lockup lockup-lg">
+          <span class="logo logo--de size-lg">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">wm-md · 32px</span>
+        <div class="lockup lockup-md">
+          <span class="logo logo--de size-md">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">wm-sm · 28px</span>
+        <div class="lockup lockup-sm">
+          <span class="logo logo--de size-sm">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">wm-xs · 20px</span>
+        <span class="logo logo--de size-xs">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">wm-min · 16px</span>
+        <span class="logo logo--de size-min">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 四、不同背景 -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">4. Logo 在不同背景上的表现</h2>
+    <p class="section-desc">默认双色（产品色 prefix + 黑色 suffix）用于白底/浅灰底；产品 hero 渐变与深色背景下整组反白（prefix、suffix、图标全部白色）。</p>
+
+    <div class="grid-4">
+      <div class="surface">
+        <div class="lockup lockup-md">
+          <span class="logo logo--de size-md">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+        <span class="surface-label">白底</span>
+      </div>
+      <div class="surface surface--gray">
+        <div class="lockup lockup-md">
+          <span class="logo logo--de size-md">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement">由 梅斯健康 出品</span>
+        </div>
+        <span class="surface-label">浅灰底</span>
+      </div>
+      <div class="surface surface--de">
+        <div class="lockup lockup-md">
+          <span class="logo logo--de logo--reverse size-md">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement endorsement--reverse">由 梅斯健康 出品</span>
+        </div>
+        <span class="surface-label">DE Hero 渐变</span>
+      </div>
+      <div class="surface surface--dark">
+        <div class="lockup lockup-md">
+          <span class="logo logo--de logo--reverse size-md">
+            <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+            <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+          </span>
+          <span class="endorsement endorsement--reverse">由 梅斯健康 出品</span>
+        </div>
+        <span class="surface-label">深色背景</span>
+      </div>
+    </div>
+
+    <div class="grid-4" style="margin-top: 24px;">
+      <div class="surface surface--de">
+        <span class="logo logo--de logo--reverse size-md">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+        <span class="surface-label">DE Hero</span>
+      </div>
+      <div class="surface surface--se">
+        <span class="logo logo--se logo--reverse size-md">
+          <span class="logo-icon"><svg><use href="#ic-se"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Seek</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+        <span class="surface-label">SE Hero</span>
+      </div>
+      <div class="surface surface--di">
+        <span class="logo logo--di logo--reverse size-md">
+          <span class="logo-icon"><svg><use href="#ic-di"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Insight</span></span>
+        </span>
+        <span class="surface-label">DI Hero</span>
+      </div>
+      <div class="surface surface--rcp">
+        <span class="rcp-logo rcp-logo-md rcp-logo--reverse">
+          <span class="rcp-icon"><svg><use href="#ic-rcp"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+        <span class="surface-label">RCP Hero</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 五、VGI ingredient mark -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">5. VGI Ingredient Mark · 三个变体</h2>
+    <p class="section-desc">"验证型生成式智能" 跨产品共享徽章。形态：胶囊 + glyph；色彩按产品 wordmark 主色着色。</p>
+
+    <div class="ladder">
+      <div class="ladder-row">
+        <span class="ladder-spec">vgi-full · CN · 28px</span>
+        <span class="vgi vgi--de vgi--full">
+          <svg class="vgi-glyph"><use href="#ic-vgi"/></svg>
+          <span>VGI</span>
+          <span class="vgi-sep">·</span>
+          <span class="vgi-cn">验证型生成式智能<sup class="vgi-tm">™</sup></span>
+        </span>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">vgi-full · EN · 28px</span>
+        <span class="vgi vgi--rcp vgi--full">
+          <svg class="vgi-glyph"><use href="#ic-vgi"/></svg>
+          <span>VGI</span>
+          <span class="vgi-sep">·</span>
+          <span>Verified Generative Intelligence<sup class="vgi-tm">™</sup></span>
+        </span>
+      </div>
+      <div class="ladder-row">
+        <span class="ladder-spec">vgi-compact · 20px</span>
+        <span class="vgi vgi--de vgi--compact">
+          <svg class="vgi-glyph"><use href="#ic-vgi"/></svg>
+          <span>VGI</span>
+        </span>
+        <span class="vgi vgi--se vgi--compact">
+          <svg class="vgi-glyph"><use href="#ic-vgi"/></svg>
+          <span>VGI</span>
+        </span>
+        <span class="vgi vgi--di vgi--compact">
+          <svg class="vgi-glyph"><use href="#ic-vgi"/></svg>
+          <span>VGI</span>
+        </span>
+        <span class="vgi vgi--rcp vgi--compact">
+          <svg class="vgi-glyph"><use href="#ic-vgi"/></svg>
+          <span>VGI</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 六、家族 lockup -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">6. 四产品家族 Lockup</h2>
+    <p class="section-desc">用于 IR 材料、官网"我们的 AI 产品矩阵"展示页、投资者 deck 封面。每个 logo 完整出现（图标 + wordmark），底部共用 endorsement signature。</p>
+
+    <div class="family-lockup">
+      <div class="family-row">
+        <span class="logo logo--de size-md">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+        <span class="logo logo--se size-md">
+          <span class="logo-icon"><svg><use href="#ic-se"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Seek</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+        <span class="logo logo--di size-md">
+          <span class="logo-icon"><svg><use href="#ic-di"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Insight</span></span>
+        </span>
+        <span class="rcp-logo rcp-logo-md">
+          <span class="rcp-icon"><svg><use href="#ic-rcp"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+      <div class="family-endorsement">由 梅斯健康 出品</div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 七、与母品牌共现 -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">7. 与母品牌 Logo 共现</h2>
+    <p class="section-desc">仅限 IR 材料、合作协议封面、产品 about 页"集团关系"区使用。</p>
+
+    <div class="cobrand">
+      <div>
+        <div class="cobrand-master">MedSci Healthcare</div>
+        <div class="cobrand-master-tag">Improving Healthcare Quality</div>
+      </div>
+      <div class="cobrand-divider"></div>
+      <div class="lockup lockup-md">
+        <span class="logo logo--de size-md">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+        <span class="endorsement">由 梅斯健康 出品</span>
+      </div>
+    </div>
+    <div class="note">
+      <strong>替代说明</strong>：此处母品牌用文字渲染（Footlight MT Pro / Noto Serif SC fallback）作占位；正式落地时左侧应替换为 <code>medsci-healthcare-logo.svg</code> 完整水平 logo（含点阵螺旋 mark + 字标 + tagline）。
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 八、禁忌 -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">8. 禁忌示例</h2>
+    <p class="section-desc">下列做法破坏家族识别度与品牌一致性，全部禁止。</p>
+
+    <div class="forbidden-row">
+      <div class="forbidden">
+        <span class="logo logo--de size-md" style="text-transform: uppercase;">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+        <div class="forbidden-caption">全大写 — 偏离 mixed-case</div>
+      </div>
+      <div class="forbidden">
+        <span class="logo size-md" style="color: var(--de-wordmark);">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark"><span class="wm-prefix" style="color:#000">Deep</span><span class="wm-suffix" style="color:var(--de-wordmark)">Evidence</span></span>
+        </span>
+        <div class="forbidden-caption">prefix/suffix 颜色对调</div>
+      </div>
+      <div class="forbidden">
+        <span class="logo logo--de size-md">
+          <span class="logo-icon"><svg><use href="#ic-de"/></svg></span>
+          <span class="wordmark" style="font-family: 'Inter', sans-serif; font-weight: 800;"><span class="wm-prefix">Deep</span><span class="wm-suffix">Evidence</span></span>
+        </span>
+        <div class="forbidden-caption">非 Teko 字体</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== -->
+  <!-- 九、色板速查 -->
+  <!-- ============================== -->
+  <section class="section">
+    <h2 class="section-title">9. 色板速查</h2>
+    <table class="spec-table">
+      <thead>
+        <tr><th>Token</th><th>HEX</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="swatch" style="background:#2563EB"></span>--de-primary</td><td>#2563EB</td><td>DeepEvidence wordmark prefix + 图标 + UI 主色（统一）</td></tr>
+        <tr><td><span class="swatch" style="background:#9333EA"></span>--se-primary</td><td>#9333EA</td><td>SeekEvidence wordmark prefix + 图标 + UI 主色（统一）</td></tr>
+        <tr><td><span class="swatch" style="background:#0891B2"></span>--di-primary</td><td>#0891B2</td><td>DeepInsight wordmark + 图标 + UI 主色（暂定）</td></tr>
+        <tr><td><span class="swatch" style="background:#0F62FE"></span>--rcp-primary</td><td>#0F62FE</td><td>RCP wordmark + 图标 + UI 主色（IBM Blue 60）</td></tr>
+        <tr><td><span class="swatch" style="background:#000000"></span>wordmark suffix</td><td>#000000</td><td>所有产品 wordmark suffix 唯一色（黑）</td></tr>
+        <tr><td><span class="swatch" style="background:#334155"></span>--neutral-700</td><td>#334155</td><td>Endorsement signature 唯一色</td></tr>
+      </tbody>
+    </table>
+    <div class="note">
+      <strong>v0.3 修订</strong>：wordmark 主色与 UI 主色统一为同一 token。DE/SE 现有 logo 动效文件中的旧色值（<code>#2c65c9</code> / <code>#893BE1</code>）需更新为 UI 主色（<code>#2563EB</code> / <code>#9333EA</code>），列入工程整改清单。
+    </div>
+  </section>
+
+</div>
+</body>
+</html>

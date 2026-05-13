@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>能力矩阵 · Capabilities · 梅斯 AI</title>
+<meta name="description" content="梅斯 AI 4 产品能力详解：DeepEvidence 中文证据问答 · SeekEvidence 英文文献检索 · DeepInsight KOL 发现 · Rapid Clinical Pulse 任务发起。">
+<link rel="icon" type="image/svg+xml" href="../assets/master-brand/default-en.svg">
+<link rel="stylesheet" href="./assets/css/site.css">
+<style>
+  .cap-section {
+    border-top: 1px solid var(--line-soft);
+    padding: clamp(56px,8vw,88px) 0;
+    scroll-margin-top: 80px;
+  }
+  .cap-section[data-product="de"]  { --cap-color: #2563EB; }
+  .cap-section[data-product="se"]  { --cap-color: #9333EA; }
+  .cap-section[data-product="di"]  { --cap-color: #0891B2; }
+  .cap-section[data-product="rcp"] { --cap-color: #0F62FE; }
+  .cap-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px,5vw,56px);
+    align-items: start;
+  }
+  @media (max-width: 880px) { .cap-grid { grid-template-columns: 1fr; } }
+  .cap-tag {
+    display: inline-block; padding: 4px 12px;
+    background: rgba(0,0,0,0.04); color: var(--cap-color);
+    font-size: 12px; font-weight: 600; letter-spacing: 0.04em;
+    border-radius: 999px; margin-bottom: 14px;
+  }
+  .cap-list { margin-top: 22px; padding-left: 0; list-style: none; }
+  .cap-list li {
+    padding: 10px 0 10px 28px; border-bottom: 1px solid var(--line-soft);
+    position: relative; font-size: 15px;
+  }
+  .cap-list li::before {
+    content: "✓"; position: absolute; left: 0; top: 12px;
+    color: var(--cap-color); font-weight: 700;
+  }
+  .demo-box {
+    background: #fff; border: 1px solid var(--line);
+    border-radius: var(--r-lg); padding: 22px; min-height: 220px;
+  }
+  /* RCP 表 mockup */
+  .rcp-form { display: grid; gap: 12px; }
+  .rcp-form .field {
+    background: #F7F9FC; padding: 12px 14px; border-radius: var(--r-sm);
+    font-size: 13px; color: var(--ink-2);
+  }
+  .rcp-form .field strong { color: var(--ink-1); }
+  .rcp-form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="./index.html"><span class="brand-mark" aria-hidden="true">梅</span><span class="brand-name">梅斯 AI<span class="en">MedSci AI</span></span></a>
+    <nav class="nav" aria-label="主导航">
+      <a href="./enterprise.html">企业方案</a>
+      <a href="./clinicians.html">医生网络</a>
+      <a href="./capabilities.html" aria-current="page">能力矩阵</a>
+      <a href="./cases.html">客户实证</a>
+      <a href="./contact.html">联系</a>
+      <span class="lang-toggle" role="group" aria-label="语言切换">
+        <a href="./capabilities.html" class="active" aria-current="true">CN</a>
+        <a href="./en/capabilities.html">EN</a>
+      </span>
+      <a href="./contact.html#book-demo" class="nav-cta nav-mobile-keep">预约 demo</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section style="padding:60px 0 32px;">
+  <div class="container">
+    <span class="section-eyebrow">Capabilities</span>
+    <h1>
+      <span class="lang-cn">四个 AI · 一套信任层</span>
+      <span class="lang-en">Four AIs · One trust layer</span>
+    </h1>
+    <p class="lead">
+      <span class="lang-cn">每个产品独立色相、独立场景；通过共享的 PITL / AIO / VGI™ / Nano-Citation 绑定为一个家族。</span>
+    </p>
+    <div class="cta-cluster" style="margin-top:24px;">
+      <a class="btn-link" href="#de">DeepEvidence</a>
+      <a class="btn-link" href="#se">SeekEvidence</a>
+      <a class="btn-link" href="#di">DeepInsight</a>
+      <a class="btn-link" href="#rcp">Rapid Clinical Pulse</a>
+    </div>
+  </div>
+</section>
+
+<!-- DE -->
+<section class="cap-section" id="de" data-product="de" aria-labelledby="de-title">
+  <div class="container cap-grid">
+    <div>
+      <span class="cap-tag">DeepEvidence · 中文医学证据</span>
+      <h2 id="de-title" style="color:var(--cap-color);">中文证据问答</h2>
+      <p class="lead">
+        <span class="lang-cn">面向临床医生，5 秒内拿到带 Nano-Citation [n] 的中文医学证据；适合床旁查询、患者沟通备料、临床路径快速核对。</span>
+      </p>
+      <ul class="cap-list">
+        <li>每条结论 [n] 一键展开原始文献</li>
+        <li>引用文献被撤稿时主动告警（24h）</li>
+        <li>关键诊疗内容由 PITL 真人医生预审</li>
+        <li>受众：临床医生、住院医、医学生</li>
+      </ul>
+      <div class="cta-cluster">
+        <a class="btn btn-primary" href="https://www.medsci.cn/" target="_blank" rel="noopener noreferrer" style="background:var(--cap-color);">DE 试用 · Try it</a>
+      </div>
+    </div>
+    <div class="demo-box">
+      <div style="font-size:11px;color:var(--ink-3);margin-bottom:10px;letter-spacing:0.06em;">DEMO · NANO-CITATION</div>
+      <p style="font-size:14px;line-height:1.7;color:var(--ink-1);margin:0 0 12px;">
+        二甲双胍仍是 2 型糖尿病初始首选治疗<sup style="background:#2563EB;color:#fff;border-radius:8px;padding:1px 6px;font-size:10px;font-weight:700;">[1]</sup>，对存在心血管风险者，可优先考虑 SGLT2i 或 GLP-1RA<sup style="background:#2563EB;color:#fff;border-radius:8px;padding:1px 6px;font-size:10px;font-weight:700;">[2]</sup>。
+      </p>
+      <div style="background:#F4F8FE;border-left:3px solid #2563EB;padding:10px 12px;font-size:12px;color:var(--ink-2);border-radius:4px;">
+        <strong>[1]</strong> ADA Standards of Care 2025, §9. <em>Diabetes Care</em>. <a href="#" style="color:#2563EB;">展开原文 ↗</a><br>
+        <strong>[2]</strong> ESC Guidelines on Diabetes 2023, §6.2. <a href="#" style="color:#2563EB;">展开原文 ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SE -->
+<section class="cap-section" id="se" data-product="se" aria-labelledby="se-title" style="background:var(--bg-soft);">
+  <div class="container cap-grid">
+    <div>
+      <span class="cap-tag">SeekEvidence · 英文文献</span>
+      <h2 id="se-title" style="color:var(--cap-color);">英文文献深度检索</h2>
+      <p class="lead">
+        <span class="lang-cn">PubMed / 临床指南 / RCT 库联合检索；Diff View 红绿对比让你 30 秒看清两版指南的实质差异。</span>
+      </p>
+      <ul class="cap-list">
+        <li>多源联合检索（PubMed + Cochrane + 主流学会指南）</li>
+        <li>Diff View 红绿对比（指南更新 / 立场分歧）</li>
+        <li>结构化输出 PICO 元素，便于循证评审</li>
+        <li>受众：科研、循证审评、文献综述</li>
+      </ul>
+      <div class="cta-cluster">
+        <a class="btn btn-primary" href="https://www.medsci.cn/" target="_blank" rel="noopener noreferrer" style="background:var(--cap-color);">SE 试用 · Try it</a>
+      </div>
+    </div>
+    <div class="demo-box">
+      <div style="font-size:11px;color:var(--ink-3);margin-bottom:10px;letter-spacing:0.06em;">DEMO · DIFF VIEW</div>
+      <div style="font-size:13px;line-height:1.7;">
+        <div style="background:#FEF2F2;border-left:3px solid #DC2626;padding:8px 12px;margin-bottom:6px;border-radius:4px;color:#7F1D1D;">
+          <strong>2021 版：</strong>HbA1c 目标 &lt; 7.0%，特殊人群可放宽。
+        </div>
+        <div style="background:#F0FDF4;border-left:3px solid #16A34A;padding:8px 12px;border-radius:4px;color:#14532D;">
+          <strong>2025 版：</strong>HbA1c 目标 &lt; 7.0%，老年共病者放宽至 &lt; 8.0%；新增持续监测建议。
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DI -->
+<section class="cap-section" id="di" data-product="di" aria-labelledby="di-title">
+  <div class="container cap-grid">
+    <div>
+      <span class="cap-tag">DeepInsight · KOL 发现</span>
+      <h2 id="di-title" style="color:var(--cap-color);">PI Portrait 360</h2>
+      <p class="lead">
+        <span class="lang-cn">基于真实平台行为（检索、内容、互动）识别活跃 KOL 与 Rising Star；不是 LinkedIn 抓取。</span>
+      </p>
+      <ul class="cap-list">
+        <li>多维度画像：领域 / 活跃度 / 内容质量 / 影响力</li>
+        <li>Rising Star 识别（早期信号）</li>
+        <li>支持自定义指标权重，匹配市场 / 医学事务 / KA 团队场景</li>
+        <li>受众：药企市场 / 医学事务 / KA 团队</li>
+      </ul>
+      <div class="cta-cluster">
+        <a class="btn btn-primary" href="./contact.html#book-demo" style="background:var(--cap-color);">看 DI demo</a>
+      </div>
+    </div>
+    <div class="demo-box">
+      <div style="font-size:11px;color:var(--ink-3);margin-bottom:14px;letter-spacing:0.06em;">DEMO · PI PORTRAIT 360（示意）</div>
+      <svg viewBox="0 0 360 220" width="100%" role="img" aria-label="PI Portrait 360 雷达图示例">
+        <g transform="translate(180,110)">
+          <polygon points="0,-80 76,-25 47,65 -47,65 -76,-25" fill="none" stroke="#E3E8F0"/>
+          <polygon points="0,-50 48,-15 30,40 -30,40 -48,-15" fill="none" stroke="#E3E8F0"/>
+          <polygon points="0,-25 24,-8 15,20 -15,20 -24,-8" fill="none" stroke="#E3E8F0"/>
+          <polygon points="0,-72 60,-20 36,52 -42,58 -68,-22" fill="#0891B2" fill-opacity="0.18" stroke="#0891B2" stroke-width="1.5"/>
+          <g font-family="-apple-system,sans-serif" font-size="11" fill="#0B1424">
+            <text x="0" y="-90" text-anchor="middle">领域权威</text>
+            <text x="86" y="-25" text-anchor="start">内容质量</text>
+            <text x="55" y="80" text-anchor="middle">活跃度</text>
+            <text x="-55" y="80" text-anchor="middle">影响力</text>
+            <text x="-86" y="-25" text-anchor="end">响应速度</text>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- RCP -->
+<section class="cap-section" id="rcp" data-product="rcp" aria-labelledby="rcp-title" style="background:var(--bg-soft);">
+  <div class="container cap-grid">
+    <div>
+      <span class="cap-tag">Rapid Clinical Pulse · 任务发起</span>
+      <h2 id="rcp-title" style="color:var(--cap-color);">敏捷验证实验室</h2>
+      <p class="lead">
+        <span class="lang-cn">按需触达医生，加速高价值医学任务。中位 3 天反馈 (来源：<a href="./cases.html#whitepaper">《医生互联网生活调研 2025》</a>)。</span>
+      </p>
+      <ul class="cap-list">
+        <li>4 类任务模板：定性访谈 / 定量调研 / 内容审阅 / 概念验证</li>
+        <li>VGI™ 评分校准的医生池筛选</li>
+        <li>结构化反馈 + 原始数据导出</li>
+        <li>受众：药企 / CRO / 咨询 / AI 公司</li>
+      </ul>
+      <div class="cta-cluster">
+        <a class="btn btn-primary" href="./contact.html#book-demo" style="background:var(--cap-color);">发起任务 · Run a pulse</a>
+        <a class="btn-link" href="./cases.html">看匿名案例</a>
+      </div>
+    </div>
+    <div class="demo-box">
+      <div style="font-size:11px;color:var(--ink-3);margin-bottom:14px;letter-spacing:0.06em;">DEMO · RCP 任务发起（示意）</div>
+      <div class="rcp-form" aria-hidden="true">
+        <div class="field"><strong>任务类型 · Type:</strong> 定量调研 · 真实世界用药习惯</div>
+        <div class="row">
+          <div class="field"><strong>目标领域:</strong> 心血管</div>
+          <div class="field"><strong>目标科室:</strong> 心内科</div>
+        </div>
+        <div class="row">
+          <div class="field"><strong>样本量:</strong> n = 120</div>
+          <div class="field"><strong>预计反馈:</strong> 3 天（中位）</div>
+        </div>
+        <div class="field" style="background:#0F62FE;color:#fff;text-align:center;font-weight:600;">提交 · Submit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p class="endorsement">由 <strong>梅斯健康</strong> 出品<br>by <strong>MedSci Healthcare</strong></p>
+        <p style="font-size:13px;line-height:1.6;color:#A8B5CC;margin:0;">梅斯 AI 是 梅斯健康集团（HKEX: 2415）旗下的 AI 子品牌系统。</p>
+      </div>
+      <div><h4>产品 · Products</h4><ul>
+        <li><a href="#de">DeepEvidence</a></li>
+        <li><a href="#se">SeekEvidence</a></li>
+        <li><a href="#di">DeepInsight</a></li>
+        <li><a href="#rcp">Rapid Clinical Pulse</a></li>
+      </ul></div>
+      <div><h4>方案 · Solutions</h4><ul>
+        <li><a href="./enterprise.html">企业方案</a></li>
+        <li><a href="./clinicians.html">医生网络</a></li>
+        <li><a href="./cases.html">客户实证</a></li>
+        <li><a href="./cases.html#whitepaper">实证白皮书</a></li>
+      </ul></div>
+      <div><h4>联系 · Contact</h4><ul>
+        <li><a href="./contact.html#book-demo">预约 demo</a></li>
+        <li><a href="./contact.html#sales">联系销售</a></li>
+        <li><a href="mailto:ai@medscihealthcare.com">ai@medscihealthcare.com</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 MedSci Healthcare · 梅斯健康集团</span>
+      <span><a href="#">隐私 · Privacy</a> &nbsp;·&nbsp; <a href="#">条款 · Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

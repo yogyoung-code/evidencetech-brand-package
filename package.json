@@ -1,0 +1,9 @@
+{
+  "name": "ai-brand-kit-workspace",
+  "version": "1.0.0",
+  "description": "梅斯健康 AI Brand Kit · 工作区根目录（仅装运行时辅助工具，如 puppeteer 用于截图档案脚本）",
+  "private": true,
+  "dependencies": {
+    "puppeteer": "^24.43.0"
+  }
+}

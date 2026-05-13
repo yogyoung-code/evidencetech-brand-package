@@ -1,0 +1,25 @@
+# 统一行尾
+* text=auto eol=lf
+
+# 二进制
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.zip binary
+*.gz binary
+*.tar binary
+*.pptx binary
+*.xlsx binary
+*.docx binary
+
+# linguist 不把第三方资产计入仓库语言统计
+docs/.vitepress/dist/** linguist-generated=true
+react/dist/** linguist-generated=true
+**/node_modules/** linguist-vendored=true

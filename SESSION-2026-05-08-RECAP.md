@@ -1,0 +1,184 @@
+# 2026-05-08 单日里程碑总览（新会话快速入口）
+
+> 本文档是 **2026-05-08 单日工作的精简快照**，给新会话 AI 助手 30 秒吃完关键上下文。完整细节见 `HANDOFF.md` §27 / §28 + `discovery-report-CN.md` 修订追溯段尾部。
+
+---
+
+## 1. 当前状态（截至 2026-05-08）
+
+### 全签字闭环（11 子文档全 v0.2 已签）
+
+```
+voice 层（7 子文档 + 主文档 v0.3）
+├── 03 主文档              v0.3 ✅
+├── 03a 社交               v0.2 ✅ (2026-05-06)
+├── 03c 邮件               v0.2 ✅ (2026-05-08 · v0.3 双签)
+├── 03d 错误边界态         v0.2 ✅ (2026-05-08 · v0.3 三签)
+├── 03e 区域化             v0.2 ✅ (2026-05-06)
+├── 03f 实证               v0.2 ✅ (2026-05-06)
+└── 03g 竞品               v0.2 ✅ (2026-05-08 · v0.3 双签)
+
+04 视觉系统（4 子文档）
+├── 04 主文档              v0.2 ✅
+├── 04a a11y               v0.2 ✅ (2026-05-08 · 04 批次三签)
+├── 04b 动效               v0.2 ✅ (2026-05-08 · 04 批次三签)
+└── 04c 摄影插画           v0.2 ✅ (2026-05-08 · 04 批次三签)
+
+06 治理（2 子文档）
+├── 06 主文档              v1.0
+└── 06a NPM SemVer         v0.2 ✅ (2026-05-08 · 06a 双签 · Sponsor 实质签字)
+
+工程层
+└── react 包 v0.1.0        ✅ 真发布到 GitHub Packages (2026-05-08)
+                           @yogyoung-code/ai-brand-kit · latest tag
+
+强制层
+└── brand-voice-guidelines.md  v0.3 候选（~136 条决议浓缩）
+```
+
+**Voice gap 进度**：**10/10 v0.2 已签 ✨ 完整闭环**
+
+---
+
+## 2. 签字人速查
+
+| 签字人 | 角色 | 已签批次 |
+|---|---|---|
+| **C Yang** | 市场负责人 | voice 层 v0.2 / 04 批次三签 / v0.3 双签（03c+03g）/ v0.3 三签（03d）|
+| **Bruce Chen** | 法务（部分早期签 "B Chen"）| voice 层 v0.2 / 04 批次三签 / v0.3 双签 / v0.3 三签 |
+| **ZL Chen** | Tech Lead | 04 批次三签 / v0.3 三签 / **06a 双签** |
+| **Yog** | Sponsor | 流程留痕（除 06a 是**实质签字人**）|
+
+---
+
+## 3. 即时待办（用户本地 + 30 / 60 天）
+
+### 🔴 用户本地立即（≤ 1 工作日）
+
+```bash
+# 1. docs/ 站同步（含累积全部签字 + react v0.1.0 + 强制层 v0.3 候选）
+cd /Users/yogyoung/Documents/EvidenceTech-Brand-Package/EvidenceTech-Brand-Package
+node scripts/sync-docs.mjs
+
+# 2. 强制层启用（让 brand-voice-enforcement 技能自动加载 v0.3 候选 ~136 条）
+mkdir -p .claude
+ln -sf ../governance/brand-voice-guidelines.md .claude/brand-voice-guidelines.md
+
+# 3. 决策升 v0.3 完整：将 brand-voice-guidelines.md 顶部 "v0.3 候选" 改为 "v0.3"
+```
+
+### 📧 通知文案（已起草 · 复制粘贴即可发送）
+
+| 通知 | 文案位置 |
+|---|---|
+| #brand-updates 累积 release notes | HANDOFF §15.1.8（v0.2）+ §19.1.1（04）+ §25.5（v0.3 双签）+ §26.5（v0.3 三签）+ §27.5（06a）|
+| 工程团队 lead（DE/SE/DI/RCP）邮件 | 同上 5 处对应工程团队段 |
+| 销售/BD/客户支持/PR lead 邮件 | HANDOFF §25.5 + §26.5 |
+| 大区市场 lead 邮件 | HANDOFF §25.5 |
+| 产品 PM / 设计 / 法务 lead 邮件 | HANDOFF §26.5 |
+
+### 🟡 T+30 天内
+
+- [ ] **三方决议会议**：实证库工具选型（NocoDB / Baserow / PG+FastAPI · 与 04c 临时素材库 + 03f SourceID + 03d 错误码注册表 + Battle Card 加密 SaaS 同基础设施复用）
+- [ ] **法务交付 3 项**：《过渡期摄影申请表》+《知情同意书》模板 + 真人医生判定指南 v0.2.1 patch
+- [ ] **工程实施 4 项**：scripts/verify-exports.mjs（CI）+ scripts/lint-error-copy.mjs（CI）+ governance/error-codes-registry.md + .github/workflows/release.yml + a11y.yml + 错误监控接入（Sentry / 自建）+ DKIM/SPF/DMARC 配置 + 退订系统 ≤ 1 工作日校验
+- [ ] **培训**：销售 / BD / 客户支持 / PR / 工程 / 设计 / 法务 onboarding 培训追加 1-2 周
+- [ ] **v0.3.1 patch 候选**：销售新人速查卡 / Battle Card 模板初稿 / 错误文案速查卡 / 邮件模板速查卡 / dist-tag 操作手册 / Migration Guide 模板
+
+### 🟢 T+60 天内
+
+- [ ] **react 包 v0.2.0 发布**：含 a11y patch（继承 04a）+ motion patch（继承 04b · ai-tokens.css 注入 4 ease + 4 duration）+ 错误反馈 patch（继承 03d）+ 5 新组件（Spinner / Skeleton / Toast / ProgressBar / ErrorAlert）
+- [ ] **错误码迁移**（如适用）：现有错误码按 D6/D7 命名空间 + 编号区段重新分配
+- [ ] **双 opt-in 注册流程上线** + 事务性邮件模板系统集成
+
+### 🔵 MSH org 创建后（不定时）
+
+- [ ] **启动 06a §12 30 天迁移规程**：T+0 deprecate `@yogyoung-code/ai-brand-kit` → T+1 发 `@medsci/ai-brand-kit@1.0.0` → T+30 客户必迁完 → T+90 旧包 archive
+- [ ] **多包评估**（已接近 1.2 MB packed 触发线）：可与 v1.0.0 + MSH 迁移同步执行；锁定工具 = pnpm workspace + changesets
+
+---
+
+## 4. 关键文档索引（按读取优先级）
+
+| 优先级 | 文档 | 用途 |
+|---|---|---|
+| ⭐⭐⭐ | `HANDOFF.md` | **新会话必读** · §9 开场建议 / §13.2 voice gap 状态 / §21-§28 今天 8 大里程碑详情 |
+| ⭐⭐⭐ | `discovery-report-CN.md` | 修订追溯段（按时间线追溯所有签字 + 起草） |
+| ⭐⭐ | `governance/brand-voice-guidelines.md` | v0.3 候选 · 19 章 · ~136 条决议浓缩 |
+| ⭐⭐ | `governance/v0.3-batch-review-packet.md` | v0.3 双签 packet（03c + 03g · 已签）|
+| ⭐⭐ | `governance/v0.3-tri-batch-review-packet.md` | v0.3 三签 packet（03d · 已签）|
+| ⭐⭐ | `governance/06a-signoff-packet.md` | 06a 双签 packet（已签）|
+| ⭐ | `governance/04-subdocs-batch-review-packet.md` | 04 批次三签 packet（已签）|
+| ⭐ | `governance/v0.2-second-round-signoff.md` | voice 层 v0.2 双签留痕 |
+| ⭐ | `06a-npm-semver.md` v0.2 | NPM 包发布完整治理 |
+| ⭐ | `react/PUBLISH.md` | 步骤化发布 runbook（含 7 类坑回填）|
+
+---
+
+## 5. 已锁定决策清单（不要重新讨论）
+
+总决议 ~136 条 · 全部 v0.2 已签：
+
+- voice 层：25 决议（v0.2 双签 03+03a+03e+03f）
+- 04 批次：34 决议 A1-A8 + B1-B10 + C1-C11 + X1-X5（v0.2 三签 04a+04b+04c）
+- 03c：18 决议 E1-E18（v0.3 双签）
+- 03d：25 决议 D1-D25（v0.3 三签）
+- 03g：18 决议 G1-G18（v0.3 双签）
+- 06a：16 决议 N1-N16（06a 双签）
+
+**任何改动须按 06 §2 RFC 流程或 v0.3.1 patch**；不要凭印象判断规则——查 governance/ 流程文档 + 源 spec。
+
+---
+
+## 6. 新会话开场提示词模板
+
+把下面这段直接粘贴到新会话作为第一条消息：
+
+```
+继续 EvidenceTech-Brand-Package 项目。先 Read 下列文件吃完上下文：
+
+1. SESSION-2026-05-08-RECAP.md（本文件 · 30 秒入口）
+2. HANDOFF.md（必读 · §9 开场 + §13.2 voice gaps + §21-§28 今天里程碑）
+3. discovery-report-CN.md（按需 · 修订追溯按时间线）
+4. governance/brand-voice-guidelines.md（v0.3 候选 · 强制层 ~136 条决议）
+
+现状关键点：
+- 11 子文档全 v0.2 已签 + react v0.1.0 真发布 + 强制层 v0.3 候选 ✅
+- voice gap 10/10 完整闭环
+- 待启动 = 工程实施（30/60 天）+ 培训 + 通知发送 + v0.3.1 patch
+
+读完后直接给当前状态速报 + 可推进选项；不要重新讨论已签决议。
+
+候选切入：
+A 工程实施层启动（lint + CI + 错误监控 + DKIM/SPF/DMARC + 退订系统）
+B v0.3.1 patch（速查卡 / Battle Card 模板 / 真人医生判定指南）
+C react v0.2.0 准备（a11y + motion + 错误反馈 patch + 5 新组件）
+D 实证库工具选型三方决议会议
+E 强制层升 v0.3 完整 + .claude/ 启用测试
+F 推 03b 海外推广（occupation gap · 暂未起草）
+G 通知发送（5 类邮件 / #brand-updates · 文案已就绪）
+H 其他
+
+任何改动锁定决策须按 06 §2 RFC 流程或 v0.3.1 patch；不要凭印象判断规则——查 governance/ 流程文档 + 源 spec。
+```
+
+---
+
+## 7. 今天累计产出统计
+
+| 类型 | 产出量 |
+|---|---|
+| 新文档起草（v0.1）| **4 个** ~3,000 行（03c / 03d / 03g / 06a）|
+| 配套文档起草 | **5 个**（react/CHANGELOG.md / PUBLISH.md / .npmrc.example + scripts/verify-exports.mjs + governance/06a-release-notes-template.md）|
+| Packet 编制 | **3 个**（v0.3 双签 / v0.3 三签 / 06a 双签）|
+| 签字流程落地 | **4 个**（04 批次三签 + v0.3 双签 + v0.3 三签 + 06a 双签）|
+| 升版子文档 | **7 个**（04a/04b/04c v0.2 + 03c/03d/03g v0.2 + 06a v0.2）|
+| 强制层升级 | v0.2 → v0.3 候选（净增 ~570 行 / 77 决议 / 4 章节）|
+| react 包真发布 | **v0.1.0 → GitHub Packages**（含 7 类坑全链路回填）|
+| HANDOFF 新增段 | §21 / §22 / §23 / §24 / §25 / §26 / §27 / §28（8 大新段）|
+
+→ 单日产出在整个项目历史中是**最高密度的一天**。
+
+---
+
+**文档结束**。新会话查阅起点：本文档 → HANDOFF.md → discovery-report-CN.md。

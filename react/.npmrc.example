@@ -1,0 +1,110 @@
+# =============================================================================
+# .npmrc.example — @yogyoung-code/ai-brand-kit
+# =============================================================================
+#
+# ⚠️  这是一份模板。**不要在仓库内放真实 PAT**。
+#
+# ⚠️⚠️⚠️ 复制本文件后**必须**编辑替换占位符！
+#   占位符：ghp_REPLACE_WITH_YOUR_PERSONAL_ACCESS_TOKEN
+#   不替换 = 401 unauthenticated（GitHub 拒绝认证）
+#
+# 推荐方式：不要用 cp 复制本文件，直接 cat 写入：
+#
+#   cat > ~/.npmrc <<'EOF'
+#   @yogyoung-code:registry=https://npm.pkg.github.com
+#   //npm.pkg.github.com/:_authToken=PASTE_YOUR_REAL_PAT
+#   EOF
+#   open -e ~/.npmrc   # 编辑替换 PASTE_YOUR_REAL_PAT
+#   chmod 600 ~/.npmrc
+#
+# 配置位置选择：
+#
+#   A) 用户级（推荐）：~/.npmrc
+#      → 仅你本人可访问；不污染仓库；切换项目无需重配
+#      → 适合 Tech Lead 本地工作站
+#
+#   B) 仓库级（仅 CI 环境）：./.npmrc
+#      → 仓库根的 .npmrc（已 .gitignore）；CI 环境通过 secret 注入
+#      → 不要 commit 真实 PAT
+#
+# =============================================================================
+# 配置内容
+# =============================================================================
+
+# 1. 把 @yogyoung-code scope 路由到 GitHub Packages
+@yogyoung-code:registry=https://npm.pkg.github.com
+
+# 2. PAT 认证 token（替换为你的实际 PAT，以 ghp_ 开头）
+//npm.pkg.github.com/:_authToken=ghp_REPLACE_WITH_YOUR_PERSONAL_ACCESS_TOKEN
+
+# 3.（可选）禁止意外 publish 到公网 npm registry
+# 取消下行注释如果想强制 publish 路由
+# registry=https://npm.pkg.github.com
+
+# =============================================================================
+# 操作步骤（首次配置）
+# =============================================================================
+#
+# 1. 生成 PAT
+#    访问 https://github.com/settings/tokens → Generate new token (classic)
+#    Scopes：write:packages + read:packages（最小权限）
+#    Expiration：90 days（过期前续期）
+#
+# 2. 复制本文件到 ~/.npmrc 或 ./.npmrc
+#
+#    cp react/.npmrc.example ~/.npmrc
+#    # 或仓库级：cp react/.npmrc.example ./.npmrc
+#
+# 3. 编辑替换 PAT（不要把真 token commit！）
+#
+#    # 用户级
+#    vim ~/.npmrc
+#
+# 4. 收紧文件权限
+#
+#    chmod 600 ~/.npmrc
+#
+# 5. 验证
+#
+#    npm whoami --registry=https://npm.pkg.github.com
+#    # 应输出你的 GitHub 用户名 yogyoung-code
+#
+# =============================================================================
+# 安全清单
+# =============================================================================
+#
+# ✓ 真实 .npmrc 永不 commit（已在 .gitignore 中）
+# ✓ PAT 仅赋予最小 scope（write:packages + read:packages）
+# ✓ PAT 90 天过期；过期前手动续期
+# ✓ 文件权限 600（仅自己可读）
+# ✓ PAT 泄露后立即 revoke：https://github.com/settings/tokens
+# ✓ CI 环境用 GitHub Actions secret（不在仓库内放 PAT）
+#
+# =============================================================================
+# 故障排查
+# =============================================================================
+#
+# 401 Unauthorized → PAT 过期 / scope 不够 / 拼写错误
+# 403 Forbidden    → 无 write:packages 权限 / PAT 已 revoke
+# 404 Not Found    → GitHub repo 不存在 / package.json repository.url 错
+# 422 Unprocessable→ 该版本号已发布过（升版后重试）
+#
+# =============================================================================
+# CI 环境配置（GitHub Actions 示例）
+# =============================================================================
+#
+# .github/workflows/release.yml:
+#   - name: Setup .npmrc
+#     run: |
+#       cat > .npmrc <<EOF
+#       @yogyoung-code:registry=https://npm.pkg.github.com
+#       //npm.pkg.github.com/:_authToken=${{ secrets.NPM_TOKEN }}
+#       EOF
+#       chmod 600 .npmrc
+#
+# 仓库 Secrets 配置位置：
+#   GitHub repo → Settings → Secrets and variables → Actions → New secret
+#   Name: NPM_TOKEN
+#   Value: ghp_xxxxx（你的 PAT）
+#
+# =============================================================================

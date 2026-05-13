@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>@yogyoung-code/ai-brand-kit · 视觉验证 demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Teko 用于 wordmark；Noto Sans SC 用于 endorsement signature；Inter 兜底 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- 母品牌 v1.1 token 在生产环境应先 import；本 demo 简化地内联最小依赖项 -->
+<style>
+  :root {
+    --neutral-100: #E2E8F0;
+    --neutral-300: #CBD5E1;
+    --neutral-500: #64748B;
+    --neutral-700: #334155;
+    --neutral-900: #0F172A;
+  }
+  body {
+    font-family: "Inter", "Noto Sans SC", system-ui, sans-serif;
+    color: #0F172A;
+    background: #F8FAFC;
+    margin: 0;
+    padding: 32px;
+    line-height: 1.5;
+  }
+  h1, h2 { color: #001A51; margin-top: 0; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 18px; margin: 32px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--neutral-100); }
+  .container { max-width: 1080px; margin: 0 auto; }
+  .meta { color: var(--neutral-500); font-size: 13px; margin-bottom: 24px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .panel {
+    padding: 16px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    border: 1px solid var(--neutral-100);
+  }
+  .panel-title {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--neutral-500);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .col { display: flex; gap: 12px; flex-direction: column; align-items: flex-start; }
+  .dark {
+    background: var(--neutral-900);
+    color: #FFFFFF;
+  }
+  .dark .panel-title { color: rgba(255,255,255,0.6); }
+  .text-block { line-height: 1.7; max-width: 60ch; }
+</style>
+
+<!-- ai-tokens.css 是本包的样式入口 -->
+<link rel="stylesheet" href="../dist/styles.css">
+
+<!-- Importmap：把 "react" / "react-dom" / "react/jsx-runtime" 解析到 esm.sh -->
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@18.3.1",
+    "react/jsx-runtime": "https://esm.sh/react@18.3.1/jsx-runtime",
+    "react-dom/client": "https://esm.sh/react-dom@18.3.1/client"
+  }
+}
+</script>
+</head>
+<body>
+
+<div class="container">
+  <h1>@yogyoung-code/ai-brand-kit · 视觉验证 demo</h1>
+  <p class="meta">本页用 ESM 直接 import dist/index.js，验证所有组件在 4 产品 scope 下的渲染。<br>
+  打开方式：先 <code>npm run build</code>，再用浏览器打开本文件（建议 <code>python3 -m http.server</code> 或 VS Code Live Server，<strong>不能</strong>用 file:// 协议——importmap 需要 http 协议）。</p>
+
+  <div id="root"></div>
+</div>
+
+<script type="module">
+  import React from "react";
+  import { createRoot } from "react-dom/client";
+  import {
+    BrandScope,
+    Logo, Wordmark, EndorsementSignature,
+    PITLBadge, AIOBadge, VGIMark,
+    NanoCitation, CoTIndicator,
+    DiffAdded, DiffRemoved,
+    Disclosure,
+    MasterBrandLogo,
+    CoBrandLockup,
+  } from "../dist/index.js";
+
+  const h = React.createElement;
+
+  const PRODUCTS = ["de", "se", "di", "rcp"];
+  const PRODUCT_NAMES = { de: "DeepEvidence", se: "SeekEvidence", di: "DeepInsight", rcp: "Rapid Clinical Pulse" };
+
+  function Section({ title, children }) {
+    return h("section", null, h("h2", null, title), children);
+  }
+
+  function ProductTrustGrid() {
+    return h("div", { className: "grid" }, PRODUCTS.map((p) =>
+      h(BrandScope, { product: p, key: p },
+        h("div", { className: "panel" },
+          h("div", { className: "panel-title" }, `brand-${p} · ${PRODUCT_NAMES[p]}`),
+          h("div", { className: "col" },
+            h("div", { className: "row" },
+              h(PITLBadge, null),
+              h(PITLBadge, { full: true }),
+            ),
+            h("div", { className: "row" },
+              h(AIOBadge, null),
+              h(AIOBadge, { full: true }),
+            ),
+            h("div", { className: "row" },
+              h(VGIMark, null),
+              h(VGIMark, { variant: "full" }),
+              h(VGIMark, { variant: "full", lang: "en" }),
+              h(VGIMark, { variant: "glyph", glyphSize: 24 }),
+            ),
+          ),
+        ),
+      ),
+    ));
+  }
+
+  function ReverseGrid() {
+    return h("div", { className: "grid" }, PRODUCTS.map((p) =>
+      h(BrandScope, { product: p, key: p },
+        h("div", { className: "panel dark" },
+          h("div", { className: "panel-title" }, `brand-${p} · 反白态`),
+          h("div", { className: "col" },
+            h("div", { className: "row" },
+              h(PITLBadge, { reverse: true }),
+              h(PITLBadge, { full: true, reverse: true }),
+            ),
+            h("div", { className: "row" },
+              h(AIOBadge, { reverse: true }),
+              h(AIOBadge, { full: true, reverse: true }),
+            ),
+            h("div", { className: "row" },
+              h(VGIMark, { reverse: true }),
+              h(VGIMark, { variant: "full", reverse: true }),
+            ),
+          ),
+        ),
+      ),
+    ));
+  }
+
+  function LogoLadder() {
+    return h("div", { className: "col" }, PRODUCTS.map((p) =>
+      h(BrandScope, { product: p, key: p },
+        h("div", { className: "panel", style: { width: "100%" } },
+          h("div", { className: "panel-title" }, `${PRODUCT_NAMES[p]} · 尺寸阶梯`),
+          h("div", { className: "row", style: { alignItems: "flex-end", gap: 32 } },
+            h(Logo, { product: p, size: "wm-xs" }),
+            h(Logo, { product: p, size: "wm-sm" }),
+            h(Logo, { product: p, size: "wm-md" }),
+            h(Logo, { product: p, size: "wm-lg" }),
+          ),
+          h("div", { className: "row", style: { marginTop: 16, gap: 32, alignItems: "flex-end" } },
+            h(Logo, { product: p, size: "wm-md", endorsement: "cn" }),
+            h(Logo, { product: p, size: "wm-md", endorsement: "en" }),
+          ),
+        ),
+      ),
+    ));
+  }
+
+  function LogoReverse() {
+    return h("div", { className: "panel dark" },
+      h("div", { className: "panel-title" }, "Hero / 深底 反白态"),
+      h("div", { className: "row", style: { gap: 32, alignItems: "flex-end" } },
+        PRODUCTS.map((p) =>
+          h(BrandScope, { product: p, key: p },
+            h(Logo, { product: p, size: "wm-md", reverse: true, endorsement: "cn" }),
+          ),
+        ),
+      ),
+    );
+  }
+
+  function WordmarkOnly() {
+    return h("div", { className: "panel" },
+      h("div", { className: "panel-title" }, "Wordmark · 单独使用（无 icon、无 RCP 横线）"),
+      h("div", { className: "row", style: { gap: 32, alignItems: "baseline" } },
+        PRODUCTS.map((p) =>
+          h(BrandScope, { product: p, key: p, as: "span" },
+            h(Wordmark, { product: p, size: "wm-md" }),
+          ),
+        ),
+      ),
+    );
+  }
+
+  function ContentDemo() {
+    return h(BrandScope, { product: "de" },
+      h("div", { className: "panel", style: { width: "100%" } },
+        h("div", { className: "panel-title" }, "正文场景（DE scope）· Nano-Citation / CoT / Diff / Disclosure"),
+
+        h("p", { className: "text-block" },
+          "AI 的临床决策支持需要可验证的证据基础",
+          h(NanoCitation, { index: 1, onActivate: (i) => console.log("cite", i) }),
+          h(NanoCitation, { index: 2, onActivate: (i) => console.log("cite", i) }),
+          "。该平台支持纳米级溯源与原文片段比对",
+          h(NanoCitation, { index: 3, onActivate: (i) => console.log("cite", i) }),
+          "。",
+        ),
+
+        h("div", { style: { margin: "16px 0" } },
+          h("div", { style: { fontSize: 12, color: "var(--neutral-500)", marginBottom: 8 } }, "AI 推理中（dot-spiral 演化）："),
+          h("div", { className: "row", style: { gap: 24 } },
+            h(CoTIndicator, { dots: 5 }),
+            h(CoTIndicator, { dots: 7 }),
+            h(CoTIndicator, { state: "done" }),
+            h(CoTIndicator, { state: "error" }),
+          ),
+        ),
+
+        h("div", { style: { margin: "16px 0" } },
+          h("div", { style: { fontSize: 12, color: "var(--neutral-500)", marginBottom: 8 } }, "Diff View（专家修订 vs AI 输出）："),
+          h("p", null, "该患者 ", h(DiffRemoved, null, "必须立即停用阿司匹林"), " ",
+            h(DiffAdded, null, "在 INR > 3.0 时建议停用阿司匹林"), "。"),
+        ),
+
+        h("div", { style: { margin: "16px 0" } },
+          h("div", { style: { fontSize: 12, color: "var(--neutral-500)", marginBottom: 8 } }, "Progressive Disclosure（L1 / L2 / L3）："),
+          h(Disclosure, null,
+            h(Disclosure.L1, null, "建议在合并 PPI 使用时停用阿司匹林。"),
+            h(Disclosure.L2, null,
+              "在 INR > 3.0 的患者中，停用阿司匹林可显著降低出血风险",
+              h(NanoCitation, { index: 1 }),
+              "。本建议未涵盖既往胃出血史；请补充病史后再核验。",
+            ),
+            h(Disclosure.L3, null, "[1] Smith et al., NEJM 2024; n=2,341; 风险比 0.62 (95% CI 0.48–0.81)。"),
+          ),
+        ),
+      ),
+    );
+  }
+
+  function FamilyLockup() {
+    return h("div", { className: "panel" },
+      h("div", { className: "panel-title" }, "家族 Lockup · 横向矩阵 + 共用 endorsement signature"),
+      h("div", { className: "row", style: { gap: 64, alignItems: "flex-end", marginTop: 8 } },
+        PRODUCTS.map((p) =>
+          h(BrandScope, { product: p, key: p, as: "span" },
+            h(Logo, { product: p, size: "wm-md" }),
+          ),
+        ),
+      ),
+      h("div", { style: { textAlign: "center", marginTop: 24 } },
+        h(EndorsementSignature, { lang: "cn", size: 14 }),
+      ),
+    );
+  }
+
+  function MasterBrandSection() {
+    // 注：demo 用相对路径 baseUrl=".." 让 <img src> 解析到 ../dist/assets/master-brand/
+    const base = "..";
+    return h(React.Fragment, null,
+      h("div", { className: "panel" },
+        h("div", { className: "panel-title" }, "默认彩色 / 反白 / mono-navy / mono-black · CN"),
+        h("div", { className: "row", style: { gap: 32, alignItems: "flex-end" } },
+          h(MasterBrandLogo, { baseUrl: base, variant: "default", layout: "cn", height: 56 }),
+          h(MasterBrandLogo, { baseUrl: base, variant: "mono-navy", layout: "cn", height: 56 }),
+          h(MasterBrandLogo, { baseUrl: base, variant: "mono-black", layout: "cn", height: 56 }),
+        ),
+      ),
+      h("div", { className: "panel dark" },
+        h("div", { className: "panel-title" }, "Reverse 反白 · 深底"),
+        h("div", { className: "row", style: { gap: 32, alignItems: "flex-end" } },
+          h(MasterBrandLogo, { baseUrl: base, variant: "reverse", layout: "en", height: 56 }),
+          h(MasterBrandLogo, { baseUrl: base, variant: "reverse", layout: "cn", height: 56 }),
+        ),
+      ),
+      h("div", { className: "panel" },
+        h("div", { className: "panel-title" }, "Full canvas (EN + CN) · 默认色"),
+        h("div", { className: "row" },
+          h(MasterBrandLogo, { baseUrl: base, variant: "default", layout: "full", height: 120 }),
+        ),
+      ),
+      h("div", { className: "panel" },
+        h("div", { className: "panel-title" }, "尺寸阶梯（最小 24px）"),
+        h("div", { className: "row", style: { alignItems: "flex-end", gap: 24 } },
+          h(MasterBrandLogo, { baseUrl: base, height: 24 }),
+          h(MasterBrandLogo, { baseUrl: base, height: 32 }),
+          h(MasterBrandLogo, { baseUrl: base, height: 48 }),
+          h(MasterBrandLogo, { baseUrl: base, height: 64 }),
+          h(MasterBrandLogo, { baseUrl: base, height: 96 }),
+        ),
+      ),
+    );
+  }
+
+  function App() {
+    return h(React.Fragment, null,
+      h(Section, { title: "1. 三大信任徽章 · 四产品 scope" }, h(ProductTrustGrid)),
+      h(Section, { title: "2. 信任徽章 · 反白态" }, h(ReverseGrid)),
+      h(Section, { title: "3. Logo · 尺寸阶梯 + endorsement signature" }, h(LogoLadder)),
+      h(Section, { title: "4. Logo · 反白态（Hero / 深底）" }, h(LogoReverse)),
+      h(Section, { title: "5. Wordmark · 单独使用（与完整 Logo 对等的合法形态）" }, h(WordmarkOnly)),
+      h(Section, { title: "6. 正文场景 · Nano-Citation / CoT / Diff / Disclosure" }, h(ContentDemo)),
+      h(Section, { title: "7. 家族 Lockup" }, h(FamilyLockup)),
+      h(Section, { title: "8. 母品牌 MedSci Healthcare logo · 4 变体 × 3 构图" }, h(MasterBrandSection)),
+      h(Section, { title: "9. Co-Brand Lockup · 母品牌 + 产品 wordmark（02 §4.3）" }, h(CoBrandSection)),
+    );
+  }
+
+  function CoBrandSection() {
+    const base = "..";
+    return h(React.Fragment, null,
+      h("div", { className: "panel" },
+        h("div", { className: "panel-title" }, "四产品 × 默认 cn 母品牌（典型 IR / about 页场景）"),
+        h("div", { className: "col", style: { gap: 24 } },
+          h(CoBrandLockup, { baseUrl: base, product: "de" }),
+          h(CoBrandLockup, { baseUrl: base, product: "se" }),
+          h(CoBrandLockup, { baseUrl: base, product: "di" }),
+          h(CoBrandLockup, { baseUrl: base, product: "rcp" }),
+        ),
+      ),
+      h("div", { className: "panel" },
+        h("div", { className: "panel-title" }, "EN 母品牌 + EN endorsement（国际化场景）"),
+        h(CoBrandLockup, { baseUrl: base, product: "de", masterBrandLayout: "en", endorsement: "en" }),
+      ),
+      h("div", { className: "panel dark" },
+        h("div", { className: "panel-title" }, "Reverse · 深底（hero 渐变 / 投资者 deck 暗色封面）"),
+        h("div", { className: "col", style: { gap: 24 } },
+          h(CoBrandLockup, { baseUrl: base, product: "de", reverse: true }),
+          h(CoBrandLockup, { baseUrl: base, product: "rcp", reverse: true, masterBrandLayout: "en", endorsement: "en" }),
+        ),
+      ),
+      h("div", { className: "panel" },
+        h("div", { className: "panel-title" }, "尺寸阶梯 · DE × wm-sm / wm-md / wm-lg"),
+        h("div", { className: "col", style: { gap: 24 } },
+          h(CoBrandLockup, { baseUrl: base, product: "de", productSize: "wm-sm" }),
+          h(CoBrandLockup, { baseUrl: base, product: "de", productSize: "wm-md" }),
+          h(CoBrandLockup, { baseUrl: base, product: "de", productSize: "wm-lg" }),
+        ),
+      ),
+    );
+  }
+
+  createRoot(document.getElementById("root")).render(h(App));
+</script>
+</body>
+</html>

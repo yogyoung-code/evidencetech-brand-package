@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>React 9 段视觉验证 · 截图存档</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --neutral-50: #F8FAFC;
+    --neutral-100: #E2E8F0;
+    --neutral-200: #CBD5E1;
+    --neutral-500: #64748B;
+    --neutral-700: #334155;
+    --neutral-900: #0F172A;
+    --master-navy: #001A51;
+    --master-blue: #005AA4;
+    --master-cyan: #00AEDB;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Inter", "Noto Sans SC", system-ui, sans-serif;
+    color: var(--neutral-900);
+    background: var(--neutral-50);
+    margin: 0;
+    padding: 32px 24px;
+    line-height: 1.55;
+  }
+  h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h2 { font-size: 18px; margin: 56px 0 12px; letter-spacing: -0.01em; }
+  p, li { font-size: 14px; }
+  .meta { color: var(--neutral-500); font-size: 13px; margin: 0 0 24px; }
+  .meta a { color: var(--master-blue); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+  .container { max-width: 1280px; margin: 0 auto; }
+  code { font-family: "JetBrains Mono", monospace; font-size: 12.5px; background: var(--neutral-100); padding: 2px 6px; border-radius: 4px; }
+
+  .card {
+    background: white; border: 1px solid var(--neutral-100); border-radius: 12px;
+    padding: 24px; margin: 16px 0;
+  }
+  .empty {
+    background: #FEF3C7; border: 1px dashed #D97706; color: #92400E;
+    border-radius: 8px; padding: 16px; font-size: 13px;
+  }
+  .empty code { background: #FEF3C7; }
+
+  /* 9 段卡片 */
+  .sections-grid { display: grid; gap: 20px; }
+  .sec {
+    background: white; border: 1px solid var(--neutral-100); border-radius: 12px;
+    padding: 0; overflow: hidden;
+  }
+  .sec-head {
+    padding: 16px 20px; border-bottom: 1px solid var(--neutral-100);
+    display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  }
+  .sec-num {
+    font-family: "JetBrains Mono", monospace; font-size: 12px;
+    color: var(--master-blue); font-weight: 600;
+    background: rgba(0, 90, 164, 0.08); padding: 2px 8px; border-radius: 4px;
+  }
+  .sec-title { font-weight: 600; font-size: 14px; color: var(--neutral-900); }
+  .sec-spec { font-size: 12px; color: var(--neutral-500); margin-left: auto; }
+  .sec-spec a { color: var(--neutral-500); text-decoration: none; border-bottom: 1px dashed var(--neutral-300); }
+  .sec-spec a:hover { color: var(--master-blue); border-bottom-color: var(--master-blue); }
+  .sec-img-wrap { padding: 16px; background: var(--neutral-50); }
+  .sec-img-wrap img { display: block; width: 100%; height: auto; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+  .sec-foot {
+    padding: 12px 20px; font-size: 11px; color: var(--neutral-500);
+    font-family: "JetBrains Mono", monospace; border-top: 1px solid var(--neutral-100);
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .sec-foot a { color: var(--master-blue); text-decoration: none; }
+  .sec-foot a:hover { text-decoration: underline; }
+
+  .meta-bar {
+    display: flex; gap: 24px; flex-wrap: wrap;
+    background: white; border: 1px solid var(--neutral-100); border-radius: 8px;
+    padding: 12px 16px; margin: 16px 0; font-size: 13px;
+  }
+  .meta-bar .item strong { color: var(--neutral-700); }
+  .meta-bar .item span { color: var(--neutral-500); }
+</style>
+</head>
+<body>
+<div class="container">
+
+<h1>React 包 · 9 段视觉验证截图存档</h1>
+<p class="meta">
+  把 <code>react/demo/index.html</code> 的 9 段实时演示在 puppeteer headless chromium 下渲染并保存为 PNG，作为 <strong>v1.0 锁定时点的视觉决策档案</strong>。
+  未来 React 包改版前对照此档案，确保视觉不退化。
+  生成方式：<code>node scripts/build-react-demo-screenshots.mjs</code>。
+</p>
+
+<div id="meta-bar"></div>
+
+<div id="empty" class="empty" style="display:none">
+  ⚠ <strong>尚未生成截图</strong>，<strong>或</strong>截图已生成但通过 <code>file://</code> 直接打开本页（被 CORS 阻止 fetch manifest）。
+  <p style="margin:8px 0 4px;"><strong>① 检查截图是否已生成</strong>：</p>
+  <pre style="margin:0 0 12px;padding:8px;background:white;border-radius:4px;overflow:auto;"><code>ls preview/screenshots/react-demo/    <span style="color:#666"># 应看到 9 个 PNG + manifest.json</span></code></pre>
+  <p style="margin:0 0 4px;"><strong>② 若已生成，请通过 http 打开本页</strong>（任选一种）：</p>
+  <pre style="margin:0 0 12px;padding:8px;background:white;border-radius:4px;overflow:auto;"><code><span style="color:#666"># A. VitePress 站点（推荐）</span>
+cd docs && npm run dev
+<span style="color:#666"># 打开 http://localhost:5173/preview/screenshots/index.html</span>
+
+<span style="color:#666"># B. 临时静态服务器（kit 根）</span>
+python3 -m http.server 8080
+<span style="color:#666"># 打开 http://localhost:8080/preview/screenshots/index.html</span>
+
+<span style="color:#666"># C. 通过 docs 站点的 demo 页（iframe 内嵌，自动 http）</span>
+<span style="color:#666"># 打开 http://localhost:5173/demos/react-screenshots</span></code></pre>
+  <p style="margin:0 0 4px;"><strong>③ 若尚未生成</strong>，在 kit 根目录运行：</p>
+  <pre style="margin:0;padding:8px;background:white;border-radius:4px;overflow:auto;"><code>cd react && npm install && npm run build       <span style="color:#666"># 确保 dist 已构建</span>
+cd .. && npm install puppeteer                <span style="color:#666"># 首次约 200MB chromium 下载</span>
+node scripts/build-react-demo-screenshots.mjs <span style="color:#666"># 输出 9 张到 preview/screenshots/react-demo/</span></code></pre>
+</div>
+
+<h2>9 段</h2>
+
+<div class="sections-grid" id="grid"></div>
+
+<h2>用法</h2>
+<div class="card">
+  <p><strong>当前用途</strong>：</p>
+  <ul>
+    <li>设计 / 工程 review 时：对照截图判断当前渲染是否还符合 v1.0 锁定的视觉决策</li>
+    <li>React 包升版前：先跑一次截图脚本生成新档案；与本档案 diff 看是否有意外退化</li>
+    <li>BD / 投资者材料：直接复用截图（注明 React 包版本）</li>
+  </ul>
+
+  <p><strong>什么时候重新跑</strong>：</p>
+  <ul>
+    <li>React 包发新版（version bump）前后</li>
+    <li>修改任何信任徽章 / Logo / Wordmark / 母品牌 logo 的 token 后</li>
+    <li>每季度母品牌 v1.1 sync 后</li>
+  </ul>
+
+  <p><strong>不能用来替代的</strong>：</p>
+  <ul>
+    <li>静态截图不能验证 CoT 动画 / NanoCitation 交互 — 这些仍需 <a href="../../react/demo/index.html">live demo</a> 验证</li>
+    <li>截图只是某一时刻的视觉，spec 才是规则的 source of truth</li>
+  </ul>
+</div>
+
+<h2>归档说明</h2>
+<div class="card">
+  <p>每张截图同时记录在 <code>preview/screenshots/react-demo/manifest.json</code>，含：</p>
+  <ul>
+    <li>截图日期（ISO 8601）</li>
+    <li>React 包名+版本（如 <code>@yogyoung-code/ai-brand-kit@0.1.0</code>）</li>
+    <li>9 段对应的 spec 锚点（点击跳转回锁定决策章节）</li>
+    <li>每张 PNG 字节数（用于 diff 时快速看出哪段视觉变化）</li>
+  </ul>
+</div>
+
+</div>
+
+<!-- file:// 兼容兜底：脚本生成时同时输出 manifest.js（赋值 window.__screenshots_manifest），
+     <script src> 在 file:// 下也能加载，避免 fetch CORS 限制。
+     找不到该 js 是正常的（截图未生成时），下方 init() 会回退到 fetch。 -->
+<script src="react-demo/manifest.js" onerror="window.__screenshots_manifest_load_failed=true"></script>
+
+<script>
+  // 启动时拉取 manifest，渲染 9 段卡片
+  async function init() {
+    let m;
+    // 优先用 <script> 注入的 manifest（file:// 也能用）
+    if (window.__screenshots_manifest) {
+      m = window.__screenshots_manifest;
+    } else {
+      // 回退到 fetch（仅 http:// 下能用）
+      try {
+        const r = await fetch('react-demo/manifest.json', { cache: 'no-store' });
+        if (!r.ok) throw new Error('no manifest');
+        m = await r.json();
+      } catch (e) {
+        document.getElementById('empty').style.display = 'block';
+        return;
+      }
+    }
+
+    // meta bar
+    const bar = document.getElementById('meta-bar');
+    bar.className = 'meta-bar';
+    bar.innerHTML = `
+      <div class="item"><strong>生成时间</strong> <span>${new Date(m.generated).toLocaleString('zh-CN')}</span></div>
+      <div class="item"><strong>React 包版本</strong> <span>${m.reactPackage}</span></div>
+      <div class="item"><strong>Kit 版本</strong> <span>${m.kitVersion}</span></div>
+      <div class="item"><strong>截图段数</strong> <span>${m.sections.length} / 9</span></div>
+    `;
+
+    // grid
+    const grid = document.getElementById('grid');
+    grid.innerHTML = m.sections.map(s => `
+      <div class="sec">
+        <div class="sec-head">
+          <span class="sec-num">${s.n}</span>
+          <span class="sec-title">${s.title}</span>
+          <span class="sec-spec"><a href="../..${s.specLink}">↗ 决策档案</a></span>
+        </div>
+        <div class="sec-img-wrap">
+          <img src="react-demo/${s.file}" alt="Section ${s.n}: ${s.title}" loading="lazy">
+        </div>
+        <div class="sec-foot">
+          <span><a href="react-demo/${s.file}" target="_blank">↗ 原图</a> · ${(s.bytes / 1024).toFixed(1)} KB</span>
+          <span>${s.file}</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  init();
+</script>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepEvidence Icon Animation · 心跳脉动 + 渐变圆环</title>
+    <!--
+        归档日期：2026-05-07
+        来源：用户提供的 "DE Icon Animation.html"
+        色彩状态：
+          • 心跳线 stroke `#2563EB`、阴影 `rgba(37, 99, 235, 0.4)` 均与品牌锁定的 DE 主色 `--de-primary` 一致。
+          • 渐变圆环紫色端点 `#A855F7` → `#9333EA`（2026-05-07 决议：严格对齐 SE 主色 `--se-primary` purple-600）。
+        说明：背景网格 `rgba(0, 94, 184, 0.1)` 是装饰性纹理，非品牌色，保留原值。
+    -->
+    <style>
+        /* 页面基础样式 */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffffff;
+            background-image:
+                linear-gradient(rgba(0, 94, 184, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 94, 184, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+            overflow: hidden;
+            font-family: sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 300px;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        /* 通用路径样式 */
+        .animated-path {
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+
+            /* 使用 CSS 变量 --length，如果不设置默认值为 100 */
+            stroke-dasharray: var(--length, 100) var(--length, 100);
+            stroke-dashoffset: var(--length, 100);
+
+            /* 阴影颜色与 DE 主色 (#2563EB) 同源 */
+            filter: drop-shadow(0 0 4px rgba(37, 99, 235, 0.4));
+        }
+
+        /* 动画总时长 2.5秒 */
+
+        /* 1. 心跳线动画 (DE primary blue-600) */
+        .pulse-line {
+            stroke: #2563EB; /* Tailwind blue-600 · --de-primary */
+            animation: pulseSequence 2.5s linear infinite;
+        }
+
+        @keyframes pulseSequence {
+            0% {
+                stroke-dashoffset: var(--length);
+                opacity: 1;
+            }
+            30% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+            }
+            100% {
+                opacity: 0;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* 2. 圆圈动画 (应用渐变 · 紫→靛→蓝) */
+        .circle-line {
+            stroke: url(#gradient-circle);
+            animation: circleSequence 2.5s linear infinite;
+        }
+
+        @keyframes circleSequence {
+            0% {
+                stroke-dashoffset: var(--length);
+                opacity: 0;
+            }
+            30% {
+                stroke-dashoffset: var(--length);
+                opacity: 1;
+            }
+            35% {
+                stroke-dashoffset: var(--length);
+            }
+            85% {
+                stroke-dashoffset: 0;
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* 背景脉冲 */
+        .pulse-bg {
+            position: absolute;
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0,0,0,0) 70%);
+            transform: scale(0);
+            animation: bgPulse 2.5s ease-out infinite;
+            animation-delay: 0.3s;
+        }
+
+        @keyframes bgPulse {
+            0% { transform: scale(0.5); opacity: 1; }
+            20% { transform: scale(1.5); opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- 脉冲背景层 -->
+        <div class="pulse-bg"></div>
+
+        <svg viewBox="-5 -5 34 34">
+            <!-- 定义渐变色 -->
+            <defs>
+                <!--
+                    保持颜色的视觉方向：
+                    视觉左(紫) -> 视觉右(蓝)
+                    因为是镜像，所以 x1=100% (数据右=视觉左) 是起始色紫色。
+                -->
+                <linearGradient id="gradient-circle" x1="100%" y1="0%" x2="0%" y2="0%">
+                    <!-- 紫色端点 #A855F7 → #9333EA（2026-05-07 严格对齐 SE 主色 purple-600） -->
+                    <stop offset="0%" stop-color="#9333EA" />
+                    <stop offset="50%" stop-color="#6366F1" />
+                    <stop offset="100%" stop-color="#2563EB" />
+                </linearGradient>
+            </defs>
+
+            <!--
+               transform="matrix(-1 0 0 1 24 0)"：
+               水平镜像翻转。
+            -->
+            <g transform="matrix(-1 0 0 1 24 0)">
+                <!--
+                    路径 1: 心跳线 (保持不变)
+                    从 Data 右 -> 左，视觉效果为 左 -> 右。
+                -->
+                <path
+                    class="animated-path pulse-line"
+                    d="M 22 12 H 19.52 A 2 2 0 0 0 17.59 13.46 L 15.24 21.82 A 0.25 0.25 0 0 1 14.76 21.82 L 9.24 2.18 A 0.25 0.25 0 0 0 8.76 2.18 L 6.41 10.54 A 2 2 0 0 1 4.49 12 H 2"
+                ></path>
+
+                <!--
+                    路径 2: 圆圈 (3点钟开始，顺时针)
+
+                    逻辑解释：
+                    1. 起点：M -3 12。
+                       由于水平镜像，SVG坐标 x=-3 对应视觉上的最右侧点 (3点钟)。
+
+                    2. 路径：A 15 15 0 1 0 27 12
+                       从 x=-3 画到 x=27。
+                       sweep-flag = 0 (SVG数据中的逆时针)。
+                       SVG路径: 左(-3) -> 下(12,27) -> 右(27)。
+
+                    3. 视觉效果：
+                       由于镜像翻转，"左->下->右" 变成了 "右->下->左"。
+                       即 3点 -> 6点 -> 9点。这是视觉上的【顺时针】。
+                -->
+                <path
+                    class="animated-path circle-line"
+                    d="M -3 12 A 15 15 0 1 0 27 12 A 15 15 0 1 0 -3 12"
+                ></path>
+            </g>
+        </svg>
+    </div>
+
+    <script>
+        // 分别计算每条路径的长度
+        document.addEventListener("DOMContentLoaded", () => {
+            const paths = document.querySelectorAll('.animated-path');
+
+            paths.forEach(path => {
+                const length = path.getTotalLength();
+                path.style.setProperty('--length', length);
+            });
+        });
+    </script>
+
+</body>
+</html>

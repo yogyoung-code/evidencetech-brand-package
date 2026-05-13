@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeekEvidence 品牌动效</title>
+    <!-- 引入 Teko 字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* SE primary updated 2026-05-07 from #893BE1 to align with brand kit token --se-primary */
+            --primary-purple: #9333EA;
+            /* Secondary purple (was #893CE1, likely a typo of #893BE1) consolidated to single SE primary */
+            --secondary-purple: #9333EA;
+            --text-black: #000000;
+            --anim-duration: 0.8s;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: transparent; /* 背景透明 */
+            font-family: 'Teko', sans-serif;
+        }
+
+        /* 整体容器：图标和文字并排 */
+        .brand-container {
+            display: flex;
+            align-items: center;
+            gap: 28px; /* 增加间距以防视觉拥挤 */
+        }
+
+        /* SVG 容器大小控制 */
+        .svg-container {
+            width: 150px; /* 略微增加宽度以保证完整显示 */
+            height: auto;
+            display: flex;
+            align-items: center;
+            overflow: visible; /* 确保不裁剪 */
+        }
+
+        svg {
+            overflow: visible; /* 确保 SVG 内部变换不被裁剪 */
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 图标基础动效 */
+        .wave-bar {
+            opacity: 0;
+            transform-origin: center;
+            animation: wakeUp var(--anim-duration) cubic-bezier(0.34, 1.56, 0.64, 1) 1 forwards;
+        }
+
+        @keyframes wakeUp {
+            0% {
+                opacity: 0;
+                transform: scaleY(0.3) scaleX(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scaleY(1) scaleX(1);
+            }
+        }
+
+        /* 图标交错延迟：从中间向两侧唤醒 */
+        .bar-middle { animation-delay: 0.0s; }
+        .bar-long-left, .bar-long-right { animation-delay: 0.15s; }
+        .bar-short-left, .bar-short-right { animation-delay: 0.3s; }
+
+        /* 文字容器样式 */
+        .brand-text {
+            font-size: 88px;
+            line-height: 0.8;
+            display: flex;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(-30px);
+            /* 文字滑入动效时长为 1.0s */
+            animation: textReveal 1.0s cubic-bezier(0.22, 1, 0.36, 1) 0.6s 1 forwards;
+        }
+
+        @keyframes textReveal {
+            0% {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .text-seek {
+            color: var(--primary-purple);
+        }
+
+        .text-evidence {
+            color: var(--text-black);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="brand-container">
+        <!-- 图标部分 -->
+        <div class="svg-container">
+            <!-- 进一步扩大 viewBox (从 30 25 255 160 改为 20 20 280 170) 以彻底解决边缘裁剪问题 -->
+            <svg viewBox="20 20 280 170" xmlns="http://www.w3.org/2000/svg">
+
+                <!-- 1. 左一短柱 -->
+                <path class="wave-bar bar-short-left" fill="#9333EA"
+                    d="M67.176323,136.246414 C60.115101,141.835373 52.619438,142.677872 44.872456,139.257080 C37.044903,135.800705 33.564793,129.008331 33.256420,120.856384 C32.879021,110.879868 32.861271,100.863899 33.281551,90.889992 C33.746223,79.862679 40.046341,72.476334 49.776279,70.465714 C58.465759,68.670082 67.746048,72.856148 71.565063,80.857231 C73.022072,83.909760 73.875565,87.513901 73.980522,90.898392 C74.284889,100.713448 74.104759,110.544815 74.046738,120.369370 C74.010719,126.468239 71.936256,131.756607 67.176323,136.246414 Z"/>
+
+                <!-- 2. 左二长柱 -->
+                <path class="wave-bar bar-long-left" fill="#9333EA"
+                    d="M124.998398,158.745850 C124.222000,173.220856 116.861000,179.273804 100.932648,179.000427 C91.236328,178.834000 83.981720,170.040970 83.954727,158.192108 C83.874687,123.060524 83.820312,87.928780 83.837395,52.797138 C83.843727,39.774143 92.000374,31.103708 104.040581,31.024452 C116.215553,30.944309 124.840691,39.868282 124.876335,52.884369 C124.972534,88.015862 124.965767,123.147636 124.998398,158.745850 Z"/>
+
+                <!-- 3. 中间短柱 -->
+                <path class="wave-bar bar-middle" fill="#9333EA"
+                    d="M175.971130,90.004143 C175.941803,104.825676 176.110657,119.152283 175.815826,133.469330 C175.621338,142.913559 168.540573,151.176392 159.943863,152.907303 C150.330521,154.842880 140.955551,150.148880 137.050217,141.004196 C135.844589,138.181122 135.222855,134.898605 135.193237,131.818176 C135.026688,114.499252 134.995682,97.176506 135.171127,79.857620 C135.298996,67.237633 144.187958,57.959435 155.654602,58.000607 C167.124268,58.041790 175.750458,67.376625 175.961121,80.012238 C176.013855,83.175720 175.971161,86.340805 175.971130,90.004143 Z"/>
+
+                <!-- 4. 右侧长柱 -->
+                <path class="wave-bar bar-long-right" fill="#9333EA"
+                    d="M196.117432,33.906593 C212.032761,26.276653 227.076187,35.328789 227.108215,52.395939 C227.174789,87.873566 227.037781,123.351532 227.047836,158.829346 C227.049988,166.397308 224.560287,173.075668 217.865921,176.537582 C205.498276,182.933334 186.647308,179.391876 186.279892,160.631760 C185.565781,124.169441 186.058487,87.682007 186.203918,51.205589 C186.233002,43.911774 189.585251,38.104588 196.117432,33.906593 Z"/>
+
+                <!-- 5. 右侧短柱 (修正裁剪问题的条柱) -->
+                <path class="wave-bar bar-short-right" fill="#9333EA"
+                    d="M277.909271,117.887894 C279.114777,133.678619 266.966919,143.677826 252.203125,140.368973 C243.210953,138.353622 237.279022,130.970016 237.128784,121.669685 C236.962051,111.347244 236.995239,101.019814 237.075226,90.695595 C237.167633,78.766380 245.310638,70.806404 257.299011,70.750893 C269.317535,70.695244 277.563873,78.471008 277.833160,90.428833 C278.035553,99.417221 277.896118,108.413300 277.909271,117.887894 Z"/>
+            </svg>
+        </div>
+
+        <!-- 文字部分（2026-05-07 修订：原文件错误使用 "Deep"+"Evidence"，已修正为 "Seek"+"Evidence"；
+             类名 .text-deep 同步改为 .text-seek） -->
+        <div class="brand-text">
+            <span class="text-seek">Seek</span>
+            <span class="text-evidence">Evidence</span>
+        </div>
+    </div>
+
+</body>
+</html>

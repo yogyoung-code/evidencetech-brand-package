@@ -1,0 +1,59 @@
+{
+  "name": "@yogyoung-code/ai-brand-kit",
+  "version": "0.1.0",
+  "description": "梅斯健康 AI Brand Kit · React component package — trust layer + logo system",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./tokens": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js",
+      "require": "./dist/tokens.cjs"
+    },
+    "./assets/master-brand/*.svg": "./dist/assets/master-brand/*.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yogyoung-code/ai-brand-kit.git"
+  },
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "tsup --no-config --entry.index src/index.ts --entry.tokens src/tokens/index.ts --format esm,cjs --dts --sourcemap --external react --external react-dom --external react/jsx-runtime --target es2020 --no-splitting --treeshake -d dist && node scripts/copy-css.mjs && node scripts/copy-master-brand.mjs",
+    "dev": "tsup --no-config --entry.index src/index.ts --entry.tokens src/tokens/index.ts --format esm,cjs --dts --sourcemap --external react --external react-dom --external react/jsx-runtime --target es2020 --no-splitting -d dist --watch",
+    "typecheck": "tsc --noEmit",
+    "demo": "echo 'Open demo/index.html in a browser (after npm run build).'"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0 || ^19.0.0",
+    "react-dom": "^18.0.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "tsup": "^8.3.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
