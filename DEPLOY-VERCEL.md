@@ -66,23 +66,43 @@ PROD_FLAG="" ./deploy-vercel.sh
 
 每个 project 会自增版本，旧版本作为 immutable deployment 保留可回滚。
 
-## 切到 Git 集成（推荐进化路径）
+## Git 集成模式（push 自动 deploy + PR 预览）
 
-CLI 直推适合起步阶段。一旦推到 GitHub，就改用 Git 集成：
+仓库推到 GitHub 后切此模式。前置准备已就绪：
+- 4 个 docs/public symlink → 已替换为真实复制 + sync 脚本
+- `vercel-build.sh` 脚本（仓库根）—— docs project 的 CI 入口
+- `sync-docs-public.sh` —— 在 docs prebuild 钩子中自动跑
 
-1. 把仓库推到 GitHub
-2. 在 Vercel 中三个 project 的 Settings → Git → Connect 同一仓库
-3. 各自设置 **Root Directory**：
-   - `evidencetech-docs` → `docs`（Framework Preset 选 VitePress；Vercel 会自动 `npm run build`，输出 `.vitepress/dist`）
-   - `evidencetech-site` → `site`（Framework: Other；Output Directory: `.`）
-   - `evidencetech-preview` → `preview`（同上）
+### 在 Vercel Dashboard 创建 3 个 project
 
-> ⚠ Git 集成模式下 docs 站的 `docs/public/{ai-tokens.css,assets,preview,react}` 这 4 个 symlink 在 Vercel 构建机上会失效。届时需要把这 4 项改成实际复制（或加 build hook 提前 rsync）。CLI 模式下我们传的是预构建产物，没这个问题。
+每个 project 都 **Connect to Git** 同一仓库 `yogyoung-code/evidencetech-brand-package`，分别按下表设置：
+
+| Project | Root Directory | Framework | Build Command | Output Directory | Install Command |
+|---|---|---|---|---|---|
+| `evidencetech-docs` | `.` | Other | `bash vercel-build.sh` | `docs/.vitepress/dist` | （留空） |
+| `evidencetech-site` | `site` | Other | （留空） | `.` | （留空） |
+| `evidencetech-preview` | `preview` | Other | （留空） | `.` | （留空） |
+
+> docs project 的 Root Directory 必须是 `.`（仓库根），因为 `vercel-build.sh` 需要先 build react 包再 build docs。Site/preview 是纯静态，直接用各自子目录即可。
+
+### 触发部署
+
+- **Production**：push 到 `main` 分支 → 3 个 project 各自触发 production deploy
+- **Preview**：push 到任意非 main 分支 / 开 PR → 3 个 project 各自出预览 URL（贴在 PR 评论里）
+
+### Production / Preview 域名
+
+- Production：在每个 project Settings → Domains 绑你的子域名
+- Preview：自动生成 `<project>-<branch>-<hash>.vercel.app`
 
 ## 当前已就绪的文件
 
-- `site/vercel.json` — 静态站配置（cleanUrls + 安全头）
-- `preview/vercel.json` — 同上
-- `docs/vercel.json` — 用于 dist/ 的同款配置（部署脚本会拷贝过去）
-- `deploy-vercel.sh` — 一键部署脚本
-- `DEPLOY-VERCEL.md` — 本文档
+| 文件 | 用途 |
+|---|---|
+| `site/vercel.json` | 静态站配置（cleanUrls + 安全头） |
+| `preview/vercel.json` | 同上 |
+| `docs/vercel.json` | 用于 dist/ 的同款配置（CLI 部署脚本会拷贝过去） |
+| `vercel-build.sh` | Git 集成模式下 docs project 的 CI 入口 |
+| `scripts/sync-docs-public.sh` | 把仓库根 4 个源同步到 docs/public（替代 symlink） |
+| `deploy-vercel.sh` | CLI 一键部署脚本 |
+| `DEPLOY-VERCEL.md` | 本文档 |

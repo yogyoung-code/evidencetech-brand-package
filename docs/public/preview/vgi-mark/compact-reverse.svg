@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  VGI Ingredient Mark · compact "VGI™" (reverse / 反白)
+  梅斯健康 AI Brand Kit v1.0 — production asset
+  深色背景使用。stroke 用 rgba(255,255,255,0.6)
+  规格：高度 20px，VGI 用 Inter SemiBold 12px，™ 上标 60%
+  渲染依赖：消费方需加载 Inter（Google Fonts）
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 70 20" width="70" height="20" role="img" aria-label="VGI">
+  <rect x="0.75" y="0.75" width="68.5" height="18.5" rx="10" ry="10" fill="transparent" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+  <g transform="translate(8, 3) scale(0.5833333333333334)">
+    <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+    <path d="M9 12 l2 2 4-4" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <text x="27" y="14" font-family="Inter, system-ui, sans-serif" font-size="12" font-weight="600" letter-spacing="0.04em" fill="#FFFFFF">VGI<tspan font-size="7.2" baseline-shift="super">™</tspan></text>
+</svg>

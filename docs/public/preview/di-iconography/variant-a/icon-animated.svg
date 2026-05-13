@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  DeepInsight · 星座 icon (variant A) — nodes-emerge 入场动画
+  梅斯健康 AI Brand Kit v1.0 — production candidate
+  阶段 1：lines fade-in 60ms 错峰
+  阶段 2：ordinary nodes scale-pop 80ms 错峰
+  阶段 3：hub scale-pop 1.18× 过冲收尾
+  Total ~1.3s（02 §1.7 通用规则）
+  Color: #0891B2
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="DeepInsight animated">
+  <line x1="5.4985" y1="8.6656" x2="9.2519" y2="11.1679" stroke="#0891B2" stroke-width="1.4" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" from="0" to="0.55" begin="0ms" dur="350ms" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+  </line>
+  <line x1="9.9615" y1="13.4000" x2="8.4308" y2="17.3800" stroke="#0891B2" stroke-width="1.4" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" from="0" to="0.55" begin="60ms" dur="350ms" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+  </line>
+  <line x1="11.4000" y1="10.8000" x2="14.1000" y2="7.2000" stroke="#0891B2" stroke-width="1.4" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" from="0" to="0.55" begin="120ms" dur="350ms" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+  </line>
+  <line x1="15.6012" y1="7.3742" x2="17.5380" y2="11.8012" stroke="#0891B2" stroke-width="1.4" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" from="0" to="0.55" begin="180ms" dur="350ms" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+  </line>
+  <line x1="19.0821" y1="16.3283" x2="19.7090" y2="18.8358" stroke="#0891B2" stroke-width="1.4" stroke-linecap="round" opacity="0">
+    <animate attributeName="opacity" from="0" to="0.55" begin="240ms" dur="350ms" fill="freeze" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.2 1"/>
+  </line>
+  <circle cx="4.5" cy="8" r="0" fill="#0891B2">
+    <animate attributeName="r" begin="400ms" dur="320ms" fill="freeze" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.34 1.56 0.64 1;0.4 0 0.2 1" values="0;1.296;1.2"/>
+  </circle>
+  <circle cx="10.5" cy="12" r="0" fill="#0891B2">
+    <animate attributeName="r" begin="480ms" dur="320ms" fill="freeze" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.34 1.56 0.64 1;0.4 0 0.2 1" values="0;1.62;1.5"/>
+  </circle>
+  <circle cx="8" cy="18.5" r="0" fill="#0891B2">
+    <animate attributeName="r" begin="560ms" dur="320ms" fill="freeze" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.34 1.56 0.64 1;0.4 0 0.2 1" values="0;1.296;1.2"/>
+  </circle>
+  <circle cx="15" cy="6" r="0" fill="#0891B2">
+    <animate attributeName="r" begin="640ms" dur="320ms" fill="freeze" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.34 1.56 0.64 1;0.4 0 0.2 1" values="0;1.62;1.5"/>
+  </circle>
+  <circle cx="20" cy="20" r="0" fill="#0891B2">
+    <animate attributeName="r" begin="720ms" dur="320ms" fill="freeze" calcMode="spline" keyTimes="0;0.5;1" keySplines="0.34 1.56 0.64 1;0.4 0 0.2 1" values="0;1.296;1.2"/>
+  </circle>
+  <circle cx="18.5" cy="14" r="0" fill="#0891B2">
+    <animate attributeName="r" begin="800ms" dur="480ms" fill="freeze" calcMode="spline" keyTimes="0;0.5;0.75;1" keySplines="0.34 1.56 0.64 1;0.4 0 0.2 1;0.4 0 0.2 1" values="0;2.832;2.280;2.4"/>
+  </circle>
+</svg>

@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>梅斯健康 AI Brand Kit · Visual System Preview v0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Teko:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../ai-tokens.css">
+<style>
+  :root {
+    --neutral-50:  #F8FAFC;
+    --neutral-100: #F1F5F9;
+    --neutral-300: #CBD5E1;
+    --neutral-500: #64748B;
+    --neutral-700: #334155;
+    --neutral-900: #0F172A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans SC", "Inter", system-ui, sans-serif;
+    background: var(--neutral-50);
+    color: var(--neutral-900);
+    line-height: 1.5;
+  }
+  .doc { max-width: 1200px; margin: 0 auto; padding: 64px 32px 128px; }
+
+  .doc-header {
+    border-bottom: 1px solid var(--neutral-300);
+    padding-bottom: 32px;
+    margin-bottom: 64px;
+  }
+  .doc-eyebrow {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--neutral-500); margin: 0 0 12px;
+  }
+  .doc-title {
+    font-size: 32px; font-weight: 700;
+    margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  .doc-subtitle { font-size: 16px; color: var(--neutral-500); margin: 0; max-width: 720px; }
+
+  .section { margin-bottom: 96px; }
+  .section-title {
+    font-size: 22px; font-weight: 700;
+    margin: 0 0 8px; letter-spacing: -0.005em;
+  }
+  .section-desc {
+    font-size: 14px; color: var(--neutral-500);
+    margin: 0 0 32px; max-width: 720px;
+  }
+
+  /* === Card grid === */
+  .grid-4 {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--neutral-300);
+    border: 1px solid var(--neutral-300);
+  }
+  @media (min-width: 760px) {
+    .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 1080px) {
+    .grid-4 { grid-template-columns: repeat(4, 1fr); }
+  }
+
+  .product-tile {
+    background: #fff;
+    padding: 32px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+    min-height: 220px;
+    position: relative;
+  }
+  .product-tile-label {
+    position: absolute;
+    top: 12px; right: 16px;
+    font-family: "Teko", sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--product-primary);
+    line-height: 0.85;
+    text-transform: uppercase;
+  }
+
+  /* === Reverse strips === */
+  .reverse-strip {
+    padding: 32px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: #fff;
+  }
+  .reverse-strip--de  { background: linear-gradient(135deg, #1E40AF 0%, #2563EB 100%); }
+  .reverse-strip--se  { background: linear-gradient(135deg, #6B21A8 0%, #9333EA 100%); }
+  .reverse-strip--di  { background: linear-gradient(135deg, #155E75 0%, #0891B2 100%); }
+  .reverse-strip--rcp { background: linear-gradient(135deg, #002D9C 0%, #0F62FE 100%); }
+  .reverse-strip-label {
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-right: 8px;
+  }
+  /* reverse 态徽章 override */
+  .reverse-strip .badge-pitl {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+  }
+  .reverse-strip .badge-pitl-icon { color: #fff; }
+  .reverse-strip .badge-pitl-icon path:last-child {
+    stroke: var(--product-primary);
+  }
+  .reverse-strip .badge-aio {
+    background: rgba(255,255,255,0.10);
+    color: #fff;
+  }
+  .reverse-strip .badge-aio-icon { color: #fff; }
+  .reverse-strip .badge-aio-icon path:last-child {
+    stroke: var(--product-primary);
+  }
+  .reverse-strip .vgi-mark {
+    background: transparent;
+    border-color: rgba(255,255,255,0.6);
+    color: #fff;
+  }
+  .reverse-strip .vgi-mark-icon { color: #fff; }
+
+  /* === Demo blocks === */
+  .demo-block {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 32px;
+  }
+  .demo-block + .demo-block { margin-top: 16px; }
+  .demo-label {
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--neutral-500);
+    margin-bottom: 16px;
+  }
+
+  /* === Citation panel mockup === */
+  .citation-demo {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 24px;
+    align-items: stretch;
+  }
+  @media (max-width: 800px) { .citation-demo { grid-template-columns: 1fr; } }
+  .citation-text {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--neutral-700);
+  }
+  .citation-panel {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 24px;
+    box-shadow: 0 12px 32px rgba(0, 16, 55, 0.12);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .citation-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--neutral-100);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+  .citation-panel-num {
+    font-family: "Inter", monospace;
+    font-weight: 700;
+    color: var(--product-primary);
+    font-size: 14px;
+  }
+  .citation-panel-close {
+    color: var(--neutral-500);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+  }
+  .citation-passage {
+    background: var(--neutral-100);
+    padding: 12px 14px;
+    border-left: 2px solid var(--product-primary);
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--neutral-900);
+  }
+  .citation-passage mark {
+    background: rgba(var(--product-primary-rgb), 0.18);
+    color: inherit;
+    padding: 1px 3px;
+    border-radius: 2px;
+  }
+  .citation-meta {
+    color: var(--neutral-500);
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+    margin-bottom: 8px;
+  }
+  .citation-meta strong { color: var(--neutral-700); font-weight: 600; }
+  .citation-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--neutral-100);
+  }
+  .citation-action {
+    font-family: "Inter", sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--product-primary);
+    padding: 6px 10px;
+    border-radius: 4px;
+    background: rgba(var(--product-primary-rgb), 0.08);
+    cursor: pointer;
+  }
+
+  /* === CoT demo === */
+  .cot-demo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    background: var(--neutral-50);
+    border: 1px solid var(--neutral-300);
+    border-radius: 8px;
+  }
+  .cot-demo-text {
+    color: var(--neutral-700);
+    font-size: 14px;
+  }
+
+  /* === Diff demo === */
+  .diff-demo {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 24px;
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* === Disclosure demo === */
+  .disclosure-demo {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 28px;
+    max-width: 720px;
+  }
+
+  /* === Imagery policy === */
+  .imagery-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media (min-width: 720px) { .imagery-grid { grid-template-columns: repeat(2, 1fr); } }
+  .imagery-card {
+    border: 1px solid var(--neutral-300);
+    padding: 20px 24px;
+    background: #fff;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .imagery-card-allow {
+    border-left: 3px solid #2E9F82;
+  }
+  .imagery-card-forbid {
+    border-left: 3px solid #DC2626;
+    background: #FEF2F2;
+  }
+  .imagery-card-tag {
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .imagery-card-allow .imagery-card-tag { color: #2E9F82; }
+  .imagery-card-forbid .imagery-card-tag { color: #DC2626; }
+  .imagery-card-title {
+    font-weight: 600;
+    color: var(--neutral-900);
+    margin-bottom: 4px;
+  }
+  .imagery-card-desc {
+    color: var(--neutral-700);
+  }
+
+  /* token table */
+  .token-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+  }
+  .token-table th, .token-table td {
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--neutral-100);
+  }
+  .token-table th {
+    background: var(--neutral-100);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--neutral-700);
+  }
+  .token-table code {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    background: var(--neutral-100);
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--neutral-700);
+  }
+  .swatch {
+    display: inline-block;
+    width: 12px; height: 12px;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-right: 6px;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <header class="doc-header">
+    <p class="doc-eyebrow">梅斯健康 AI Brand Kit · Visual System v0.2</p>
+    <h1 class="doc-title">视觉系统组件预览</h1>
+    <p class="doc-subtitle">三大信任徽章（PITL / AIO / VGI）+ Nano-Citation + CoT 动画 + Diff View + Progressive Disclosure，全部使用 <code>ai-tokens.css</code> 实时渲染。<br><strong>v0.2 修订</strong>：AIO icon 改为折角文件 + 勾选；徽章默认显示 3 字母缩写，完整描述保留为 <code>--full</code> 修饰符。</p>
+  </header>
+
+  <!-- ========================================================== -->
+  <!-- 一、三大信任徽章                                              -->
+  <!-- ========================================================== -->
+  <section class="section">
+    <h2 class="section-title">1. 三大信任徽章</h2>
+    <p class="section-desc">每个产品 tile 显示 PITL Verified、AIO Official、VGI Mark 三件套；通过外层 class 切换产品色，无需为每个产品重写组件。</p>
+
+    <div class="grid-4">
+      <!-- DE -->
+      <div class="product-tile brand-de">
+        <span class="product-tile-label">DE</span>
+        <span class="badge-pitl">
+          <svg class="badge-pitl-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="currentColor"/>
+            <path d="M9 12 l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          PITL
+        </span>
+        <span class="badge-aio">
+          <svg class="badge-aio-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3 V21 H19 V9 L13 3 Z" fill="currentColor"/>
+            <path d="M13 3 V9 H19" stroke="white" stroke-width="0.6" opacity="0.5" fill="none"/>
+            <path d="M8.5 14 l2.5 2.5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          AIO
+        </span>
+        <span class="vgi-mark">
+          <svg class="vgi-mark-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12 l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          VGI<sup style="font-size: 0.65em; opacity: 0.7;">™</sup>
+        </span>
+      </div>
+
+      <!-- SE -->
+      <div class="product-tile brand-se">
+        <span class="product-tile-label">SE</span>
+        <span class="badge-pitl">
+          <svg class="badge-pitl-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="currentColor"/>
+            <path d="M9 12 l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          PITL
+        </span>
+        <span class="badge-aio">
+          <svg class="badge-aio-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3 V21 H19 V9 L13 3 Z" fill="currentColor"/>
+            <path d="M13 3 V9 H19" stroke="white" stroke-width="0.6" opacity="0.5" fill="none"/>
+            <path d="M8.5 14 l2.5 2.5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          AIO
+        </span>
+        <span class="vgi-mark">
+          <svg class="vgi-mark-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12 l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          VGI<sup style="font-size: 0.65em; opacity: 0.7;">™</sup>
+        </span>
+      </div>
+
+      <!-- DI -->
+      <div class="product-tile brand-di">
+        <span class="product-tile-label">DI</span>
+        <span class="badge-pitl">
+          <svg class="badge-pitl-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="currentColor"/>
+            <path d="M9 12 l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          PITL
+        </span>
+        <span class="badge-aio">
+          <svg class="badge-aio-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3 V21 H19 V9 L13 3 Z" fill="currentColor"/>
+            <path d="M13 3 V9 H19" stroke="white" stroke-width="0.6" opacity="0.5" fill="none"/>
+            <path d="M8.5 14 l2.5 2.5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          AIO
+        </span>
+        <span class="vgi-mark">
+          <svg class="vgi-mark-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12 l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          VGI<sup style="font-size: 0.65em; opacity: 0.7;">™</sup>
+        </span>
+      </div>
+
+      <!-- RCP -->
+      <div class="product-tile brand-rcp">
+        <span class="product-tile-label">RCP</span>
+        <span class="badge-pitl">
+          <svg class="badge-pitl-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="currentColor"/>
+            <path d="M9 12 l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          PITL
+        </span>
+        <span class="badge-aio">
+          <svg class="badge-aio-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3 V21 H19 V9 L13 3 Z" fill="currentColor"/>
+            <path d="M13 3 V9 H19" stroke="white" stroke-width="0.6" opacity="0.5" fill="none"/>
+            <path d="M8.5 14 l2.5 2.5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          AIO
+        </span>
+        <span class="vgi-mark">
+          <svg class="vgi-mark-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12 l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          VGI<sup style="font-size: 0.65em; opacity: 0.7;">™</sup>
+        </span>
+      </div>
+    </div>
+
+    <!-- 反白态 -->
+    <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 1px; background: var(--neutral-300); border: 1px solid var(--neutral-300);">
+      <div class="reverse-strip reverse-strip--de brand-de">
+        <span class="reverse-strip-label">DE Hero · Reverse</span>
+        <span class="badge-pitl">
+          <svg class="badge-pitl-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="currentColor"/>
+            <path d="M9 12 l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          PITL
+        </span>
+        <span class="badge-aio">
+          <svg class="badge-aio-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3 V21 H19 V9 L13 3 Z" fill="currentColor"/>
+            <path d="M13 3 V9 H19" stroke="white" stroke-width="0.6" opacity="0.5" fill="none"/>
+            <path d="M8.5 14 l2.5 2.5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          AIO
+        </span>
+        <span class="vgi-mark">
+          <svg class="vgi-mark-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12 l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          VGI<sup style="font-size: 0.65em; opacity: 0.7;">™</sup>
+        </span>
+      </div>
+      <div class="reverse-strip reverse-strip--rcp brand-rcp">
+        <span class="reverse-strip-label">RCP Hero · Reverse</span>
+        <span class="badge-pitl">
+          <svg class="badge-pitl-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="currentColor"/>
+            <path d="M9 12 l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          PITL
+        </span>
+        <span class="badge-aio">
+          <svg class="badge-aio-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3 V21 H19 V9 L13 3 Z" fill="currentColor"/>
+            <path d="M13 3 V9 H19" stroke="white" stroke-width="0.6" opacity="0.5" fill="none"/>
+            <path d="M8.5 14 l2.5 2.5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          AIO
+        </span>
+        <span class="vgi-mark">
+          <svg class="vgi-mark-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12 l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          VGI<sup style="font-size: 0.65em; opacity: 0.7;">™</sup>
+        </span>
+      </div>
+    </div>
+
+    <!-- --full variant: 完整描述（用于 about / 首次出现） -->
+    <div style="margin-top: 32px;">
+      <p class="demo-label">--full Variant · 用于 about 页 / 首次出现 / 投资者材料</p>
+      <div style="background: #fff; border: 1px solid var(--neutral-300); padding: 32px; display: flex; gap: 12px; flex-wrap: wrap;" class="brand-de">
+        <span class="badge-pitl badge-pitl--full">
+          <svg class="badge-pitl-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="currentColor"/>
+            <path d="M9 12 l2 2 4-4" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          PITL Verified
+        </span>
+        <span class="badge-aio badge-aio--full">
+          <svg class="badge-aio-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M5 3 V21 H19 V9 L13 3 Z" fill="currentColor"/>
+            <path d="M13 3 V9 H19" stroke="white" stroke-width="0.6" opacity="0.5" fill="none"/>
+            <path d="M8.5 14 l2.5 2.5 5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          AIO Official
+        </span>
+        <span class="vgi-mark vgi-mark--full">
+          <svg class="vgi-mark-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M9 12 l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          VGI · 验证型生成式智能<sup style="font-size: 0.65em; opacity: 0.7;">™</sup>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- 二、Nano-Citation                                            -->
+  <!-- ========================================================== -->
+  <section class="section brand-de">
+    <h2 class="section-title">2. Nano-Citation · 纳米级引用</h2>
+    <p class="section-desc">点击 <span class="nano-citation">[1]</span> 上标触发右侧溯源面板（本预览静态渲染面板状态以示意）。</p>
+
+    <div class="citation-demo">
+      <div class="citation-text">
+        在合并 PPI 使用且 INR &gt; 3.0 的患者中，停用阿司匹林可降低出血风险<span class="nano-citation">[1]</span>。
+        既往荟萃分析显示该方案对 60 岁以上患者效果更显著<span class="nano-citation">[2]</span><span class="nano-citation">[3]</span>。
+        <br><br>
+        建议结合您的临床判断决定是否调整。
+      </div>
+      <div class="citation-panel">
+        <div class="citation-panel-header">
+          <span class="citation-panel-num">[1]</span>
+          <span class="citation-panel-close">×</span>
+        </div>
+        <div class="citation-passage">
+          ...In patients with concurrent PPI use and INR &gt; 3.0,
+          <mark>discontinuing aspirin reduced bleeding events by 38%</mark>
+          (95% CI 0.48–0.81, p &lt; 0.01)...
+        </div>
+        <div class="citation-meta">
+          <strong>Smith et al.</strong> · NEJM 2024 · n=2,341 · DOI: 10.1056/NEJMoa2419872
+        </div>
+        <div class="citation-actions">
+          <span class="citation-action">在文献库中打开 →</span>
+          <span class="citation-action">引用此条</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- 三、CoT 动画                                                  -->
+  <!-- ========================================================== -->
+  <section class="section">
+    <h2 class="section-title">3. CoT 思维链动画</h2>
+    <p class="section-desc">5 个圆点循环呼吸，节奏 1.2s/cycle，节点错峰 80ms。下方四个产品色版本同步运行。</p>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+      <div class="cot-demo brand-de">
+        <span class="cot-trace">
+          <span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span>
+        </span>
+        <span class="cot-demo-text">DeepEvidence 正在分析 50 篇相关文献…</span>
+      </div>
+      <div class="cot-demo brand-se">
+        <span class="cot-trace">
+          <span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span>
+        </span>
+        <span class="cot-demo-text">SeekEvidence 在分析选题热度…</span>
+      </div>
+      <div class="cot-demo brand-di">
+        <span class="cot-trace">
+          <span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span>
+        </span>
+        <span class="cot-demo-text">DeepInsight 正在扫描 KOL 网络…</span>
+      </div>
+      <div class="cot-demo brand-rcp">
+        <span class="cot-trace">
+          <span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span><span class="cot-dot"></span>
+        </span>
+        <span class="cot-demo-text">RCP AI Agent 正在预演反应…</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- 四、Diff View                                                -->
+  <!-- ========================================================== -->
+  <section class="section">
+    <h2 class="section-title">4. Diff View · 红绿语义</h2>
+    <p class="section-desc">AI 输出（红色删除线） vs 专家修订（绿色高亮）。颜色复用母品牌 error / success token，跨产品一致。</p>
+
+    <div class="diff-demo">
+      <p>该患者
+        <span class="diff-removed">必须立即停用阿司匹林</span>
+        <span class="diff-added">在 INR &gt; 3.0 时建议停用阿司匹林（结合临床判断）</span>。
+      </p>
+      <p>同时建议
+        <span class="diff-removed">每周复查 INR</span>
+        <span class="diff-added">在用药调整后 3–5 天复查 INR，之后每 2 周一次</span>。
+      </p>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- 五、Progressive Disclosure                                   -->
+  <!-- ========================================================== -->
+  <section class="section brand-de">
+    <h2 class="section-title">5. Progressive Disclosure · 三层级</h2>
+    <p class="section-desc">L1 核心结论（产品色 + Bold） → L2 证据摘要（neutral-700） → L3 溯源细节（neutral-500）。层间间距 12px。</p>
+
+    <div class="disclosure-demo">
+      <div class="disclosure">
+        <p class="disclosure-l1">建议在合并 PPI 使用时停用阿司匹林。</p>
+        <p class="disclosure-l2">
+          在 INR &gt; 3.0 的患者中，停用阿司匹林可显著降低出血风险<span class="nano-citation">[1]</span>。
+          本建议未涵盖既往胃出血史；请补充病史后再核验。
+        </p>
+        <p class="disclosure-l3">
+          [1] Smith et al., NEJM 2024; n=2,341; 风险比 0.62 (95% CI 0.48–0.81)。
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- 六、图像政策                                                  -->
+  <!-- ========================================================== -->
+  <section class="section">
+    <h2 class="section-title">6. 图像政策</h2>
+    <p class="section-desc">沿用母品牌 v1.1 §8，AI 子品牌不放松任何一条。</p>
+
+    <div class="imagery-grid">
+      <div class="imagery-card imagery-card-allow">
+        <div class="imagery-card-tag">允许</div>
+        <div class="imagery-card-title">真实临床照片</div>
+        <div class="imagery-card-desc">自然光、偏冷中性、医生 / 工作场景，禁止 stock photo。</div>
+      </div>
+      <div class="imagery-card imagery-card-allow">
+        <div class="imagery-card-tag">允许</div>
+        <div class="imagery-card-title">几何抽象 + dot-spiral 母题</div>
+        <div class="imagery-card-desc">仅产品色 + 中性色；CoT 节点链是 dot-spiral 的演化形式。</div>
+      </div>
+      <div class="imagery-card imagery-card-forbid">
+        <div class="imagery-card-tag">禁止</div>
+        <div class="imagery-card-title">AI 生成医学影像</div>
+        <div class="imagery-card-desc">FTC 合规红线。任何 AI 生成的 CT / MRI / 病理图、人体结构图均不允许。</div>
+      </div>
+      <div class="imagery-card imagery-card-forbid">
+        <div class="imagery-card-tag">禁止</div>
+        <div class="imagery-card-title">"AI 大脑" / 机器人具象</div>
+        <div class="imagery-card-desc">违反"医生在环"语义，给 AI 拟人化错觉。改用几何抽象。</div>
+      </div>
+      <div class="imagery-card imagery-card-forbid">
+        <div class="imagery-card-tag">禁止</div>
+        <div class="imagery-card-title">Stock photo</div>
+        <div class="imagery-card-desc">图库感太强，与"医学严谨"气质冲突。</div>
+      </div>
+      <div class="imagery-card imagery-card-forbid">
+        <div class="imagery-card-tag">禁止</div>
+        <div class="imagery-card-title">Emoji / 卡通 / 贴纸</div>
+        <div class="imagery-card-desc">医学产品禁用情感装饰元素，沿用母品牌 v1.1。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================== -->
+  <!-- 七、Token 速查                                                -->
+  <!-- ========================================================== -->
+  <section class="section">
+    <h2 class="section-title">7. Token 速查</h2>
+    <p class="section-desc">本预览实际使用的核心 token 列表。完整定义见同目录 <code>ai-tokens.css</code>。</p>
+
+    <table class="token-table">
+      <thead>
+        <tr><th>Token</th><th>值</th><th>用途</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code><span class="swatch" style="background:#2563EB"></span>--de-primary</code></td><td>#2563EB</td><td>DeepEvidence 主色（wordmark + UI + 信任徽章）</td></tr>
+        <tr><td><code><span class="swatch" style="background:#9333EA"></span>--se-primary</code></td><td>#9333EA</td><td>SeekEvidence 主色</td></tr>
+        <tr><td><code><span class="swatch" style="background:#0891B2"></span>--di-primary</code></td><td>#0891B2</td><td>DeepInsight 主色（暂定）</td></tr>
+        <tr><td><code><span class="swatch" style="background:#0F62FE"></span>--rcp-primary</code></td><td>#0F62FE</td><td>RCP 主色（IBM Blue 60）</td></tr>
+        <tr><td><code><span class="swatch" style="background:#666666"></span>--endorsement-color</code></td><td>#666666</td><td>endorsement signature 唯一色</td></tr>
+        <tr><td><code>--pitl-bg / --pitl-fg</code></td><td>product-primary / #FFF</td><td>PITL Verified 徽章（产品色填充 + 反白文字）</td></tr>
+        <tr><td><code>--aio-bg / --aio-fg</code></td><td><span class="swatch" style="background:#334155"></span>#334155 / product-primary</td><td>AIO Official 徽章（深灰填充 + 产品色文字）</td></tr>
+        <tr><td><code>--vgi-border / --vgi-fg</code></td><td>product-primary</td><td>VGI Mark 徽章（产品色描边 + 文字）</td></tr>
+        <tr><td><code>--diff-removed-color</code></td><td><span class="swatch" style="background:#DC2626"></span>#DC2626</td><td>Diff View 删除色（母品牌 error-500）</td></tr>
+        <tr><td><code>--diff-added-color</code></td><td><span class="swatch" style="background:#2E9F82"></span>#2E9F82</td><td>Diff View 新增色（母品牌 success-500）</td></tr>
+        <tr><td><code>--cot-cycle</code></td><td>1.2s</td><td>CoT 动画单次完整呼吸周期</td></tr>
+        <tr><td><code>--rcp-throughline-thickness</code></td><td>0.09em</td><td>RCP 贯穿横线粗细（仅 RCP 独有）</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+</body>
+</html>

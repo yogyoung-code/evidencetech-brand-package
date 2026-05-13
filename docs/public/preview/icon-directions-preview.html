@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>梅斯健康 AI · DI / RCP 图标方向探索 v0.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --de:  #2563EB;
+    --se:  #9333EA;
+    --di:  #0891B2;
+    --rcp: #0F62FE;
+    --neutral-700: #334155;
+    --neutral-500: #64748B;
+    --neutral-300: #CBD5E1;
+    --neutral-100: #F1F5F9;
+    --neutral-50:  #F8FAFC;
+    --neutral-900: #0F172A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans SC", "Inter", system-ui, sans-serif;
+    background: var(--neutral-50);
+    color: var(--neutral-900);
+    line-height: 1.5;
+  }
+  .doc { max-width: 1080px; margin: 0 auto; padding: 64px 32px 128px; }
+
+  .doc-header {
+    border-bottom: 1px solid var(--neutral-300);
+    padding-bottom: 32px;
+    margin-bottom: 48px;
+  }
+  .doc-eyebrow {
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--neutral-500); margin: 0 0 12px;
+  }
+  .doc-title {
+    font-size: 32px; font-weight: 700;
+    margin: 0 0 8px; letter-spacing: -0.01em;
+  }
+  .doc-subtitle { font-size: 16px; color: var(--neutral-500); margin: 0; max-width: 720px; }
+
+  .product-section {
+    margin-bottom: 96px;
+  }
+  .product-header {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+  .product-eyebrow {
+    font-family: "Teko", sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 0.85;
+  }
+  .product-eyebrow .prefix { /* color set per section */ }
+  .product-eyebrow .suffix { color: #000; }
+  .product-desc {
+    font-size: 14px;
+    color: var(--neutral-500);
+    margin: 8px 0 32px;
+    max-width: 720px;
+  }
+
+  /* ===== Option card ===== */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  @media (min-width: 800px) {
+    .options-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  .option {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    overflow: hidden;
+  }
+  .option-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--neutral-100);
+  }
+  .option-tag {
+    display: inline-block;
+    font-family: "Inter", sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--neutral-500);
+    background: var(--neutral-100);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .option-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0 0 6px;
+    letter-spacing: -0.005em;
+  }
+  .option-rationale {
+    font-size: 13px;
+    color: var(--neutral-700);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  /* ===== Sample rows inside a card ===== */
+  .sample-row {
+    padding: 24px;
+    border-bottom: 1px dashed var(--neutral-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    min-height: 130px;
+  }
+  .sample-row:last-of-type { border-bottom: 0; }
+
+  .sample-label {
+    position: absolute;
+    bottom: 6px; left: 10px;
+    font-family: "Inter", sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--neutral-500);
+  }
+  .sample-row { position: relative; }
+
+  .icon-row {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  .icon-cell {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .icon-cell svg { display: block; overflow: visible; }
+  .icon-24 { width: 24px; height: 24px; }
+  .icon-48 { width: 48px; height: 48px; }
+  .icon-88 { width: 88px; height: 88px; }
+
+  /* lockup */
+  .lockup {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0.85;
+    gap: 7px;
+    font-family: "Teko", sans-serif;
+    font-weight: 600;
+    font-size: 32px;
+  }
+  .lockup .lock-icon { width: 34px; height: 34px; flex-shrink: 0; }
+  .lockup .lock-icon svg { width: 100%; height: 100%; overflow: visible; }
+  .lockup .lock-prefix { line-height: 0.85; }
+  .lockup .lock-suffix { color: #000; line-height: 0.85; }
+  .lockup--reverse .lock-prefix,
+  .lockup--reverse .lock-suffix { color: #fff !important; }
+
+  /* hero gradient row */
+  .sample-row--hero {
+    color: #fff;
+  }
+  .sample-row--hero-di  { background: linear-gradient(135deg, #155E75 0%, #0891B2 100%); }
+  .sample-row--hero-rcp { background: linear-gradient(135deg, #002D9C 0%, #0F62FE 100%); }
+  .sample-row--hero .sample-label { color: rgba(255,255,255,0.55); }
+
+  /* product color shortcuts */
+  .icon-di .lock-icon,
+  .icon-di .lock-prefix { color: var(--di); }
+  .icon-rcp .lock-icon,
+  .icon-rcp .lock-prefix { color: var(--rcp); }
+
+  .ic-di-color { color: var(--di); }
+  .ic-rcp-color { color: var(--rcp); }
+
+  /* recommendation block */
+  .recommendation {
+    background: #fff;
+    border: 2px solid var(--neutral-700);
+    padding: 32px;
+    margin-top: 48px;
+  }
+  .recommendation h3 {
+    font-size: 20px;
+    margin: 0 0 16px;
+    font-weight: 700;
+  }
+  .recommendation p {
+    font-size: 14px;
+    color: var(--neutral-700);
+    line-height: 1.7;
+    margin: 0 0 12px;
+  }
+  .recommendation .pick-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--neutral-100);
+  }
+  .pick {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .pick .lockup { font-size: 24px; }
+  .pick .lockup .lock-icon { width: 28px; height: 28px; }
+
+  /* family preview block */
+  .family-preview {
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+    padding: 64px 32px;
+    margin-top: 48px;
+    text-align: center;
+  }
+  .family-preview h3 {
+    font-size: 16px;
+    color: var(--neutral-500);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 32px;
+    font-weight: 600;
+  }
+  .family-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 56px;
+  }
+
+  /* ===== RCP v0.5 logo（"RCP" 三字母全黑 + 彩色贯穿横线）===== */
+  .rcp-logo {
+    display: inline-flex;
+    align-items: center;
+    font-family: "Teko", sans-serif;
+    font-weight: 600;
+    line-height: 0.85;
+    position: relative;
+    white-space: nowrap;
+    /* isolation 创建独立堆叠上下文，让横线 z-index:-1 不会穿透到外层 */
+    isolation: isolate;
+  }
+  .rcp-logo .rcp-icon {
+    flex-shrink: 0;
+    color: var(--rcp);
+    position: relative;
+    z-index: 2; /* icon 在最上层 */
+  }
+  .rcp-logo .rcp-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    overflow: visible;
+  }
+  .rcp-logo .rcp-text {
+    color: #000;
+    position: relative;
+    padding-left: 6px;
+    /* 不设 z-index：文字在 auto 层（z=0），自然在横线 (-1) 之上 */
+  }
+  /* 贯穿横线：从 icon 右侧 H 22 段（y=13）水平延伸，穿过 RCP 三字母，略超出 P 字母右缘 */
+  .rcp-logo .rcp-text::before {
+    content: '';
+    position: absolute;
+    /* left: 反入 icon 右缘以保证视觉连续 */
+    left: -2px;
+    /* right: 负值，使横线略微超出 RCP 文字右缘（约 0.15 字符宽） */
+    right: -0.15em;
+    /* bottom: 40% 对应 icon viewBox y=13 的视觉位置 */
+    bottom: 40%;
+    /* 0.09em 精确对应 icon stroke：viewBox stroke 2 / viewBox 24 × 1.08 (icon/font 比) ≈ 0.09em */
+    height: 0.09em;
+    background: var(--rcp);
+    /* z-index: -1 让横线落到 RCP 字母下方（图层效果上字母在线上方） */
+    z-index: -1;
+    border-radius: 2px;
+  }
+  .rcp-logo--reverse .rcp-icon { color: #fff; }
+  .rcp-logo--reverse .rcp-text { color: #fff; }
+  .rcp-logo--reverse .rcp-text::before { background: #fff; }
+
+  /* RCP logo size variants */
+  .rcp-logo-xl { font-size: 88px; gap: 0; }
+  .rcp-logo-xl .rcp-icon { width: 95px; height: 95px; }
+  .rcp-logo-md { font-size: 32px; gap: 0; }
+  .rcp-logo-md .rcp-icon { width: 34px; height: 34px; }
+  .rcp-logo-sm { font-size: 24px; gap: 0; }
+  .rcp-logo-sm .rcp-icon { width: 26px; height: 26px; }
+  .rcp-logo-xs { font-size: 18px; gap: 0; }
+  .rcp-logo-xs .rcp-icon { width: 20px; height: 20px; }
+
+  /* Decision table */
+  .decision-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 32px;
+    font-size: 13px;
+    background: #fff;
+    border: 1px solid var(--neutral-300);
+  }
+  .decision-table th, .decision-table td {
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--neutral-100);
+  }
+  .decision-table th {
+    background: var(--neutral-100);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--neutral-700);
+  }
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <header class="doc-header">
+    <p class="doc-eyebrow">梅斯健康 AI Brand Kit · 图标方向探索 v0.5 · 已选定</p>
+    <h1 class="doc-title">DeepInsight & Rapid Clinical Pulse · 图标方向探索</h1>
+    <p class="doc-subtitle">已选定：<strong>DI = 星座（DI-2）</strong>· <strong>RCP = 锐脉（RCP-1 终版）</strong>。RCP 经多轮迭代后定稿：wordmark 简化为"RCP"三字母全黑 + 彩色贯穿横线——独有视觉气质。详见下方"已选定"区块。其余方向卡片保留作为决策档案。</p>
+  </header>
+
+  <!-- ============================ -->
+  <!--  SVG defs                    -->
+  <!-- ============================ -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <!-- 既有：DE / SE（参考用） -->
+      <symbol id="ic-de" viewBox="0 0 24 24">
+        <path d="M 2 12 H 4.48 A 2 2 0 0 1 6.41 13.46 L 8.76 21.82 A 0.25 0.25 0 0 0 9.24 21.82 L 14.76 2.18 A 0.25 0.25 0 0 1 15.24 2.18 L 17.59 10.54 A 2 2 0 0 0 19.51 12 H 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0, 1)"/>
+      </symbol>
+      <symbol id="ic-se" viewBox="20 20 280 170">
+        <path fill="currentColor" d="M67.18,136.25 C60.12,141.84 52.62,142.68 44.87,139.26 C37.04,135.80 33.56,129.01 33.26,120.86 C32.88,110.88 32.86,100.86 33.28,90.89 C33.75,79.86 40.05,72.48 49.78,70.47 C58.47,68.67 67.75,72.86 71.57,80.86 C73.02,83.91 73.88,87.51 73.98,90.90 C74.28,100.71 74.10,110.54 74.05,120.37 C74.01,126.47 71.94,131.76 67.18,136.25 Z"/>
+        <path fill="currentColor" d="M125.00,158.75 C124.22,173.22 116.86,179.27 100.93,179.00 C91.24,178.83 83.98,170.04 83.95,158.19 C83.87,123.06 83.82,87.93 83.84,52.80 C83.84,39.77 92.00,31.10 104.04,31.02 C116.22,30.94 124.84,39.87 124.88,52.88 C124.97,88.02 124.97,123.15 125.00,158.75 Z"/>
+        <path fill="currentColor" d="M175.97,90.00 C175.94,104.83 176.11,119.15 175.82,133.47 C175.62,142.91 168.54,151.18 159.94,152.91 C150.33,154.84 140.96,150.15 137.05,141.00 C135.84,138.18 135.22,134.90 135.19,131.82 C135.03,114.50 135.00,97.18 135.17,79.86 C135.30,67.24 144.19,57.96 155.65,58.00 C167.12,58.04 175.75,67.38 175.96,80.01 C176.01,83.18 175.97,86.34 175.97,90.00 Z"/>
+        <path fill="currentColor" d="M196.12,33.91 C212.03,26.28 227.08,35.33 227.11,52.40 C227.17,87.87 227.04,123.35 227.05,158.83 C227.05,166.40 224.56,173.08 217.87,176.54 C205.50,182.93 186.65,179.39 186.28,160.63 C185.57,124.17 186.06,87.68 186.20,51.21 C186.23,43.91 189.59,38.10 196.12,33.91 Z"/>
+        <path fill="currentColor" d="M277.91,117.89 C279.11,133.68 266.97,143.68 252.20,140.37 C243.21,138.35 237.28,130.97 237.13,121.67 C236.96,111.35 237.00,101.02 237.08,90.70 C237.17,78.77 245.31,70.81 257.30,70.75 C269.32,70.70 277.56,78.47 277.83,90.43 C278.04,99.42 277.90,108.41 277.91,117.89 Z"/>
+      </symbol>
+
+      <!-- =============================== -->
+      <!--  DI 三方向                       -->
+      <!-- =============================== -->
+
+      <!-- DI-1: 「升迹」Ascending Path  (单笔描线类，ECG family) -->
+      <symbol id="di-1" viewBox="0 0 24 24">
+        <path d="M 2 19 H 5 L 8 14 L 10 16 L 14 7 L 16 10 L 19 3 L 22 5"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+
+      <!-- DI-2: 「星座」Insight Constellation  (块体几何类，节点网络) -->
+      <symbol id="di-2" viewBox="0 0 24 24">
+        <line x1="4.5" y1="8" x2="10.5" y2="12" stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+        <line x1="10.5" y1="12" x2="8" y2="18.5" stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+        <line x1="10.5" y1="12" x2="15" y2="6" stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+        <line x1="15" y1="6" x2="18.5" y2="14" stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+        <line x1="18.5" y1="14" x2="20" y2="20" stroke="currentColor" stroke-width="1.4" opacity="0.55"/>
+        <circle cx="4.5" cy="8" r="1.2" fill="currentColor"/>
+        <circle cx="10.5" cy="12" r="1.5" fill="currentColor"/>
+        <circle cx="8" cy="18.5" r="1.2" fill="currentColor"/>
+        <circle cx="15" cy="6" r="1.5" fill="currentColor"/>
+        <circle cx="18.5" cy="14" r="2.4" fill="currentColor"/>
+        <circle cx="20" cy="20" r="1.2" fill="currentColor"/>
+      </symbol>
+
+      <!-- DI-3: 「雷达」Radar Sweep  (块体几何类，弧线变体) -->
+      <symbol id="di-3" viewBox="0 0 24 24">
+        <path d="M 3 14 A 7 7 0 0 1 11 22"
+              fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" opacity="0.6"/>
+        <path d="M 3 8 A 13 13 0 0 1 17 22"
+              fill="none" stroke="currentColor" stroke-width="1.8"
+              stroke-linecap="round" opacity="0.8"/>
+        <path d="M 3 2 A 19 19 0 0 1 22 21"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round"/>
+        <circle cx="16" cy="9" r="2.2" fill="currentColor"/>
+      </symbol>
+
+      <!-- =============================== -->
+      <!--  RCP 三方向                      -->
+      <!-- =============================== -->
+
+      <!-- RCP-1: 「锐脉」Sharp Pulse  (单笔描线类，单峰脉冲) -->
+      <symbol id="rcp-1" viewBox="0 0 24 24">
+        <path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+
+      <!-- RCP-2: 「漏斗」Cascading Funnel Bars  (块体几何类，对应 L0-L4 漏斗) -->
+      <symbol id="rcp-2" viewBox="0 0 24 24">
+        <rect x="2"  y="3.5"  width="20" height="2.4" rx="1.2" fill="currentColor"/>
+        <rect x="4"  y="8.3"  width="16" height="2.4" rx="1.2" fill="currentColor"/>
+        <rect x="6"  y="13.1" width="12" height="2.4" rx="1.2" fill="currentColor"/>
+        <rect x="8.5" y="17.9" width="7"  height="2.4" rx="1.2" fill="currentColor"/>
+      </symbol>
+
+      <!-- RCP-3: 「广播」Broadcast Pulse Waves  (块体几何类，弧线变体) -->
+      <symbol id="rcp-3" viewBox="0 0 24 24">
+        <path d="M 5 8.5 A 4 4 0 0 1 5 15.5"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round"/>
+        <path d="M 5 5 A 8 8 0 0 1 5 19"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" opacity="0.7"/>
+        <path d="M 5 1.5 A 12 12 0 0 1 5 22.5"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" opacity="0.4"/>
+        <circle cx="5" cy="12" r="1.8" fill="currentColor"/>
+      </symbol>
+    </defs>
+  </svg>
+
+  <!-- ====================================================== -->
+  <!--  对照参考：DE + SE 已有 logo                              -->
+  <!-- ====================================================== -->
+  <section style="margin-bottom: 72px;">
+    <p style="font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--neutral-500); margin: 0 0 16px;">对照参考</p>
+    <div style="display: flex; flex-wrap: wrap; gap: 48px; padding: 32px; background: #fff; border: 1px solid var(--neutral-300);">
+      <div>
+        <div style="font-size: 11px; color: var(--neutral-500); margin-bottom: 12px;">DE · 单笔描线（ECG）</div>
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Teko', sans-serif; font-weight: 600; font-size: 32px; line-height: 0.85;">
+          <span style="display: inline-flex; width: 34px; height: 34px; color: var(--de);"><svg style="width:100%;height:100%;overflow:visible"><use href="#ic-de"/></svg></span>
+          <span><span style="color: var(--de)">Deep</span><span style="color:#000">Evidence</span></span>
+        </span>
+      </div>
+      <div>
+        <div style="font-size: 11px; color: var(--neutral-500); margin-bottom: 12px;">SE · 块体几何（5 柱波形）</div>
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Teko', sans-serif; font-weight: 600; font-size: 32px; line-height: 0.85;">
+          <span style="display: inline-flex; width: 38px; height: 34px; color: var(--se);"><svg style="width:100%;height:100%;overflow:visible"><use href="#ic-se"/></svg></span>
+          <span><span style="color: var(--se)">Seek</span><span style="color:#000">Evidence</span></span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!--  DeepInsight                                            -->
+  <!-- ====================================================== -->
+  <section class="product-section">
+    <div class="product-header">
+      <span class="product-eyebrow"><span class="prefix" style="color: var(--di)">Deep</span><span class="suffix">Insight</span></span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 12px; color: var(--neutral-500); letter-spacing: 0.08em; text-transform: uppercase;">商业智能 · 医生洞察雷达 · KOL 发现 · 意图份额</span>
+    </div>
+    <p class="product-desc">语义关键词："洞察"、"模式发现"、"KOL 雷达"、"意图份额"、"上升新星"。三个方向：1 个单笔描线（ECG family），2 个块体几何（其中星座网络与雷达弧线为两种风格）。</p>
+
+    <div class="options-grid">
+
+      <!-- DI-1 -->
+      <div class="option icon-di">
+        <div class="option-header">
+          <span class="option-tag">单笔描线类</span>
+          <h3 class="option-title">DI-1 · 升迹 Ascending Path</h3>
+          <p class="option-rationale">单笔 ECG 风格描线，由低到高三段递进的山峰。结尾顿挫上扬，象征"在数据中发现规律的瞬间"。与 DE 同属描线 family，但走势不同（DE = 单峰心跳；DI = 递升发现）。</p>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">24 / 48 / 88</span>
+          <div class="icon-row">
+            <span class="icon-cell icon-24 ic-di-color"><svg><use href="#di-1"/></svg></span>
+            <span class="icon-cell icon-48 ic-di-color"><svg><use href="#di-1"/></svg></span>
+            <span class="icon-cell icon-88 ic-di-color"><svg><use href="#di-1"/></svg></span>
+          </div>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">Lockup · 32px</span>
+          <span class="lockup">
+            <span class="lock-icon ic-di-color"><svg><use href="#di-1"/></svg></span>
+            <span><span class="lock-prefix" style="color: var(--di)">Deep</span><span class="lock-suffix">Insight</span></span>
+          </span>
+        </div>
+        <div class="sample-row sample-row--hero sample-row--hero-di">
+          <span class="sample-label">Hero 渐变 · 反白</span>
+          <span class="lockup lockup--reverse">
+            <span class="lock-icon" style="color:#fff"><svg><use href="#di-1"/></svg></span>
+            <span><span class="lock-prefix">Deep</span><span class="lock-suffix">Insight</span></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- DI-2 -->
+      <div class="option icon-di">
+        <div class="option-header">
+          <span class="option-tag">块体几何类 · 节点</span>
+          <h3 class="option-title">DI-2 · 星座 Constellation</h3>
+          <p class="option-rationale">5–6 个节点用细线连接成知识图谱，其中一节点显著放大——"被发现的 Rising Star KOL"。最贴合 DI 的核心叙事（PI Portrait 360 + 数字好奇心识别）。与 SE（5 柱）拉开距离。</p>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">24 / 48 / 88</span>
+          <div class="icon-row">
+            <span class="icon-cell icon-24 ic-di-color"><svg><use href="#di-2"/></svg></span>
+            <span class="icon-cell icon-48 ic-di-color"><svg><use href="#di-2"/></svg></span>
+            <span class="icon-cell icon-88 ic-di-color"><svg><use href="#di-2"/></svg></span>
+          </div>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">Lockup · 32px</span>
+          <span class="lockup">
+            <span class="lock-icon ic-di-color"><svg><use href="#di-2"/></svg></span>
+            <span><span class="lock-prefix" style="color: var(--di)">Deep</span><span class="lock-suffix">Insight</span></span>
+          </span>
+        </div>
+        <div class="sample-row sample-row--hero sample-row--hero-di">
+          <span class="sample-label">Hero 渐变 · 反白</span>
+          <span class="lockup lockup--reverse">
+            <span class="lock-icon" style="color:#fff"><svg><use href="#di-2"/></svg></span>
+            <span><span class="lock-prefix">Deep</span><span class="lock-suffix">Insight</span></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- DI-3 -->
+      <div class="option icon-di">
+        <div class="option-header">
+          <span class="option-tag">块体几何类 · 弧线</span>
+          <h3 class="option-title">DI-3 · 雷达 Radar Sweep</h3>
+          <p class="option-rationale">三层同心弧线 + 一个被命中的焦点，象征"扫描 + 发现"。直接呼应"医生洞察雷达"产品名。但弧线 + 单点几何元素较少，小尺寸（24px）下信息密度低。</p>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">24 / 48 / 88</span>
+          <div class="icon-row">
+            <span class="icon-cell icon-24 ic-di-color"><svg><use href="#di-3"/></svg></span>
+            <span class="icon-cell icon-48 ic-di-color"><svg><use href="#di-3"/></svg></span>
+            <span class="icon-cell icon-88 ic-di-color"><svg><use href="#di-3"/></svg></span>
+          </div>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">Lockup · 32px</span>
+          <span class="lockup">
+            <span class="lock-icon ic-di-color"><svg><use href="#di-3"/></svg></span>
+            <span><span class="lock-prefix" style="color: var(--di)">Deep</span><span class="lock-suffix">Insight</span></span>
+          </span>
+        </div>
+        <div class="sample-row sample-row--hero sample-row--hero-di">
+          <span class="sample-label">Hero 渐变 · 反白</span>
+          <span class="lockup lockup--reverse">
+            <span class="lock-icon" style="color:#fff"><svg><use href="#di-3"/></svg></span>
+            <span><span class="lock-prefix">Deep</span><span class="lock-suffix">Insight</span></span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!--  Rapid Clinical Pulse                                   -->
+  <!-- ====================================================== -->
+  <section class="product-section">
+    <div class="product-header">
+      <span class="product-eyebrow"><span class="prefix" style="color: var(--rcp)">Rapid</span><span class="suffix">&nbsp;Clinical Pulse</span></span>
+      <span style="font-family: 'Inter', sans-serif; font-size: 12px; color: var(--neutral-500); letter-spacing: 0.08em; text-transform: uppercase;">敏捷验证 · 24h 反馈 · A/B 测试 · L0–L4 漏斗</span>
+    </div>
+    <p class="product-desc">语义关键词："脉冲"、"敏捷"、"广播 + 反馈"、"漏斗 L0–L4"、"24 小时"。三个方向：1 个单笔描线（脉冲峰），2 个块体几何（漏斗 / 同心广播）。</p>
+
+    <div class="options-grid">
+
+      <!-- RCP-1 -->
+      <div class="option icon-rcp">
+        <div class="option-header">
+          <span class="option-tag">单笔描线类</span>
+          <h3 class="option-title">RCP-1 · 锐脉 Sharp Pulse</h3>
+          <p class="option-rationale">单笔脉冲峰：长平→骤升→骤降→小回弹→平。比 DE 的心跳更窄更陡，强调"快"。与 RCP 名称中"Pulse"字面对应。但与 DE 都是描线 family，家族里描线类会有 2 个。</p>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">24 / 48 / 88</span>
+          <div class="icon-row">
+            <span class="icon-cell icon-24 ic-rcp-color"><svg><use href="#rcp-1"/></svg></span>
+            <span class="icon-cell icon-48 ic-rcp-color"><svg><use href="#rcp-1"/></svg></span>
+            <span class="icon-cell icon-88 ic-rcp-color"><svg><use href="#rcp-1"/></svg></span>
+          </div>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">Lockup · 32px</span>
+          <span class="lockup">
+            <span class="lock-icon ic-rcp-color"><svg><use href="#rcp-1"/></svg></span>
+            <span><span class="lock-prefix" style="color: var(--rcp)">Rapid</span><span class="lock-suffix">&nbsp;Clinical Pulse</span></span>
+          </span>
+        </div>
+        <div class="sample-row sample-row--hero sample-row--hero-rcp">
+          <span class="sample-label">Hero 渐变 · 反白</span>
+          <span class="lockup lockup--reverse">
+            <span class="lock-icon" style="color:#fff"><svg><use href="#rcp-1"/></svg></span>
+            <span><span class="lock-prefix">Rapid</span><span class="lock-suffix">&nbsp;Clinical Pulse</span></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- RCP-2 -->
+      <div class="option icon-rcp">
+        <div class="option-header">
+          <span class="option-tag">块体几何类 · 漏斗</span>
+          <h3 class="option-title">RCP-2 · 漏斗 Funnel Bars</h3>
+          <p class="option-rationale">4 条横向条柱递减，对应产品自身 L0–L4 招募/邀请/执行/结算的漏斗模型。功能可读性强；视觉极简扁平，与 RCP 内部 Carbon 设计气质完全统一。但偏理性、缺一点品牌温度。</p>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">24 / 48 / 88</span>
+          <div class="icon-row">
+            <span class="icon-cell icon-24 ic-rcp-color"><svg><use href="#rcp-2"/></svg></span>
+            <span class="icon-cell icon-48 ic-rcp-color"><svg><use href="#rcp-2"/></svg></span>
+            <span class="icon-cell icon-88 ic-rcp-color"><svg><use href="#rcp-2"/></svg></span>
+          </div>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">Lockup · 32px</span>
+          <span class="lockup">
+            <span class="lock-icon ic-rcp-color"><svg><use href="#rcp-2"/></svg></span>
+            <span><span class="lock-prefix" style="color: var(--rcp)">Rapid</span><span class="lock-suffix">&nbsp;Clinical Pulse</span></span>
+          </span>
+        </div>
+        <div class="sample-row sample-row--hero sample-row--hero-rcp">
+          <span class="sample-label">Hero 渐变 · 反白</span>
+          <span class="lockup lockup--reverse">
+            <span class="lock-icon" style="color:#fff"><svg><use href="#rcp-2"/></svg></span>
+            <span><span class="lock-prefix">Rapid</span><span class="lock-suffix">&nbsp;Clinical Pulse</span></span>
+          </span>
+        </div>
+      </div>
+
+      <!-- RCP-3 -->
+      <div class="option icon-rcp">
+        <div class="option-header">
+          <span class="option-tag">块体几何类 · 弧线</span>
+          <h3 class="option-title">RCP-3 · 广播 Broadcast Waves</h3>
+          <p class="option-rationale">三层向右扩张的弧线 + 焦点圆点，象征"从中心节点向医生网络发射脉冲信号"。对应 RCP 的 PITL 推送 + 24h 反馈机制。视觉与 DI-3 雷达同属"弧线 + 焦点"几何谱系，需考虑差异度。</p>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">24 / 48 / 88</span>
+          <div class="icon-row">
+            <span class="icon-cell icon-24 ic-rcp-color"><svg><use href="#rcp-3"/></svg></span>
+            <span class="icon-cell icon-48 ic-rcp-color"><svg><use href="#rcp-3"/></svg></span>
+            <span class="icon-cell icon-88 ic-rcp-color"><svg><use href="#rcp-3"/></svg></span>
+          </div>
+        </div>
+        <div class="sample-row">
+          <span class="sample-label">Lockup · 32px</span>
+          <span class="lockup">
+            <span class="lock-icon ic-rcp-color"><svg><use href="#rcp-3"/></svg></span>
+            <span><span class="lock-prefix" style="color: var(--rcp)">Rapid</span><span class="lock-suffix">&nbsp;Clinical Pulse</span></span>
+          </span>
+        </div>
+        <div class="sample-row sample-row--hero sample-row--hero-rcp">
+          <span class="sample-label">Hero 渐变 · 反白</span>
+          <span class="lockup lockup--reverse">
+            <span class="lock-icon" style="color:#fff"><svg><use href="#rcp-3"/></svg></span>
+            <span><span class="lock-prefix">Rapid</span><span class="lock-suffix">&nbsp;Clinical Pulse</span></span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!--  已选定组合 + RCP 修订                                    -->
+  <!-- ====================================================== -->
+  <section class="product-section">
+    <h2 style="font-size: 24px; font-weight: 700; margin: 0 0 8px; letter-spacing: -0.005em;">已选定：DI-2 星座 + RCP-1 锐脉（v0.5 修订）</h2>
+    <p style="color: var(--neutral-500); font-size: 14px; margin: 0 0 24px;">RCP 经 Sponsor 多轮修订到 v0.5：wordmark 简化为 <strong>"RCP" 三字母全黑</strong>，icon 与贯穿横线为产品色，构成"全家族最简洁、最具识别度"的 logo——其他三产品都是双色文字，RCP 是单色文字 + 彩色横线，独有视觉气质。</p>
+
+    <!-- RCP 修订版大图 -->
+    <div style="background: #fff; border: 2px solid var(--rcp); padding: 64px 32px; margin-bottom: 32px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--neutral-500); margin-bottom: 24px;">RCP 最终版 · 88px Hero 尺寸</div>
+      <span class="rcp-logo rcp-logo-xl">
+        <span class="rcp-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22"
+                  fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span class="rcp-text">RCP</span>
+      </span>
+    </div>
+
+    <!-- 修订要点 -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 48px;">
+      <div style="background: #fff; border: 1px solid var(--neutral-300); padding: 24px;">
+        <div style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rcp); margin-bottom: 8px;">修订 ①  缩写 wordmark</div>
+        <div style="font-size: 14px; line-height: 1.6; color: var(--neutral-700);">
+          v0.4：Rapid&nbsp;Clinical（黑） + <span style="color: var(--rcp); font-weight:700">Pulse</span>（产品色）<br>
+          v0.5：<strong>RCP</strong>（三字母全黑） + 彩色贯穿横线<br><br>
+          <em style="color: var(--neutral-500); font-size: 13px;">理由：RCP 与 DE/SE/DI 在文字长度上原本完全失衡（"Rapid Clinical Pulse" 三段词 vs 其他单复合词）。改用 RCP 缩写后家族视觉重量平衡，在 Hero 大字号下也不会"塞太满"。"Rapid Clinical Pulse" 全称仍保留为 product full name，用于正文与首次提及场景。</em>
+        </div>
+      </div>
+      <div style="background: #fff; border: 1px solid var(--neutral-300); padding: 24px;">
+        <div style="font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--rcp); margin-bottom: 8px;">修订 ②  贯穿横线（保留）</div>
+        <div style="font-size: 14px; line-height: 1.6; color: var(--neutral-700);">
+          icon 右侧的恢复横线（H 22 段）<strong>贯穿</strong> "RCP" 三字母下方，终止于 "P" 字母右缘。<br><br>
+          <em style="color: var(--neutral-500); font-size: 13px;">v0.5 下贯穿横线承担更重的语义：它既是 icon 的延伸，又是 wordmark 中唯一的彩色元素。视觉上"脉冲信号穿过 RCP 三字母"——更纯粹、更标志性。</em>
+        </div>
+      </div>
+    </div>
+
+    <!-- 三档尺寸预览 -->
+    <div style="background: #fff; border: 1px solid var(--neutral-300); padding: 32px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--neutral-500); margin-bottom: 24px;">RCP 最终版尺寸阶梯</div>
+
+      <div style="padding: 16px 0; border-bottom: 1px dashed var(--neutral-100);">
+        <span class="rcp-logo rcp-logo-md">
+          <span class="rcp-icon"><svg viewBox="0 0 24 24"><path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+
+      <div style="padding: 16px 0; border-bottom: 1px dashed var(--neutral-100);">
+        <span class="rcp-logo rcp-logo-sm">
+          <span class="rcp-icon"><svg viewBox="0 0 24 24"><path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+
+      <div style="padding: 16px 0;">
+        <span class="rcp-logo rcp-logo-xs">
+          <span class="rcp-icon"><svg viewBox="0 0 24 24"><path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- 反白态测试 -->
+    <div style="background: linear-gradient(135deg, #002D9C 0%, #0F62FE 100%); padding: 64px 32px; margin-top: 24px;">
+      <div style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 24px;">Hero 渐变 · 反白</div>
+      <span class="rcp-logo rcp-logo-md rcp-logo--reverse">
+        <span class="rcp-icon"><svg viewBox="0 0 24 24"><path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span class="rcp-text">RCP</span>
+      </span>
+    </div>
+
+    <!-- 全家福预览（v0.5 RCP 缩写版） -->
+    <div class="family-preview">
+      <h3>四产品 logo 家族预览（v0.5）</h3>
+      <div class="family-row">
+        <span class="lockup" style="font-size: 32px;">
+          <span class="lock-icon" style="width: 34px; height: 34px; color: var(--de);"><svg><use href="#ic-de"/></svg></span>
+          <span><span class="lock-prefix" style="color: var(--de)">Deep</span><span class="lock-suffix">Evidence</span></span>
+        </span>
+        <span class="lockup" style="font-size: 32px;">
+          <span class="lock-icon" style="width: 38px; height: 34px; color: var(--se);"><svg><use href="#ic-se"/></svg></span>
+          <span><span class="lock-prefix" style="color: var(--se)">Seek</span><span class="lock-suffix">Evidence</span></span>
+        </span>
+        <span class="lockup" style="font-size: 32px;">
+          <span class="lock-icon" style="width: 34px; height: 34px; color: var(--di);"><svg><use href="#di-2"/></svg></span>
+          <span><span class="lock-prefix" style="color: var(--di)">Deep</span><span class="lock-suffix">Insight</span></span>
+        </span>
+        <span class="rcp-logo rcp-logo-md">
+          <span class="rcp-icon"><svg viewBox="0 0 24 24"><path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+      <div style="margin-top: 36px; font-family: 'Noto Sans SC', sans-serif; font-weight: 500; font-size: 14px; color: #666666;">由 梅斯健康 出品</div>
+    </div>
+  </section>
+
+  <!-- ====================================================== -->
+  <!--  决策表                                                  -->
+  <!-- ====================================================== -->
+  <section class="product-section">
+    <h2 style="font-size: 20px; font-weight: 600; margin: 0 0 8px;">决策表</h2>
+    <table class="decision-table">
+      <thead>
+        <tr>
+          <th>产品</th>
+          <th>方向</th>
+          <th>家族类型</th>
+          <th>语义贴近度</th>
+          <th>视觉差异度</th>
+          <th>推荐</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>DI-1 升迹</td><td>单笔描线</td><td>线 family</td><td>★★★ 模式发现</td><td>★★ 与 DE 相似</td><td>—</td></tr>
+        <tr><td>DI-2 星座</td><td>块体节点</td><td>独立 family</td><td>★★★★ KOL 网络</td><td>★★★★ 全场最独特</td><td><strong>★ 推荐</strong></td></tr>
+        <tr><td>DI-3 雷达</td><td>弧线变体</td><td>弧线 family</td><td>★★★ 雷达直白</td><td>★★★ 24px 信息密度低</td><td>—</td></tr>
+        <tr><td>RCP-1 锐脉</td><td>单笔描线</td><td>线 family</td><td>★★★★ Pulse 字面</td><td>★★★ 与 DE 同 family 但峰形不同</td><td><strong>★ 推荐</strong></td></tr>
+        <tr><td>RCP-2 漏斗</td><td>横向块体</td><td>独立 family</td><td>★★★★ L0–L4 模型</td><td>★★★ 视觉理性偏冷</td><td>—</td></tr>
+        <tr><td>RCP-3 广播</td><td>弧线变体</td><td>弧线 family</td><td>★★★ 广播脉冲</td><td>★★ 与 DI-3 同弧线谱系</td><td>—</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+</body>
+</html>

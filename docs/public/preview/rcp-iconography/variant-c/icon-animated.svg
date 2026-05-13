@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Rapid Clinical Pulse · 锐脉 icon (stroke-draw 入场动画)
+  梅斯健康 AI Brand Kit v1.0 — production asset
+  符合 02-brand-architecture §1.7.1 阶段 1：1.2s ease-out 描线
+  Color: #0F62FE
+  注：SMIL 在主流浏览器可用；如需 React 端动画，请用 CSS keyframes（见 react/preview）
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Rapid Clinical Pulse animated">
+  <path d="M 2 12 L 7.8288 12 A 1.5 1.5 0 0 0 9.284 10.8638 L 10.6516 5.3935 A 0.25 0.25 0 0 1 11.1429 5.4292 L 12.3009 17.0087 A 0.25 0.25 0 0 0 12.7969 17.0209 L 13.857 9.953 A 0.25 0.25 0 0 1 14.3384 9.9023 L 15.135 12.0267 A 1.5 1.5 0 0 0 16.5395 13 L 22 13"
+        fill="none" stroke="#0F62FE" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"
+        pathLength="100" stroke-dasharray="100" stroke-dashoffset="100">
+    <animate attributeName="stroke-dashoffset"
+             from="100" to="0"
+             dur="1.2s"
+             fill="freeze"
+             calcMode="spline"
+             keyTimes="0;1"
+             keySplines="0.65 0 0.35 1"/>
+  </path>
+</svg>

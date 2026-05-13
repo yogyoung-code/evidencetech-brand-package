@@ -4,6 +4,14 @@
 **适用范围**：DeepEvidence · SeekEvidence · DeepInsight · Rapid Clinical Pulse 四个 AI 产品
 **关系**：在 MedSci Healthcare Brand Guidelines v1.1 母品牌之上的子品牌包。母品牌红线全部继承，明确偏离条款见 §2。
 **维护方**：市场 / 品牌团队
+**仓库**：[github.com/yogyoung-code/evidencetech-brand-package](https://github.com/yogyoung-code/evidencetech-brand-package)
+
+```bash
+git clone git@github.com:yogyoung-code/evidencetech-brand-package.git
+cd evidencetech-brand-package
+./rebuild-all.sh   # 首次需要构建 react + docs
+./start-all.sh     # 本地预览 3 个站
+```
 
 ---
 
@@ -215,23 +223,28 @@
 
 ## 11. 本地脚本与部署
 
-仓库根目录提供 4 个脚本，覆盖"本地预览 → 重建 → GitHub → Vercel"全流程：
+仓库根目录提供 5 个脚本，覆盖"本地预览 → 重建 → GitHub → Vercel"全流程：
 
 | 脚本 | 用途 |
 |---|---|
 | `./start-all.sh` | 本地同时启动 3 个站（docs:5173 / site:5174 / preview:5175），自动开浏览器 |
 | `./rebuild-all.sh` | 重建 docs（VitePress）、react 包（tsup）、demo 截图归档 |
-| `./init-github.sh` | 初始化 git → 创建 GitHub repo（用 gh CLI） → 首次推送 |
-| `./deploy-vercel.sh` | 把预构建产物推到 Vercel（3 个独立 project） |
+| `./scripts/sync-docs-public.sh` | 把仓库根 4 个源（ai-tokens.css / assets / preview / react）同步到 docs/public（替代 symlink，Vercel CI 必需） |
+| `./init-github.sh` | 初始化 git → 创建 GitHub repo → 首次推送 |
+| `./deploy-vercel.sh` | CLI 直推预构建产物到 Vercel（3 个独立 project） |
+| `./vercel-build.sh` | Vercel Git 集成模式下 docs project 的 CI 入口 |
 
-详细部署指南：[`DEPLOY-VERCEL.md`](./DEPLOY-VERCEL.md)
+部署指南：[`DEPLOY-VERCEL.md`](./DEPLOY-VERCEL.md)（含 CLI 直推 + Git 集成两套模式）
 
-**典型工作流**
+**典型工作流（CLI 直推）**
 
 ```bash
-# 首次：建仓 + 推 GitHub
-./init-github.sh -n evidencetech-brand-package -v private
-
-# 平常：改完内容 → 重建 → 部署
 ./rebuild-all.sh && ./deploy-vercel.sh
+```
+
+**典型工作流（Git 集成）**
+
+```bash
+git add . && git commit -m "..." && git push origin main
+# Vercel 自动构建 + 部署 3 个 project
 ```

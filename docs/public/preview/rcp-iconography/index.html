@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>RCP icon · 三变体精修对比 (v1.0 candidate)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&family=Teko:wght@500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --rcp-primary: #0F62FE;
+    --de-primary:  #2563EB;
+    --neutral-100: #E2E8F0;
+    --neutral-200: #CBD5E1;
+    --neutral-300: #94A3B8;
+    --neutral-500: #64748B;
+    --neutral-700: #334155;
+    --neutral-900: #0F172A;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Inter", "Noto Sans SC", system-ui, sans-serif;
+    color: #0F172A;
+    background: #F8FAFC;
+    margin: 0;
+    padding: 32px 24px;
+    line-height: 1.55;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  h1 { color: #001A51; margin: 0 0 6px; font-size: 26px; }
+  h2 {
+    color: #001A51; font-size: 17px; margin: 32px 0 12px;
+    padding-bottom: 6px; border-bottom: 1px solid var(--neutral-100);
+  }
+  h3 { font-size: 13px; color: var(--neutral-700); margin: 12px 0 6px; }
+  .meta { color: var(--neutral-500); font-size: 13px; margin: 0 0 24px; max-width: 80ch; }
+  code {
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    font-size: 12px;
+    background: #EEF2F6;
+    padding: 1px 5px;
+    border-radius: 3px;
+    color: var(--neutral-700);
+    word-break: break-all;
+  }
+  .card {
+    background: #FFFFFF;
+    border: 1px solid var(--neutral-100);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+  }
+  .card.dark {
+    background: var(--neutral-900);
+    color: #FFFFFF;
+    border-color: var(--neutral-700);
+  }
+  .card.dark h3 { color: #CBD5E1; }
+  .panel-title {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px; margin-bottom: 14px;
+  }
+  .panel-title strong { font-size: 15px; }
+  .panel-title em { font-style: normal; font-size: 12px; color: var(--neutral-500); font-family: "JetBrains Mono", monospace; }
+  .grid-3 {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+  }
+  .ladder {
+    display: flex; gap: 24px; align-items: flex-end; flex-wrap: wrap;
+    padding: 14px 12px; background: #FAFBFD; border-radius: 8px;
+  }
+  .ladder.dark { background: var(--neutral-900); }
+  .size-cell {
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+  }
+  .size-cell .label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 10px; color: var(--neutral-500); letter-spacing: 0.04em;
+  }
+  .ladder.dark .size-cell .label { color: rgba(255,255,255,0.55); }
+
+  /* Through-line 嵌入演示 — 与 02 §1.7.1 完全一致的结构 */
+  .rcp-logo {
+    display: inline-flex; align-items: center;
+    font-family: "Teko", system-ui, sans-serif;
+    font-weight: 600; font-size: 32px; line-height: 0.85;
+    position: relative; isolation: isolate; white-space: nowrap;
+  }
+  .rcp-logo .rcp-icon { color: var(--rcp-primary); width: 34px; height: 34px; flex-shrink: 0; z-index: 2; }
+  .rcp-logo .rcp-text { color: #000; position: relative; padding-left: 6px; z-index: 2; }
+  .rcp-logo .rcp-text::before {
+    content: ''; position: absolute;
+    left: -2px; right: -0.15em; bottom: 40%;
+    height: 0.09em; background: var(--rcp-primary);
+    z-index: -1; border-radius: 2px;
+  }
+
+  .rcp-logo.reverse { color: #FFFFFF; }
+  .rcp-logo.reverse .rcp-icon { color: #FFFFFF; }
+  .rcp-logo.reverse .rcp-text { color: #FFFFFF; }
+  .rcp-logo.reverse .rcp-text::before { background: #FFFFFF; }
+
+  /* 透视网格：渲染 24×24 viewBox 在大尺寸下，加 grid 帮助审视几何 */
+  .inspect {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px;
+  }
+  .inspect-cell {
+    background: #FAFBFD;
+    border: 1px solid var(--neutral-100);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .inspect-cell svg { display: block; margin: 0 auto; }
+
+  /* 入场动画：复用 02 §1.7.1 的 stroke-draw 配方 */
+  @keyframes rcp-stroke-draw {
+    0%   { stroke-dashoffset: var(--len, 100); }
+    100% { stroke-dashoffset: 0; }
+  }
+  .anim-on:hover path {
+    animation: rcp-stroke-draw 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+  }
+
+  /* DE family-check 排版 */
+  .family-row {
+    display: flex; gap: 36px; align-items: flex-end; flex-wrap: wrap;
+    padding: 14px 12px; background: #FAFBFD; border-radius: 8px;
+  }
+  .family-row .name {
+    font-family: "Teko", sans-serif; font-weight: 600; font-size: 32px;
+    line-height: 0.85;
+  }
+
+  .summary {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-top: 8px;
+  }
+  .summary div { font-size: 13px; line-height: 1.55; }
+  .summary code { font-size: 11px; }
+
+  .pick {
+    display: inline-block; padding: 4px 10px; border-radius: 999px;
+    background: #DEF7EC; color: #03543F; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase;
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- 当前占位 path，作为 baseline -->
+    <symbol id="rcp-baseline" viewBox="0 0 24 24">
+      <path d="M 2 12 H 9 L 11 4 L 12.5 19 L 14 9 L 15.5 13 H 22"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- DE icon for family rhyme check -->
+    <symbol id="de-baseline" viewBox="0 0 24 24">
+      <path d="M 2 12 H 4.48 A 2 2 0 0 1 6.41 13.46 L 8.76 21.82 A 0.25 0.25 0 0 0 9.24 21.82 L 14.76 2.18 A 0.25 0.25 0 0 1 15.24 2.18 L 17.59 10.54 A 2 2 0 0 0 19.51 12 H 22"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"
+        transform="translate(0, 1)"/>
+    </symbol>
+    <!-- A · 硬角精修 -->
+    <symbol id="rcp-A" viewBox="0 0 24 24">
+      <path d="M 2 12 L 9 12 L 11 4 L 12.5 19 L 14 9 L 15.5 13 L 22 13"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- B · 软角 fillet -->
+    <symbol id="rcp-B" viewBox="0 0 24 24">
+      <path d="M 2 12 L 8.2192 12 A 1 1 0 0 0 9.1894 11.2425 L 10.3033 6.787 A 0.5 0.5 0 0 1 11.2858 6.8585 L 12.1017 15.0174 A 0.5 0.5 0 0 0 13.0937 15.0418 L 13.7713 10.5248 A 0.4 0.4 0 0 1 14.5414 10.4437 L 15.2567 12.3511 A 1 1 0 0 0 16.193 13 L 22 13"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <!-- C · 与 DE 几何对齐 -->
+    <symbol id="rcp-C" viewBox="0 0 24 24">
+      <path d="M 2 12 L 7.8288 12 A 1.5 1.5 0 0 0 9.284 10.8638 L 10.6516 5.3935 A 0.25 0.25 0 0 1 11.1429 5.4292 L 12.3009 17.0087 A 0.25 0.25 0 0 0 12.7969 17.0209 L 13.857 9.953 A 0.25 0.25 0 0 1 14.3384 9.9023 L 15.135 12.0267 A 1.5 1.5 0 0 0 16.5395 13 L 22 13"
+        fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+</head>
+<body>
+<div class="container">
+
+  <h1>RCP icon · 三变体精修对比</h1>
+  <p class="meta">
+    占位 path（v0）由全直线段构成，与 DE icon 的 corner-arc 几何不同源。本页输出 3 个 production-grade 候选并并排展示，让 Sponsor 选定 v1.0 path。
+    选定后将更新 <code>RCPPulseIcon.tsx</code> 与三份 standalone <code>.svg</code> 资产（默认 / 反白 / 含 stroke-draw 入场动画）。
+  </p>
+
+  <!-- ========== 段 1：尺寸阶梯对比 ========== -->
+  <h2>1. 尺寸阶梯（16 / 20 / 28 / 32 / 48 / 88 px）— 浅底</h2>
+
+  <div class="card">
+    <div class="panel-title"><strong>v0 占位</strong><em>baseline · 全直线</em></div>
+    <div class="ladder">
+      <div class="size-cell"><span class="label">16px</span><svg width="16" height="16" style="color:var(--rcp-primary)"><use href="#rcp-baseline"/></svg></div>
+      <div class="size-cell"><span class="label">20px</span><svg width="20" height="20" style="color:var(--rcp-primary)"><use href="#rcp-baseline"/></svg></div>
+      <div class="size-cell"><span class="label">28px</span><svg width="28" height="28" style="color:var(--rcp-primary)"><use href="#rcp-baseline"/></svg></div>
+      <div class="size-cell"><span class="label">32px</span><svg width="32" height="32" style="color:var(--rcp-primary)"><use href="#rcp-baseline"/></svg></div>
+      <div class="size-cell"><span class="label">48px</span><svg width="48" height="48" style="color:var(--rcp-primary)"><use href="#rcp-baseline"/></svg></div>
+      <div class="size-cell"><span class="label">88px</span><svg width="88" height="88" style="color:var(--rcp-primary)"><use href="#rcp-baseline"/></svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="panel-title"><strong>变体 A · 硬角精修</strong><em>r=0 全角 · 全直线</em></div>
+    <div class="ladder">
+      <div class="size-cell"><span class="label">16px</span><svg width="16" height="16" style="color:var(--rcp-primary)"><use href="#rcp-A"/></svg></div>
+      <div class="size-cell"><span class="label">20px</span><svg width="20" height="20" style="color:var(--rcp-primary)"><use href="#rcp-A"/></svg></div>
+      <div class="size-cell"><span class="label">28px</span><svg width="28" height="28" style="color:var(--rcp-primary)"><use href="#rcp-A"/></svg></div>
+      <div class="size-cell"><span class="label">32px</span><svg width="32" height="32" style="color:var(--rcp-primary)"><use href="#rcp-A"/></svg></div>
+      <div class="size-cell"><span class="label">48px</span><svg width="48" height="48" style="color:var(--rcp-primary)"><use href="#rcp-A"/></svg></div>
+      <div class="size-cell"><span class="label">88px</span><svg width="88" height="88" style="color:var(--rcp-primary)"><use href="#rcp-A"/></svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="panel-title"><strong>变体 B · 软角 fillet</strong><em>peak/trough r=0.5 · baseline r=1.0</em></div>
+    <div class="ladder">
+      <div class="size-cell"><span class="label">16px</span><svg width="16" height="16" style="color:var(--rcp-primary)"><use href="#rcp-B"/></svg></div>
+      <div class="size-cell"><span class="label">20px</span><svg width="20" height="20" style="color:var(--rcp-primary)"><use href="#rcp-B"/></svg></div>
+      <div class="size-cell"><span class="label">28px</span><svg width="28" height="28" style="color:var(--rcp-primary)"><use href="#rcp-B"/></svg></div>
+      <div class="size-cell"><span class="label">32px</span><svg width="32" height="32" style="color:var(--rcp-primary)"><use href="#rcp-B"/></svg></div>
+      <div class="size-cell"><span class="label">48px</span><svg width="48" height="48" style="color:var(--rcp-primary)"><use href="#rcp-B"/></svg></div>
+      <div class="size-cell"><span class="label">88px</span><svg width="88" height="88" style="color:var(--rcp-primary)"><use href="#rcp-B"/></svg></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="panel-title"><strong>变体 C · 与 DE 几何对齐</strong><em>peak/trough r=0.25 · baseline r=1.5</em></div>
+    <div class="ladder">
+      <div class="size-cell"><span class="label">16px</span><svg width="16" height="16" style="color:var(--rcp-primary)"><use href="#rcp-C"/></svg></div>
+      <div class="size-cell"><span class="label">20px</span><svg width="20" height="20" style="color:var(--rcp-primary)"><use href="#rcp-C"/></svg></div>
+      <div class="size-cell"><span class="label">28px</span><svg width="28" height="28" style="color:var(--rcp-primary)"><use href="#rcp-C"/></svg></div>
+      <div class="size-cell"><span class="label">32px</span><svg width="32" height="32" style="color:var(--rcp-primary)"><use href="#rcp-C"/></svg></div>
+      <div class="size-cell"><span class="label">48px</span><svg width="48" height="48" style="color:var(--rcp-primary)"><use href="#rcp-C"/></svg></div>
+      <div class="size-cell"><span class="label">88px</span><svg width="88" height="88" style="color:var(--rcp-primary)"><use href="#rcp-C"/></svg></div>
+    </div>
+  </div>
+
+  <!-- ========== 段 2：反白态 ========== -->
+  <h2>2. 反白态（Hero / 深底）— 32 / 48 / 88 px</h2>
+  <div class="grid-3">
+    <div class="card dark">
+      <div class="panel-title"><strong>A · 硬角</strong></div>
+      <div class="ladder dark">
+        <div class="size-cell"><span class="label">32px</span><svg width="32" height="32" style="color:#FFF"><use href="#rcp-A"/></svg></div>
+        <div class="size-cell"><span class="label">48px</span><svg width="48" height="48" style="color:#FFF"><use href="#rcp-A"/></svg></div>
+        <div class="size-cell"><span class="label">88px</span><svg width="88" height="88" style="color:#FFF"><use href="#rcp-A"/></svg></div>
+      </div>
+    </div>
+    <div class="card dark">
+      <div class="panel-title"><strong>B · 软角 fillet</strong></div>
+      <div class="ladder dark">
+        <div class="size-cell"><span class="label">32px</span><svg width="32" height="32" style="color:#FFF"><use href="#rcp-B"/></svg></div>
+        <div class="size-cell"><span class="label">48px</span><svg width="48" height="48" style="color:#FFF"><use href="#rcp-B"/></svg></div>
+        <div class="size-cell"><span class="label">88px</span><svg width="88" height="88" style="color:#FFF"><use href="#rcp-B"/></svg></div>
+      </div>
+    </div>
+    <div class="card dark">
+      <div class="panel-title"><strong>C · DE 对齐</strong></div>
+      <div class="ladder dark">
+        <div class="size-cell"><span class="label">32px</span><svg width="32" height="32" style="color:#FFF"><use href="#rcp-C"/></svg></div>
+        <div class="size-cell"><span class="label">48px</span><svg width="48" height="48" style="color:#FFF"><use href="#rcp-C"/></svg></div>
+        <div class="size-cell"><span class="label">88px</span><svg width="88" height="88" style="color:#FFF"><use href="#rcp-C"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 段 3：与 DE 并排（family rhyme） ========== -->
+  <h2>3. 与 DE 并排 — family rhyme 检查</h2>
+  <p class="meta">两个 single-stroke ECG 图标在并排时的视觉张力。C 与 DE 共享 corner-arc 配方（r=0.25 @ 峰值，r=1.5–2.0 @ baseline），族系最强。A 因全直线显得"硬"。B 处于中间。</p>
+
+  <div class="card">
+    <h3>左：DE · 右：RCP（A / B / C）</h3>
+    <div class="family-row">
+      <div class="size-cell">
+        <span class="label">DE · 32px</span>
+        <span class="name" style="color:var(--de-primary)">
+          <svg width="34" height="34" style="vertical-align:-7px; color:var(--de-primary)"><use href="#de-baseline"/></svg>
+          <span>Deep<span style="color:#000">Evidence</span></span>
+        </span>
+      </div>
+      <div class="size-cell">
+        <span class="label">A · 32px</span>
+        <span class="rcp-logo">
+          <span class="rcp-icon"><svg width="34" height="34"><use href="#rcp-A"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+      <div class="size-cell">
+        <span class="label">B · 32px</span>
+        <span class="rcp-logo">
+          <span class="rcp-icon"><svg width="34" height="34"><use href="#rcp-B"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+      <div class="size-cell">
+        <span class="label">C · 32px</span>
+        <span class="rcp-logo">
+          <span class="rcp-icon"><svg width="34" height="34"><use href="#rcp-C"/></svg></span>
+          <span class="rcp-text">RCP</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>大尺寸（Hero · 88px wordmark）</h3>
+    <div class="family-row" style="gap:48px">
+      <div class="size-cell">
+        <span class="label">A · 88px</span>
+        <span class="rcp-logo" style="font-size:88px">
+          <span class="rcp-icon" style="width:95px; height:95px"><svg width="95" height="95"><use href="#rcp-A"/></svg></span>
+          <span class="rcp-text" style="padding-left:18px">RCP</span>
+        </span>
+      </div>
+      <div class="size-cell">
+        <span class="label">B · 88px</span>
+        <span class="rcp-logo" style="font-size:88px">
+          <span class="rcp-icon" style="width:95px; height:95px"><svg width="95" height="95"><use href="#rcp-B"/></svg></span>
+          <span class="rcp-text" style="padding-left:18px">RCP</span>
+        </span>
+      </div>
+      <div class="size-cell">
+        <span class="label">C · 88px</span>
+        <span class="rcp-logo" style="font-size:88px">
+          <span class="rcp-icon" style="width:95px; height:95px"><svg width="95" height="95"><use href="#rcp-C"/></svg></span>
+          <span class="rcp-text" style="padding-left:18px">RCP</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 段 4：几何审视（240px viewbox + grid） ========== -->
+  <h2>4. 几何审视（240px viewBox + 24×24 grid）</h2>
+  <p class="meta">渲染 24×24 viewBox 在 240px 容器中（10× 放大），加 grid 叠层。可清楚看到每个 corner 的 fillet 几何。</p>
+
+  <div class="inspect">
+    <div class="inspect-cell">
+      <h3>A · 硬角</h3>
+      <svg width="240" height="240" viewBox="0 0 24 24">
+        <defs>
+          <pattern id="grid-a" width="1" height="1" patternUnits="userSpaceOnUse">
+            <path d="M 1 0 L 0 0 0 1" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="0.05"/>
+          </pattern>
+        </defs>
+        <rect width="24" height="24" fill="url(#grid-a)"/>
+        <line x1="0" y1="12" x2="24" y2="12" stroke="rgba(0,0,0,0.08)" stroke-width="0.04" stroke-dasharray="0.4 0.3"/>
+        <line x1="12" y1="0" x2="12" y2="24" stroke="rgba(0,0,0,0.08)" stroke-width="0.04" stroke-dasharray="0.4 0.3"/>
+        <use href="#rcp-A" style="color:var(--rcp-primary)"/>
+        <!-- waypoints -->
+        <g fill="rgba(15,98,254,0.7)">
+          <circle cx="9" cy="12" r="0.18"/>
+          <circle cx="11" cy="4" r="0.18"/>
+          <circle cx="12.5" cy="19" r="0.18"/>
+          <circle cx="14" cy="9" r="0.18"/>
+          <circle cx="15.5" cy="13" r="0.18"/>
+        </g>
+      </svg>
+    </div>
+    <div class="inspect-cell">
+      <h3>B · 软角 fillet</h3>
+      <svg width="240" height="240" viewBox="0 0 24 24">
+        <defs>
+          <pattern id="grid-b" width="1" height="1" patternUnits="userSpaceOnUse">
+            <path d="M 1 0 L 0 0 0 1" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="0.05"/>
+          </pattern>
+        </defs>
+        <rect width="24" height="24" fill="url(#grid-b)"/>
+        <line x1="0" y1="12" x2="24" y2="12" stroke="rgba(0,0,0,0.08)" stroke-width="0.04" stroke-dasharray="0.4 0.3"/>
+        <line x1="12" y1="0" x2="12" y2="24" stroke="rgba(0,0,0,0.08)" stroke-width="0.04" stroke-dasharray="0.4 0.3"/>
+        <use href="#rcp-B" style="color:var(--rcp-primary)"/>
+        <g fill="rgba(15,98,254,0.7)">
+          <circle cx="9" cy="12" r="0.18"/>
+          <circle cx="11" cy="4" r="0.18"/>
+          <circle cx="12.5" cy="19" r="0.18"/>
+          <circle cx="14" cy="9" r="0.18"/>
+          <circle cx="15.5" cy="13" r="0.18"/>
+        </g>
+      </svg>
+    </div>
+    <div class="inspect-cell">
+      <h3>C · DE 对齐</h3>
+      <svg width="240" height="240" viewBox="0 0 24 24">
+        <defs>
+          <pattern id="grid-c" width="1" height="1" patternUnits="userSpaceOnUse">
+            <path d="M 1 0 L 0 0 0 1" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="0.05"/>
+          </pattern>
+        </defs>
+        <rect width="24" height="24" fill="url(#grid-c)"/>
+        <line x1="0" y1="12" x2="24" y2="12" stroke="rgba(0,0,0,0.08)" stroke-width="0.04" stroke-dasharray="0.4 0.3"/>
+        <line x1="12" y1="0" x2="12" y2="24" stroke="rgba(0,0,0,0.08)" stroke-width="0.04" stroke-dasharray="0.4 0.3"/>
+        <use href="#rcp-C" style="color:var(--rcp-primary)"/>
+        <g fill="rgba(15,98,254,0.7)">
+          <circle cx="9" cy="12" r="0.18"/>
+          <circle cx="11" cy="4" r="0.18"/>
+          <circle cx="12.5" cy="19" r="0.18"/>
+          <circle cx="14" cy="9" r="0.18"/>
+          <circle cx="15.5" cy="13" r="0.18"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ========== 段 5：Stroke-draw 入场动画演示 ========== -->
+  <h2>5. Stroke-draw 入场动画（hover 触发）</h2>
+  <p class="meta">复用 02 §1.7.1 阶段 1 的 stroke-draw 配方（1.2s ease-out，单笔从左至右描线）。Hover 卡片可重播。</p>
+
+  <div class="grid-3">
+    <div class="card anim-on">
+      <h3>A · 硬角</h3>
+      <div class="ladder">
+        <div class="size-cell"><span class="label">88px</span>
+          <svg width="88" height="88" viewBox="0 0 24 24" style="color:var(--rcp-primary)">
+            <path d="M 2 12 L 9 12 L 11 4 L 12.5 19 L 14 9 L 15.5 13 L 22 13"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"
+              pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"
+              style="--len: 100; animation: rcp-stroke-draw 1.2s cubic-bezier(0.65,0,0.35,1) forwards"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="card anim-on">
+      <h3>B · 软角</h3>
+      <div class="ladder">
+        <div class="size-cell"><span class="label">88px</span>
+          <svg width="88" height="88" viewBox="0 0 24 24" style="color:var(--rcp-primary)">
+            <path d="M 2 12 L 8.2192 12 A 1 1 0 0 0 9.1894 11.2425 L 10.3033 6.787 A 0.5 0.5 0 0 1 11.2858 6.8585 L 12.1017 15.0174 A 0.5 0.5 0 0 0 13.0937 15.0418 L 13.7713 10.5248 A 0.4 0.4 0 0 1 14.5414 10.4437 L 15.2567 12.3511 A 1 1 0 0 0 16.193 13 L 22 13"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"
+              pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"
+              style="--len: 100; animation: rcp-stroke-draw 1.2s cubic-bezier(0.65,0,0.35,1) forwards"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+    <div class="card anim-on">
+      <h3>C · DE 对齐</h3>
+      <div class="ladder">
+        <div class="size-cell"><span class="label">88px</span>
+          <svg width="88" height="88" viewBox="0 0 24 24" style="color:var(--rcp-primary)">
+            <path d="M 2 12 L 7.8288 12 A 1.5 1.5 0 0 0 9.284 10.8638 L 10.6516 5.3935 A 0.25 0.25 0 0 1 11.1429 5.4292 L 12.3009 17.0087 A 0.25 0.25 0 0 0 12.7969 17.0209 L 13.857 9.953 A 0.25 0.25 0 0 1 14.3384 9.9023 L 15.135 12.0267 A 1.5 1.5 0 0 0 16.5395 13 L 22 13"
+              fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round"
+              pathLength="100" stroke-dasharray="100" stroke-dashoffset="100"
+              style="--len: 100; animation: rcp-stroke-draw 1.2s cubic-bezier(0.65,0,0.35,1) forwards"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 段 6：决策对比表 ========== -->
+  <h2>6. 决策对比</h2>
+
+  <div class="card">
+    <div class="summary">
+      <div>
+        <strong>A · 硬角精修</strong> <span style="color:var(--neutral-500); font-size:11px">r=0</span>
+        <p style="margin:6px 0">
+          <strong>优势</strong>：与战略 PDF 中"锐脉"语义最贴合（pulse = 锐利信号）。在 16/20px 小尺寸下对比度最强。<br>
+          <strong>劣势</strong>：与 DE 并排时几何风格不同源（DE 有 corner arc，RCP 全直线），家族 rhyme 弱。<br>
+          <strong>路径长度</strong>：~50（最短，stroke-draw 动画最快）
+        </p>
+      </div>
+      <div>
+        <strong>B · 软角 fillet</strong> <span style="color:var(--neutral-500); font-size:11px">r=0.5/1.0</span>
+        <p style="margin:6px 0">
+          <strong>优势</strong>：保留 ECG 锐度的同时削掉硬角"刺"。中间路线，对小尺寸打印友好。<br>
+          <strong>劣势</strong>：与 DE 配方不一致——既不"完全锐利"也不"完全家族化"，可能两边都不到位。<br>
+          <strong>路径长度</strong>：~52（中等）
+        </p>
+      </div>
+      <div>
+        <strong>C · 与 DE 几何对齐</strong> <span class="pick">推荐</span>
+        <p style="margin:6px 0">
+          <strong>优势</strong>：与 DE icon 共用 fillet 配方（peak r=0.25 / baseline r=1.5）。两个 ECG 图标在矩阵 lockup（02 §4.1）中并排时家族 rhyme 最强。<br>
+          <strong>劣势</strong>：sub-pixel 在 16px 下 corner arc 可能渲染为 1px 抗锯齿模糊（仍清晰，但比 A 略软）。<br>
+          <strong>路径长度</strong>：~53（最长，但 stroke-draw 动画感觉一致）
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 段 7：决策与下一步 ========== -->
+  <h2>7. 决策</h2>
+  <p class="meta">
+    选 A：保留极简硬角；选 B：折中；选 C：与 DE 同源（推荐）。<br>
+    选定后将更新 <code>react/src/icons/RCPPulseIcon.tsx</code>，并产出 <code>preview/rcp-iconography/icon.svg</code>、<code>icon-reverse.svg</code>、<code>icon-animated.svg</code>。
+  </p>
+
+</div>
+</body>
+</html>

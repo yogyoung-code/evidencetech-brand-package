@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  VGI Ingredient Mark · glyph (DeepInsight #0891B2)
+  梅斯健康 AI Brand Kit v1.0 — production asset
+  DI 产品 hard-coded color
+  Generated: 2026-05-06 by build-vgi-svg.mjs
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="VGI Verified Generative Intelligence">
+  <path d="M12 2 L4 6 v6 c0 5 3.5 9 8 10 c4.5-1 8-5 8-10 V6 L12 2 Z" fill="none" stroke="#0891B2" stroke-width="2"/>
+  <path d="M9 12 l2 2 4-4" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeekEvidence Icon Animation · 音浪渐变圆环变频追逐</title>
+    <!--
+        归档日期：2026-05-07
+        来源：用户提供的 "SE icon animation2.html"
+        色彩调整：
+          • `--primary-purple` 由 `#893BE1` 更新为 `#9333EA`（与品牌锁定的 SE 主色 `--se-primary` 对齐）
+          • 圆环 `<linearGradient id="brand-gradient">` 的紫色端点 `#a855f7` → `#9333EA`
+            （2026-05-07 决议：严格对齐 SE 主色 purple-600；DE icon 动效的镜像紫色端点同步更新）。
+    -->
+    <style>
+        :root {
+            /* 品牌颜色 (2026-05-07 更新：#893BE1 → #9333EA · --se-primary) */
+            --primary-purple: #9333EA;
+
+            --anim-duration: 0.8s;
+            /* 整体大循环 10s，包含 4 次 2.5s 的旋转周期 */
+            --total-loop-duration: 10s;
+            /* 单次追逐节奏 2.5s */
+            --chase-duration: 2.5s;
+
+            /* 圆环周长计算：2 * PI * 142 ≈ 892.21 */
+            --circle-length: 892.21;
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: transparent;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .svg-container {
+            width: 320px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            overflow: visible;
+        }
+
+        svg {
+            overflow: visible;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 1. 图标条柱动效：呼吸律动入场 */
+        .wave-bar {
+            opacity: 0;
+            fill: var(--primary-purple);
+            transform-origin: center;
+            animation: wakeUp var(--anim-duration) cubic-bezier(0.34, 1.56, 0.64, 1) infinite alternate;
+        }
+
+        @keyframes wakeUp {
+            0% {
+                opacity: 0;
+                transform: scaleY(0.3) scaleX(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scaleY(1) scaleX(1);
+            }
+        }
+
+        .bar-middle { animation-delay: 0.0s; }
+        .bar-long-left, .bar-long-right { animation-delay: 0.15s; }
+        .bar-short-left, .bar-short-right { animation-delay: 0.3s; }
+
+        /* 2. 旋转容器：负责恒定的顺时针基础旋转 */
+        .circle-group {
+            transform-origin: 155px 105px;
+            animation: rotateFull var(--total-loop-duration) linear infinite;
+        }
+
+        @keyframes rotateFull {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(1440deg); } /* 4 圈 */
+        }
+
+        /* 3. 圆环弧线：变频追逐动效 */
+        .circle-frame {
+            fill: none;
+            stroke: url(#brand-gradient);
+            stroke-width: 10;
+            stroke-linecap: round;
+            stroke-dasharray: 180, 892.21;
+            stroke-dashoffset: 0;
+            /* 使用 linear 确保与 group 旋转步调一致，
+               但在 keyframes 内部模拟前端的速度变化 */
+            animation: chaseEffect var(--chase-duration) linear infinite;
+        }
+
+        /* 变频追逐核心逻辑：
+           通过非线性分配 dasharray 和 offset，实现前端（leading edge）的突快突慢。
+        */
+        @keyframes chaseEffect {
+            0% {
+                /* 起始点 */
+                stroke-dasharray: 180, 892.21;
+                stroke-dashoffset: 0;
+            }
+            35% {
+                /* 前端快速冲出：长度剧增，但后端（offset）移动较少 */
+                /* 此时前端位置增长了 (620-180) + 80 = 520 单位 */
+                stroke-dasharray: 620, 892.21;
+                stroke-dashoffset: -80;
+            }
+            70% {
+                /* 后端快速跟进：后端（offset）大幅移动，前端增长变缓 */
+                /* 此时前端位置仅增长了 (250-620) + (550-80) = 100 单位 */
+                stroke-dasharray: 250, 892.21;
+                stroke-dashoffset: -550;
+            }
+            100% {
+                /* 回到初始，完美闭环 */
+                stroke-dasharray: 180, 892.21;
+                stroke-dashoffset: -892.21;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="svg-container">
+            <svg viewBox="0 -50 310 310" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <!-- 紫色端点 #a855f7 → #9333EA（2026-05-07 严格对齐 SE 主色 purple-600） -->
+                    <linearGradient id="brand-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" style="stop-color:#2563eb; stop-opacity:1" />
+                        <stop offset="50%" style="stop-color:#6366f1; stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#9333EA; stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+
+                <!-- 持续旋转组 -->
+                <g class="circle-group">
+                    <circle class="circle-frame" cx="155" cy="105" r="142" />
+                </g>
+
+                <!-- 音浪条柱路径：固定品牌紫 -->
+                <path class="wave-bar bar-short-left"
+                    d="M67.1,136.2 C60.1,141.8 52.6,142.6 44.8,139.2 C37.0,135.8 33.5,129.0 33.2,120.8 C32.8,110.8 32.8,100.8 33.2,90.8 C33.7,79.8 40.0,72.4 49.7,70.4 C58.4,68.6 67.7,72.8 71.5,80.8 C73.0,83.9 73.8,87.5 73.9,90.8 C74.2,100.7 74.1,110.5 74.0,120.3 C74.0,126.4 71.9,131.7 67.1,136.2 Z"/>
+
+                <path class="wave-bar bar-long-left"
+                    d="M124.9,158.7 C124.2,173.2 116.8,179.2 100.9,179.0 C91.2,178.8 83.9,170.0 83.9,158.1 C83.8,123.0 83.8,87.9 83.8,52.7 C83.8,39.7 92.0,31.1 104.0,31.0 C116.2,30.9 124.8,39.8 124.8,52.8 C124.9,88.0 124.9,123.1 124.9,158.7 Z"/>
+
+                <path class="wave-bar bar-middle"
+                    d="M175.9,90.0 C175.9,104.8 176.1,119.1 175.8,133.4 C175.6,142.9 168.5,151.1 159.9,152.9 C150.3,154.8 140.9,150.1 137.0,141.0 C135.8,138.1 135.2,134.8 135.1,131.8 C135.0,114.4 134.9,97.1 135.1,79.8 C135.2,67.2 144.1,57.9 155.6,58.0 C167.1,58.0 175.7,67.3 175.9,80.0 C176.0,83.1 175.9,86.3 175.9,90.0 Z"/>
+
+                <path class="wave-bar bar-long-right"
+                    d="M196.1,33.9 C212.0,26.2 227.0,35.3 227.1,52.3 C227.1,87.8 227.0,123.3 227.0,158.8 C227.0,166.3 224.5,173.0 217.8,176.5 C205.4,182.9 186.6,179.3 186.2,160.6 C185.5,124.1 186.0,87.6 186.2,51.2 C186.2,43.9 189.5,38.1 196.1,33.9 Z"/>
+
+                <path class="wave-bar bar-short-right"
+                    d="M277.9,117.8 C279.1,133.6 266.9,143.6 252.2,140.3 C243.2,138.3 237.2,130.9 237.1,121.6 C236.9,111.3 236.9,101.0 237.0,90.6 C237.1,78.7 245.3,70.8 257.2,70.7 C269.3,70.6 277.5,78.4 277.8,90.4 C278.0,99.4 277.8,108.4 277.9,117.8 Z"/>
+            </svg>
+        </div>
+    </div>
+
+</body>
+</html>

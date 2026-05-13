@@ -1,1 +1,375 @@
-../../ai-tokens.css
+/* ==========================================================================
+ * 梅斯健康 AI Brand Kit · ai-tokens.css v0.1
+ *
+ * 在 MedSci Healthcare 母品牌 v1.1 的 colors_and_type.css 之上扩展。
+ * 本文件只新增 AI 子品牌专属 token：四产品 primary、endorsement signature、
+ * 三大信任徽章、Nano-Citation、CoT 动画、Diff View、Progressive Disclosure、
+ * RCP 贯穿横线参数。
+ *
+ * 使用方式：
+ *   1. 先 import 母品牌 colors_and_type.css（提供 neutral、字体、间距等）
+ *   2. 再 import 本文件
+ *   3. 在产品根容器加 .brand-de / .brand-se / .brand-di / .brand-rcp
+ *      之一，scope --product-primary 让信任徽章自动着色
+ *
+ * 承接：
+ *   - 02-brand-architecture.md §1.2 双色 wordmark
+ *   - 02-brand-architecture.md §1.7.1 RCP 贯穿横线
+ *   - 00-architecture-locked.md §5 三大信任徽章 + Nano-Citation + CoT + Diff
+ * ========================================================================== */
+
+:root {
+  /* =========================================================================
+   * 1. 四产品 Primary（与 UI 主色统一）
+   * ========================================================================= */
+  --de-primary:  #2563EB;  /* DeepEvidence · Tailwind blue-600 */
+  --se-primary:  #9333EA;  /* SeekEvidence · Tailwind purple-600 */
+  --di-primary:  #0891B2;  /* DeepInsight · teal-600（暂定） */
+  --rcp-primary: #0F62FE;  /* RCP · IBM Blue 60 */
+
+  /* 默认 fallback：未挂 .brand-* 时用 DE 色，避免 CSS var 未定义 */
+  --product-primary: var(--de-primary);
+
+  /* 兼容产品 primary 的 RGB 形式（用于 rgba alpha 合成） */
+  --de-primary-rgb:  37, 99, 235;
+  --se-primary-rgb:  147, 51, 234;
+  --di-primary-rgb:  8, 145, 178;
+  --rcp-primary-rgb: 15, 98, 254;
+
+  /* =========================================================================
+   * 2. Endorsement Signature
+   *    与母品牌 v1.1 Logo Slogan grey 同源
+   * ========================================================================= */
+  --endorsement-color:         #666666;
+  --endorsement-color-reverse: rgba(255, 255, 255, 0.78);
+  --endorsement-font-weight:   500;
+
+  /* signature 字号 = wordmark 字号 × 0.42（详见 02 §2.2） */
+  --endorsement-ratio: 0.42;
+
+  /* =========================================================================
+   * 3. 三大信任徽章 · 共享几何
+   *    所有徽章共用 pill 几何语言；通过填充与文字色拉开识别
+   *    v0.2 调整：默认 = 缩写（PITL/AIO/VGI），--full 修饰符显示完整描述
+   * ========================================================================= */
+  --badge-radius:               9999px;       /* pill */
+  --badge-border-width:         1.5px;
+  --badge-padding-x:            8px;          /* 默认水平内边距，适配 3 字母缩写 */
+  --badge-padding-x-full:       12px;         /* --full variant 用更大内边距 */
+  --badge-padding-y:            3px;
+  --badge-padding-y-full:       5px;
+  --badge-icon-gap:             5px;
+  --badge-font-size:            12px;         /* 默认字号（对应 3 字母缩写） */
+  --badge-font-size-full:       13px;         /* --full variant 字号 */
+  --badge-font-weight:          600;
+  --badge-letter-spacing:       0.04em;       /* 略增字距让 3 字母缩写更挺拔 */
+
+  /* 3.1 PITL Verified · 产品色填充 + 反白文字 */
+  --pitl-bg:       var(--product-primary);
+  --pitl-fg:       #FFFFFF;
+  --pitl-icon-fg:  #FFFFFF;
+
+  /* 3.2 AIO Official · 深灰填充 + 产品色文字 */
+  --aio-bg:        #334155;       /* neutral-700 */
+  --aio-fg:        var(--product-primary);
+  --aio-icon-fg:   var(--product-primary);
+
+  /* 3.3 VGI Ingredient Mark · 透明填充 + 产品色描边 */
+  --vgi-border:    var(--product-primary);
+  --vgi-bg:        rgba(255, 255, 255, 0.5);   /* 半透白，落地后由产品 50 tint 覆盖 */
+  --vgi-fg:        var(--product-primary);
+  --vgi-icon-fg:   var(--product-primary);
+
+  /* =========================================================================
+   * 4. Nano-Citation · [n] 上标
+   * ========================================================================= */
+  --citation-color:           var(--product-primary);
+  --citation-font-size-em:    0.7;             /* 相对于宿主字号 */
+  --citation-font-weight:     600;
+  --citation-padding:         0 2px;
+  --citation-radius:          2px;
+  --citation-hover-bg:        rgba(0, 0, 0, 0.05);
+
+  /* 侧边溯源面板 */
+  --citation-panel-width:           400px;
+  --citation-panel-bg:              #FFFFFF;
+  --citation-panel-border:          #E2E8F0;   /* neutral-100 */
+  --citation-panel-shadow:          0 12px 32px rgba(0, 16, 55, 0.12);
+  --citation-panel-anim-duration:   240ms;
+
+  /* =========================================================================
+   * 5. CoT 思维链动画 · dot-spiral 演化版
+   * ========================================================================= */
+  --cot-dot-color:    var(--product-primary);
+  --cot-dot-size:     6px;
+  --cot-spacing:      14px;             /* 节点间距 */
+  --cot-cycle:        1.2s;             /* 单次完整呼吸周期 */
+  --cot-stagger:      80ms;             /* 节点之间的入场错峰 */
+  --cot-easing:       cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* =========================================================================
+   * 6. Diff View · 红绿语义
+   *    复用母品牌 error / success token，per-AI 子品牌不再开新色
+   * ========================================================================= */
+  --diff-removed-color:   #DC2626;            /* 母品牌 error-500 */
+  --diff-removed-bg:      rgba(220, 38, 38, 0.08);
+  --diff-removed-decor:   line-through;
+  --diff-added-color:     #2E9F82;            /* 母品牌 success-500 */
+  --diff-added-bg:        #E6F4EF;            /* 母品牌 success-100 */
+  --diff-row-padding:     2px 4px;
+
+  /* =========================================================================
+   * 7. Progressive Disclosure · L1 / L2 / L3 三层级
+   * ========================================================================= */
+  --disclosure-l1-size:    18px;
+  --disclosure-l1-weight:  700;
+  --disclosure-l1-lh:      1.4;
+  --disclosure-l1-color:   var(--product-primary);
+
+  --disclosure-l2-size:    16px;
+  --disclosure-l2-weight:  400;
+  --disclosure-l2-lh:      1.6;
+  --disclosure-l2-color:   #334155;            /* neutral-700 */
+
+  --disclosure-l3-size:    14px;
+  --disclosure-l3-weight:  400;
+  --disclosure-l3-lh:      1.5;
+  --disclosure-l3-color:   #64748B;            /* neutral-500 */
+
+  --disclosure-gap:        12px;
+
+  /* =========================================================================
+   * 8. RCP 贯穿横线（仅 RCP 独有，其他三产品禁用）
+   * ========================================================================= */
+  --rcp-throughline-thickness:  0.09em;        /* 与 icon stroke 等粗 */
+  --rcp-throughline-color:      var(--rcp-primary);
+  --rcp-throughline-overshoot:  0.15em;        /* 超出 P 字母右缘的余量 */
+  --rcp-throughline-anchor-bottom: 40%;        /* 与 icon viewBox y=13 视觉对齐 */
+
+  /* =========================================================================
+   * 9. Logo / Wordmark 共享
+   * ========================================================================= */
+  --wordmark-font:         "Teko", system-ui, sans-serif;
+  --wordmark-weight:       600;
+  --wordmark-line-height:  0.85;
+  --wordmark-letter-spacing: 0;
+
+  /* icon 与 wordmark 间距 = wordmark 字号 × 0.20 */
+  --wordmark-icon-gap-ratio: 0.20;
+}
+
+/* ============================================================================
+ *  产品 scope wrappers
+ *  在产品根容器加这些 class 之一，覆盖 --product-primary。
+ *  所有信任徽章自动跟随产品着色。
+ * ========================================================================== */
+.brand-de  { --product-primary: var(--de-primary);  --product-primary-rgb: var(--de-primary-rgb);  }
+.brand-se  { --product-primary: var(--se-primary);  --product-primary-rgb: var(--se-primary-rgb);  }
+.brand-di  { --product-primary: var(--di-primary);  --product-primary-rgb: var(--di-primary-rgb);  }
+.brand-rcp { --product-primary: var(--rcp-primary); --product-primary-rgb: var(--rcp-primary-rgb); }
+
+/* ============================================================================
+ *  Component classes（按需 import 到产品 globals.css 或 tailwind 层）
+ * ========================================================================== */
+
+/* ---------- Endorsement Signature ---------- */
+.endorsement-signature {
+  font-family: "Noto Sans SC", "Inter", system-ui, sans-serif;
+  font-weight: var(--endorsement-font-weight);
+  color: var(--endorsement-color);
+  line-height: 1.0;
+}
+.endorsement-signature--en {
+  font-family: "Inter", system-ui, sans-serif;
+  letter-spacing: 0.005em;
+}
+.endorsement-signature--reverse {
+  color: var(--endorsement-color-reverse);
+}
+
+/* ---------- PITL Verified Badge ---------- */
+.badge-pitl {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--badge-icon-gap);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
+  background: var(--pitl-bg);
+  color: var(--pitl-fg);
+  border-radius: var(--badge-radius);
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-weight: var(--badge-font-weight);
+  font-size: var(--badge-font-size);
+  letter-spacing: var(--badge-letter-spacing);
+  line-height: 1.0;
+  white-space: nowrap;
+}
+/* --full: 显示完整描述（PITL Verified），用于首次出现/marketing */
+.badge-pitl--full {
+  padding: var(--badge-padding-y-full) var(--badge-padding-x-full);
+  font-size: var(--badge-font-size-full);
+  letter-spacing: 0.02em;
+}
+.badge-pitl-icon {
+  width: 1em; height: 1em;
+  color: var(--pitl-icon-fg);
+  flex-shrink: 0;
+}
+
+/* ---------- AIO Official Badge ---------- */
+.badge-aio {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--badge-icon-gap);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
+  background: var(--aio-bg);
+  color: var(--aio-fg);
+  border-radius: var(--badge-radius);
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-weight: var(--badge-font-weight);
+  font-size: var(--badge-font-size);
+  letter-spacing: var(--badge-letter-spacing);
+  line-height: 1.0;
+  white-space: nowrap;
+}
+.badge-aio--full {
+  padding: var(--badge-padding-y-full) var(--badge-padding-x-full);
+  font-size: var(--badge-font-size-full);
+  letter-spacing: 0.02em;
+}
+.badge-aio-icon {
+  width: 1em; height: 1em;
+  color: var(--aio-icon-fg);
+  flex-shrink: 0;
+}
+
+/* ---------- VGI Ingredient Mark ---------- */
+.vgi-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--badge-icon-gap);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
+  background: var(--vgi-bg);
+  color: var(--vgi-fg);
+  border: var(--badge-border-width) solid var(--vgi-border);
+  border-radius: var(--badge-radius);
+  font-family: "Inter", "Noto Sans SC", sans-serif;
+  font-weight: var(--badge-font-weight);
+  font-size: var(--badge-font-size);
+  letter-spacing: var(--badge-letter-spacing);
+  line-height: 1.0;
+  white-space: nowrap;
+}
+.vgi-mark--full {
+  padding: var(--badge-padding-y-full) var(--badge-padding-x-full);
+  font-size: var(--badge-font-size-full);
+  letter-spacing: 0.02em;
+}
+.vgi-mark-icon {
+  width: 1em; height: 1em;
+  color: var(--vgi-icon-fg);
+  flex-shrink: 0;
+}
+
+/* ---------- Nano-Citation ---------- */
+.nano-citation {
+  font-family: "Inter", monospace;
+  font-size: calc(1em * var(--citation-font-size-em));
+  font-weight: var(--citation-font-weight);
+  color: var(--citation-color);
+  vertical-align: super;
+  line-height: 0;
+  cursor: pointer;
+  padding: var(--citation-padding);
+  border-radius: var(--citation-radius);
+  transition: background-color 150ms ease-out;
+  user-select: none;
+}
+.nano-citation:hover {
+  background: var(--citation-hover-bg);
+}
+.nano-citation:focus-visible {
+  outline: 2px solid var(--product-primary);
+  outline-offset: 1px;
+}
+
+/* ---------- CoT Animation · dot-spiral 演化 ---------- */
+.cot-trace {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--cot-spacing);
+}
+.cot-dot {
+  width: var(--cot-dot-size);
+  height: var(--cot-dot-size);
+  background: var(--cot-dot-color);
+  border-radius: 50%;
+  opacity: 0.2;
+  animation: cot-breathe var(--cot-cycle) var(--cot-easing) infinite;
+}
+.cot-dot:nth-child(1) { animation-delay: calc(var(--cot-stagger) * 0); }
+.cot-dot:nth-child(2) { animation-delay: calc(var(--cot-stagger) * 1); }
+.cot-dot:nth-child(3) { animation-delay: calc(var(--cot-stagger) * 2); }
+.cot-dot:nth-child(4) { animation-delay: calc(var(--cot-stagger) * 3); }
+.cot-dot:nth-child(5) { animation-delay: calc(var(--cot-stagger) * 4); }
+.cot-dot:nth-child(6) { animation-delay: calc(var(--cot-stagger) * 5); }
+@keyframes cot-breathe {
+  0%, 100% { opacity: 0.2; transform: scale(0.85); }
+  40%      { opacity: 1.0; transform: scale(1.15); }
+  70%      { opacity: 0.6; transform: scale(1.0); }
+}
+
+/* prefers-reduced-motion 降级 */
+@media (prefers-reduced-motion: reduce) {
+  .cot-dot {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* ---------- Diff View ---------- */
+.diff-removed {
+  color: var(--diff-removed-color);
+  background: var(--diff-removed-bg);
+  text-decoration: var(--diff-removed-decor);
+  padding: var(--diff-row-padding);
+  border-radius: 2px;
+}
+.diff-added {
+  color: var(--diff-added-color);
+  background: var(--diff-added-bg);
+  padding: var(--diff-row-padding);
+  border-radius: 2px;
+  font-weight: 500;
+}
+
+/* ---------- Progressive Disclosure ---------- */
+.disclosure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--disclosure-gap);
+}
+.disclosure-l1 {
+  font-size: var(--disclosure-l1-size);
+  font-weight: var(--disclosure-l1-weight);
+  line-height: var(--disclosure-l1-lh);
+  color: var(--disclosure-l1-color);
+}
+.disclosure-l2 {
+  font-size: var(--disclosure-l2-size);
+  font-weight: var(--disclosure-l2-weight);
+  line-height: var(--disclosure-l2-lh);
+  color: var(--disclosure-l2-color);
+}
+.disclosure-l3 {
+  font-size: var(--disclosure-l3-size);
+  font-weight: var(--disclosure-l3-weight);
+  line-height: var(--disclosure-l3-lh);
+  color: var(--disclosure-l3-color);
+}
+
+/* ============================================================================
+ *  禁止使用的图像政策（以注释提醒，非可执行约束）
+ *  - 禁止 AI 生成医学影像（FTC 合规红线，沿用母品牌 v1.1 §8.2）
+ *  - 真实临床照片必须自然光、无 stock photo
+ *  - 仅允许的几何母题：dot-spiral（母品牌）、CoT 节点链（本 kit §5）
+ * ========================================================================== */

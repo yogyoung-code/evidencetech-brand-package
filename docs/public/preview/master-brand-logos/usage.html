@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>母品牌 logo · 使用规范（PNG / Clear-Space / A11y / Layers）</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --neutral-50: #F8FAFC;
+    --neutral-100: #E2E8F0;
+    --neutral-200: #CBD5E1;
+    --neutral-300: #94A3B8;
+    --neutral-500: #64748B;
+    --neutral-700: #334155;
+    --neutral-900: #0F172A;
+    --master-navy: #001A51;
+    --master-blue: #005AA4;
+    --master-cyan: #00AEDB;
+    --darkbg: #0B1220;
+    --pass: #16A34A;
+    --warn: #D97706;
+    --fail: #DC2626;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: "Inter", "Noto Sans SC", system-ui, sans-serif;
+    color: var(--neutral-900);
+    background: var(--neutral-50);
+    margin: 0;
+    padding: 32px 24px;
+    line-height: 1.55;
+  }
+  h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -0.01em; }
+  h2 { font-size: 20px; margin: 56px 0 12px; letter-spacing: -0.01em; }
+  h3 { font-size: 15px; margin: 28px 0 8px; color: var(--neutral-700); font-weight: 600; }
+  p, li { font-size: 14px; }
+  .meta { color: var(--neutral-500); font-size: 13px; margin: 0 0 24px; }
+  .meta a { color: var(--master-blue); text-decoration: none; }
+  .meta a:hover { text-decoration: underline; }
+  .nav { display: flex; gap: 8px; flex-wrap: wrap; margin: 16px 0 32px; }
+  .nav a {
+    padding: 6px 12px; border: 1px solid var(--neutral-200); border-radius: 999px;
+    font-size: 12px; color: var(--neutral-700); text-decoration: none; background: white;
+  }
+  .nav a:hover { border-color: var(--master-blue); color: var(--master-blue); }
+  .container { max-width: 1280px; margin: 0 auto; }
+
+  /* Section card */
+  .card {
+    background: white; border: 1px solid var(--neutral-100); border-radius: 12px;
+    padding: 24px; margin: 16px 0;
+  }
+  code, kbd { font-family: "JetBrains Mono", monospace; font-size: 12.5px; background: var(--neutral-100); padding: 2px 6px; border-radius: 4px; }
+  .mono { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--neutral-700); }
+
+  /* PNG ladder grid */
+  .ladder {
+    display: grid; gap: 24px; margin-top: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .ladder-row {
+    background: white; border: 1px solid var(--neutral-100); border-radius: 8px; padding: 16px;
+  }
+  .ladder-row h4 { font-size: 13px; margin: 0 0 8px; font-weight: 600; }
+  .ladder-row .stack { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+  .ladder-row .stack > div { display: flex; align-items: center; gap: 12px; }
+  .ladder-row .stack > div span.size { font-size: 11px; color: var(--neutral-500); font-family: "JetBrains Mono", monospace; min-width: 60px; }
+  .ladder-row.dark { background: var(--darkbg); border-color: transparent; color: white; }
+  .ladder-row.dark span.size { color: rgba(255,255,255,0.6); }
+  .ladder-row img { display: block; image-rendering: -webkit-optimize-contrast; }
+
+  /* Clear-space diagram */
+  .clear-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .clear-card { background: white; border: 1px solid var(--neutral-100); border-radius: 8px; padding: 24px; }
+  .clear-card h4 { margin: 0 0 12px; font-size: 13px; }
+
+  .keepout {
+    position: relative; display: inline-block; padding: 0;
+    /* outline for keep-out region — drawn in :before */
+  }
+  .keepout-wrap { position: relative; padding: 24px; display: inline-block; }
+  .keepout-wrap::before {
+    content: ''; position: absolute; inset: 0;
+    border: 1px dashed var(--master-cyan); opacity: 0.6; pointer-events: none;
+  }
+  .keepout-wrap .label-tl, .keepout-wrap .label-br {
+    position: absolute; font-family: "JetBrains Mono", monospace; font-size: 10px;
+    color: var(--master-blue); background: white; padding: 1px 4px;
+  }
+  .keepout-wrap .label-tl { top: -8px; left: 8px; }
+  .keepout-wrap .label-br { bottom: -8px; right: 8px; }
+
+  /* A11y matrix */
+  table.a11y { border-collapse: collapse; width: 100%; font-size: 12.5px; }
+  table.a11y th, table.a11y td { border: 1px solid var(--neutral-100); padding: 6px 10px; text-align: left; }
+  table.a11y th { background: var(--neutral-50); font-weight: 600; color: var(--neutral-700); }
+  table.a11y td.ratio { font-family: "JetBrains Mono", monospace; text-align: right; }
+  table.a11y td.swatch { padding: 4px; }
+  table.a11y .sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; vertical-align: middle; margin-right: 6px; border: 1px solid rgba(0,0,0,0.05); }
+  table.a11y .pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+  .pill.aaa  { background: #DCFCE7; color: #166534; }
+  .pill.aa   { background: #DBEAFE; color: #1E40AF; }
+  .pill.aalg { background: #FEF3C7; color: #92400E; }
+  .pill.fail { background: #FEE2E2; color: #991B1B; }
+
+  /* Layer diagram */
+  .layer-diagram { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  @media (max-width: 720px) { .layer-diagram { grid-template-columns: 1fr; } }
+  .layer-diagram .panel { background: white; border: 1px solid var(--neutral-100); border-radius: 8px; padding: 16px; }
+  .layer-diagram .panel h4 { margin: 0 0 8px; font-size: 13px; }
+  .layer-list { padding: 0; margin: 0; list-style: none; }
+  .layer-list li { display: grid; grid-template-columns: 32px 1fr auto; gap: 8px; padding: 6px 0; border-bottom: 1px dashed var(--neutral-100); align-items: center; font-size: 12px; }
+  .layer-list li:last-child { border-bottom: 0; }
+  .layer-list .idx { font-family: "JetBrains Mono", monospace; color: var(--neutral-500); font-size: 11px; }
+  .layer-list .role { color: var(--neutral-700); }
+  .layer-list .meta { font-family: "JetBrains Mono", monospace; font-size: 10px; color: var(--neutral-500); }
+  .layer-svg-wrap { display: flex; align-items: center; justify-content: center; padding: 16px; background: var(--neutral-50); border-radius: 6px; min-height: 220px; }
+  .layer-svg-wrap svg { max-width: 100%; height: auto; }
+
+  /* Misc */
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 600; }
+  .pill.ok { background: #DCFCE7; color: #166534; }
+  .pill.no { background: #FEE2E2; color: #991B1B; }
+  ul.checklist { padding-left: 20px; margin: 8px 0; }
+  ul.checklist li { margin: 4px 0; }
+  .red-rules { background: #FEF2F2; border-left: 3px solid var(--fail); padding: 12px 16px; border-radius: 4px; margin: 12px 0; }
+  .red-rules ul { margin: 4px 0; padding-left: 20px; }
+  .red-rules li { font-size: 13px; color: #7F1D1D; margin: 4px 0; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <h1>母品牌 logo · 使用规范</h1>
+  <p class="meta">
+    版本 v1.0 · 2026-05-06 · 派生自 <code>梅斯logo中英文版.ai</code>。
+    本页将四件锦上添花资产（PNG 栅格 / Clear-Space / A11y / Layers）合并为视觉档案。
+    源数据：
+    <a href="../../assets/master-brand/CLEAR-SPACE.md">CLEAR-SPACE.md</a>
+    · <a href="../../assets/master-brand/A11Y-CONTRAST.md">A11Y-CONTRAST.md</a>
+    · <a href="../../assets/master-brand/LAYERS.md">LAYERS.md</a>
+    · <a href="../../assets/master-brand/png/manifest.json">PNG manifest.json</a>
+  </p>
+
+  <nav class="nav">
+    <a href="#png">① PNG 栅格</a>
+    <a href="#clearspace">② Clear-Space</a>
+    <a href="#a11y">③ A11y 对比度</a>
+    <a href="#layers">④ 图层结构</a>
+    <a href="#checklist">⑤ 校验清单</a>
+    <a href="index.html">← 回主预览</a>
+  </nav>
+
+  <!-- ============================== ① PNG ============================== -->
+  <h2 id="png">① PNG 栅格阶梯</h2>
+  <p>5 个高度档：24 / 48 / 96 / 192 / 512 px。每变体 × 每构图 = 5 张；reverse 额外提供深底衬底版（共 75 张）。点击放大查看像素级清晰度。</p>
+
+  <div class="ladder">
+    <div class="ladder-row">
+      <h4>Default · EN</h4>
+      <div class="stack">
+        <div><span class="size">24px</span><img src="../../assets/master-brand/png/default-en-24.png" alt="default-en-24"></div>
+        <div><span class="size">48px</span><img src="../../assets/master-brand/png/default-en-48.png" alt="default-en-48"></div>
+        <div><span class="size">96px</span><img src="../../assets/master-brand/png/default-en-96.png" alt="default-en-96"></div>
+        <div><span class="size">192px</span><img src="../../assets/master-brand/png/default-en-192.png" alt="default-en-192" style="height:80px;width:auto;"></div>
+        <div><span class="size">512px</span><img src="../../assets/master-brand/png/default-en-512.png" alt="default-en-512" style="height:120px;width:auto;"></div>
+      </div>
+    </div>
+
+    <div class="ladder-row">
+      <h4>Default · CN</h4>
+      <div class="stack">
+        <div><span class="size">24px</span><img src="../../assets/master-brand/png/default-cn-24.png" alt="default-cn-24"></div>
+        <div><span class="size">48px</span><img src="../../assets/master-brand/png/default-cn-48.png" alt="default-cn-48"></div>
+        <div><span class="size">96px</span><img src="../../assets/master-brand/png/default-cn-96.png" alt="default-cn-96"></div>
+        <div><span class="size">192px</span><img src="../../assets/master-brand/png/default-cn-192.png" alt="default-cn-192" style="height:80px;width:auto;"></div>
+        <div><span class="size">512px</span><img src="../../assets/master-brand/png/default-cn-512.png" alt="default-cn-512" style="height:120px;width:auto;"></div>
+      </div>
+    </div>
+
+    <div class="ladder-row">
+      <h4>Default · Full</h4>
+      <div class="stack">
+        <div><span class="size">48px</span><img src="../../assets/master-brand/png/default-full-48.png" alt="default-full-48"></div>
+        <div><span class="size">96px</span><img src="../../assets/master-brand/png/default-full-96.png" alt="default-full-96"></div>
+        <div><span class="size">192px</span><img src="../../assets/master-brand/png/default-full-192.png" alt="default-full-192" style="height:120px;width:auto;"></div>
+        <div><span class="size">512px</span><img src="../../assets/master-brand/png/default-full-512.png" alt="default-full-512" style="height:200px;width:auto;"></div>
+      </div>
+    </div>
+
+    <div class="ladder-row dark">
+      <h4>Reverse · EN（on dark）</h4>
+      <div class="stack">
+        <div><span class="size">24px</span><img src="../../assets/master-brand/png/reverse-en-24.png" alt="reverse-en-24"></div>
+        <div><span class="size">48px</span><img src="../../assets/master-brand/png/reverse-en-48.png" alt="reverse-en-48"></div>
+        <div><span class="size">96px</span><img src="../../assets/master-brand/png/reverse-en-96.png" alt="reverse-en-96"></div>
+        <div><span class="size">192px</span><img src="../../assets/master-brand/png/reverse-en-192.png" alt="reverse-en-192" style="height:80px;width:auto;"></div>
+        <div><span class="size">512px</span><img src="../../assets/master-brand/png/reverse-en-512.png" alt="reverse-en-512" style="height:120px;width:auto;"></div>
+      </div>
+    </div>
+
+    <div class="ladder-row">
+      <h4>Mono Navy · EN</h4>
+      <div class="stack">
+        <div><span class="size">24px</span><img src="../../assets/master-brand/png/mono-navy-en-24.png" alt="mono-navy-en-24"></div>
+        <div><span class="size">48px</span><img src="../../assets/master-brand/png/mono-navy-en-48.png" alt="mono-navy-en-48"></div>
+        <div><span class="size">96px</span><img src="../../assets/master-brand/png/mono-navy-en-96.png" alt="mono-navy-en-96"></div>
+        <div><span class="size">192px</span><img src="../../assets/master-brand/png/mono-navy-en-192.png" alt="mono-navy-en-192" style="height:80px;width:auto;"></div>
+        <div><span class="size">512px</span><img src="../../assets/master-brand/png/mono-navy-en-512.png" alt="mono-navy-en-512" style="height:120px;width:auto;"></div>
+      </div>
+    </div>
+
+    <div class="ladder-row">
+      <h4>Mono Black · EN</h4>
+      <div class="stack">
+        <div><span class="size">24px</span><img src="../../assets/master-brand/png/mono-black-en-24.png" alt="mono-black-en-24"></div>
+        <div><span class="size">48px</span><img src="../../assets/master-brand/png/mono-black-en-48.png" alt="mono-black-en-48"></div>
+        <div><span class="size">96px</span><img src="../../assets/master-brand/png/mono-black-en-96.png" alt="mono-black-en-96"></div>
+        <div><span class="size">192px</span><img src="../../assets/master-brand/png/mono-black-en-192.png" alt="mono-black-en-192" style="height:80px;width:auto;"></div>
+        <div><span class="size">512px</span><img src="../../assets/master-brand/png/mono-black-en-512.png" alt="mono-black-en-512" style="height:120px;width:auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="mono" style="margin-top:16px;">完整 75 张 PNG 在 <code>assets/master-brand/png/</code>；索引见 <code>manifest.json</code>。</p>
+
+  <!-- ============================== ② Clear-Space ============================== -->
+  <h2 id="clearspace">② Clear-Space 与最小尺寸</h2>
+  <p>定义 <strong>X = icon mark 高度</strong>（≈ 渲染后 logo 总高 × 2/3）。所有变体四周保留至少 <strong>½ X</strong> 净空。Hero / 主视觉位推荐 <strong>1 X</strong>。</p>
+
+  <div class="card">
+    <h3>视觉示意（以 default-en 为例）</h3>
+    <p class="mono">虚线框 = ½X 最小净空区，区内不允许其他元素侵入。</p>
+    <div class="clear-grid">
+
+      <div class="clear-card">
+        <h4>96px logo · ½X = 32px</h4>
+        <div class="keepout-wrap" style="padding:32px;">
+          <span class="label-tl">½X = 32px</span>
+          <img src="../../assets/master-brand/png/default-en-96.png" alt="" style="height:96px;width:auto;display:block;">
+        </div>
+      </div>
+
+      <div class="clear-card">
+        <h4>192px logo · ½X = 64px</h4>
+        <div class="keepout-wrap" style="padding:64px;">
+          <span class="label-tl">½X = 64px</span>
+          <img src="../../assets/master-brand/png/default-en-192.png" alt="" style="height:192px;width:auto;display:block;">
+        </div>
+      </div>
+
+      <div class="clear-card">
+        <h4>48px logo · ½X = 16px（紧凑场景）</h4>
+        <div class="keepout-wrap" style="padding:16px;">
+          <span class="label-tl">½X = 16px</span>
+          <img src="../../assets/master-brand/png/default-en-48.png" alt="" style="height:48px;width:auto;display:block;">
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>最小尺寸（数字屏幕）</h3>
+    <table class="a11y">
+      <tr><th>变体</th><th>最小宽度</th><th>对应 logo 高</th><th>使用场景</th></tr>
+      <tr><td>en（横版英文）</td><td>96 px</td><td>≈ 26 px</td><td>header / footer / 文档</td></tr>
+      <tr><td>cn（横版中文）</td><td>80 px</td><td>≈ 22 px</td><td>同上 · 中文优先</td></tr>
+      <tr><td>full（双行）</td><td>96 px</td><td>≈ 53 px</td><td>名片 / 海报 / hero</td></tr>
+      <tr><td>icon mark only</td><td>24 px</td><td>24 px</td><td>favicon / app icon</td></tr>
+    </table>
+
+    <h3>最小尺寸（印刷）</h3>
+    <table class="a11y">
+      <tr><th>变体</th><th>最小宽度</th></tr>
+      <tr><td>en</td><td>25 mm</td></tr>
+      <tr><td>cn</td><td>20 mm</td></tr>
+      <tr><td>full</td><td>25 mm</td></tr>
+      <tr><td>icon mark only</td><td>6 mm</td></tr>
+    </table>
+    <p style="margin-top:12px;font-size:13px;color:var(--neutral-700);">小于上述印刷阈值时，必须使用 mono-navy 或 mono-black 单色版（避免 default 多色在小尺寸下色彩混淆）。</p>
+  </div>
+
+  <!-- ============================== ③ A11y ============================== -->
+  <h2 id="a11y">③ A11y 对比度（WCAG 2.1）</h2>
+  <p>评级图例：<span class="pill aaa">AAA</span> ≥ 7:1 · <span class="pill aa">AA</span> ≥ 4.5:1 · <span class="pill aalg">AA-large</span> ≥ 3:1（图形 / 大字达标，正文不达标） · <span class="pill fail">fail</span> &lt; 3:1。</p>
+  <p class="mono">完整 64 组数据在 <code>a11y-contrast.json</code>。下表展示推荐使用规则中最关键的对比组合。</p>
+
+  <div id="a11y-table"></div>
+
+  <div class="red-rules">
+    <strong>红线（禁止使用）：</strong>
+    <ul>
+      <li>default（多色版）放在 brand-de / brand-rcp / navy 等低亮度背景 — 主体 navy 与背景对比 &lt; 3:1</li>
+      <li>reverse 放在浅色背景 — 反白对比直接失败</li>
+      <li>mono-black 放在低明度有色背景 — 检查 ≥ 3:1 才允许</li>
+      <li>任意变体放在视觉密度大的图片或渐变上（须先加纯色衬底再放 logo）</li>
+    </ul>
+  </div>
+
+  <!-- ============================== ④ Layers ============================== -->
+  <h2 id="layers">④ 图层结构</h2>
+  <p>所有 12 个 SVG 共享同一份图形内容（71 paths + 10 symbol glyphs）；变体之间的差异只在 viewBox 与 fill 颜色两处。</p>
+
+  <div class="layer-diagram">
+    <div class="panel">
+      <h4>图层索引（自上而下）</h4>
+      <ul class="layer-list">
+        <li><span class="idx">L1</span><span class="role">Icon mark · 梅斯标识图形</span><span class="meta">x[371-1744], y[371-1633]</span></li>
+        <li><span class="idx">L2</span><span class="role">EN wordmark · MedSci Healthcare</span><span class="meta">x[1966-6455], y[700-1500]</span></li>
+        <li><span class="idx">L3</span><span class="role">EN slogan · AI-Enabled. Physician-Verified. Globally Ready.</span><span class="meta">x[1950-6900], y[1670-1900]</span></li>
+        <li><span class="idx">L4</span><span class="role">CN wordmark · 梅斯健康</span><span class="meta">x[1966-4747], y[2100-3000]</span></li>
+        <li><span class="idx">L5</span><span class="role">CN slogan · AI 赋能·医生审核·全球就绪</span><span class="meta">x[1950-6900], y[3170-3450]</span></li>
+        <li><span class="idx">L6</span><span class="role">Icon mark（CN 行）</span><span class="meta">x[371-1744], y[2271-3533]</span></li>
+      </ul>
+      <p class="mono" style="margin-top:12px;">完整说明见 <a href="../../assets/master-brand/LAYERS.md">LAYERS.md</a>。</p>
+    </div>
+
+    <div class="panel">
+      <h4>颜色 token 在 4 变体下的替换</h4>
+      <table class="a11y">
+        <tr><th>token</th><th>default</th><th>reverse</th><th>mono-navy</th><th>mono-black</th></tr>
+        <tr><td>navy</td><td><span class="sw" style="background:#001A51"></span>#001A51</td><td><span class="sw" style="background:#FFFFFF;border-color:#ccc"></span>#FFFFFF</td><td><span class="sw" style="background:#001A51"></span>#001A51</td><td><span class="sw" style="background:#000000"></span>#000000</td></tr>
+        <tr><td>medium-blue</td><td><span class="sw" style="background:#005AA4"></span>#005AA4</td><td><span class="sw" style="background:#FFFFFF;border-color:#ccc"></span>#FFFFFF</td><td><span class="sw" style="background:#001A51"></span>#001A51</td><td><span class="sw" style="background:#000000"></span>#000000</td></tr>
+        <tr><td>cyan</td><td><span class="sw" style="background:#00AEDB"></span>#00AEDB</td><td><span class="sw" style="background:#FFFFFF;border-color:#ccc"></span>#FFFFFF</td><td><span class="sw" style="background:#001A51"></span>#001A51</td><td><span class="sw" style="background:#000000"></span>#000000</td></tr>
+        <tr><td>gray (slogan)</td><td><span class="sw" style="background:#666666"></span>#666666</td><td><span class="sw" style="background:rgba(255,255,255,0.78);border-color:#ccc"></span>78% white</td><td><span class="sw" style="background:#001A51"></span>#001A51</td><td><span class="sw" style="background:#000000"></span>#000000</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h3>允许的拆分</h3>
+  <ul class="checklist">
+    <li><span class="pill ok">允许</span> <strong>Icon mark only</strong> — 取 viewBox <code>"371 371 1373 1262"</code> 裁切（favicon / app icon）</li>
+    <li><span class="pill ok">允许</span> <strong>EN row only</strong> — 直接用 <code>*-en.svg</code></li>
+    <li><span class="pill ok">允许</span> <strong>CN row only</strong> — 直接用 <code>*-cn.svg</code></li>
+  </ul>
+
+  <h3>不允许的拆分</h3>
+  <ul class="checklist">
+    <li><span class="pill no">禁止</span> 拆下任意单字（如只显示「梅」字）</li>
+    <li><span class="pill no">禁止</span> slogan 单独使用（必须随 wordmark）</li>
+    <li><span class="pill no">禁止</span> 改 icon 与 wordmark 的相对位置 / 比例</li>
+    <li><span class="pill no">禁止</span> 改 wordmark 字体（不允许其他字体重排）</li>
+    <li><span class="pill no">禁止</span> 在 default 上替换任意一色（须用 mono / reverse 变体）</li>
+    <li><span class="pill no">禁止</span> 在 icon mark 内部裁切</li>
+  </ul>
+
+  <!-- ============================== ⑤ Checklist ============================== -->
+  <h2 id="checklist">⑤ PR 校验清单（设计 / 工程师自查）</h2>
+  <div class="card">
+    <ul class="checklist">
+      <li>□ Logo 四周保留 ≥ ½ X 净空（X = icon 高，约总高 × 2/3）</li>
+      <li>□ Logo 总高 ≥ 24 px（数字）/ ≥ 6 mm（印刷）</li>
+      <li>□ 小于上述阈值时，已替换为 icon mark only</li>
+      <li>□ 净空区内无其他 logo / 标题 / 装饰元素</li>
+      <li>□ 背景色 / 渐变 与 logo 主体对比 ≥ 3:1（图形阈值）</li>
+      <li>□ 选中的变体匹配背景：白底 → default 或 mono-navy；深底 → reverse；浅灰底 → mono-navy / mono-black</li>
+      <li>□ Co-brand 场景下分隔线高 = 母品牌 logo 高 × 0.6，颜色 #CBD5E1（反白态用 30% 白）</li>
+      <li>□ 印刷场景下，logo 宽度 &lt; 25 mm 时已切换为 mono 单色版</li>
+      <li>□ default 多色版未被任意修改（不增减颜色 / 不调色相）</li>
+      <li>□ wordmark 未被任意改字体或字间距</li>
+    </ul>
+  </div>
+
+  <p style="margin-top:48px;color:var(--neutral-500);font-size:12px;">
+    本档案为 v1.0 · 2026-05-06 锁定。后续如母品牌团队补 ICC 印刷规范 / Pantone 印刷色值 / 视频片头模板，会以 v1.1 增量发布。
+  </p>
+
+</div>
+
+<script>
+// 渲染 a11y matrix（精选版 — 每变体 × 每背景，前景取最关键色）
+const data = [
+  // Default — 取 navy（主深蓝）作为代表
+  ['default','#001A51','纯白 #FFFFFF',16.58,'AAA'],
+  ['default','#001A51','冷白纸 #F8FAFC',15.85,'AAA'],
+  ['default','#001A51','浅灰 #E2E8F0',13.45,'AAA'],
+  ['default','#001A51','深底 #0B1220',1.13,'fail'],
+  ['default','#001A51','navy #001A51',1.0,'fail'],
+  ['default','#001A51','brand-de #2563EB',3.21,'AA-large'],
+  ['default','#001A51','brand-rcp #0F62FE',3.31,'AA-large'],
+  ['default','#001A51','brand-se #9333EA',3.08,'AA-large'],
+  // Reverse — 取白
+  ['reverse','#FFFFFF','纯白 #FFFFFF',1.0,'fail'],
+  ['reverse','#FFFFFF','深底 #0B1220',18.74,'AAA'],
+  ['reverse','#FFFFFF','navy #001A51',16.58,'AAA'],
+  ['reverse','#FFFFFF','brand-de #2563EB',5.17,'AA'],
+  ['reverse','#FFFFFF','brand-rcp #0F62FE',5.01,'AA'],
+  ['reverse','#FFFFFF','brand-se #9333EA',5.39,'AA'],
+  // Mono navy
+  ['mono-navy','#001A51','纯白 #FFFFFF',16.58,'AAA'],
+  ['mono-navy','#001A51','冷白纸 #F8FAFC',15.85,'AAA'],
+  ['mono-navy','#001A51','浅灰 #E2E8F0',13.45,'AAA'],
+  ['mono-navy','#001A51','深底 #0B1220',1.13,'fail'],
+  // Mono black
+  ['mono-black','#000000','纯白 #FFFFFF',21.0,'AAA'],
+  ['mono-black','#000000','冷白纸 #F8FAFC',20.07,'AAA'],
+  ['mono-black','#000000','浅灰 #E2E8F0',17.04,'AAA'],
+  ['mono-black','#000000','深底 #0B1220',1.43,'fail'],
+  ['mono-black','#000000','brand-de #2563EB',6.46,'AA'],
+  ['mono-black','#000000','brand-se #9333EA',6.21,'AA'],
+];
+function pillClass(r){
+  if (r === 'AAA') return 'aaa';
+  if (r === 'AA') return 'aa';
+  if (r === 'AA-large') return 'aalg';
+  return 'fail';
+}
+const tbl = document.getElementById('a11y-table');
+let html = '<table class="a11y"><tr><th>变体</th><th>前景</th><th>背景</th><th style="text-align:right">对比度</th><th>评级</th></tr>';
+for (const [v, fg, bg, ratio, rating] of data) {
+  html += `<tr>
+    <td>${v}</td>
+    <td><span class="sw" style="background:${fg}"></span>${fg}</td>
+    <td>${bg}</td>
+    <td class="ratio">${ratio}</td>
+    <td><span class="pill ${pillClass(rating)}">${rating}</span></td>
+  </tr>`;
+}
+html += '</table>';
+tbl.innerHTML = html;
+</script>
+</body>
+</html>

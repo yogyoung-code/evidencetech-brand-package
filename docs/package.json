@@ -4,6 +4,9 @@
   "description": "梅斯健康 AI Brand Kit · VitePress 文档站点",
   "main": "index.js",
   "scripts": {
+    "sync": "bash ../scripts/sync-docs-public.sh",
+    "predev": "npm run sync",
+    "prebuild": "npm run sync",
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview"

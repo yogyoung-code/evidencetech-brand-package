@@ -1,0 +1,602 @@
+[
+  {
+    "variant": "default",
+    "comp": "en",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/default-en-24.png",
+    "bytes": 1882
+  },
+  {
+    "variant": "default",
+    "comp": "en",
+    "height": 48,
+    "width": 174,
+    "file": "assets/master-brand/png/default-en-48.png",
+    "bytes": 5488
+  },
+  {
+    "variant": "default",
+    "comp": "en",
+    "height": 96,
+    "width": 348,
+    "file": "assets/master-brand/png/default-en-96.png",
+    "bytes": 13373
+  },
+  {
+    "variant": "default",
+    "comp": "en",
+    "height": 192,
+    "width": 695,
+    "file": "assets/master-brand/png/default-en-192.png",
+    "bytes": 30650
+  },
+  {
+    "variant": "default",
+    "comp": "en",
+    "height": 512,
+    "width": 1855,
+    "file": "assets/master-brand/png/default-en-512.png",
+    "bytes": 95060
+  },
+  {
+    "variant": "default",
+    "comp": "cn",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/default-cn-24.png",
+    "bytes": 1501
+  },
+  {
+    "variant": "default",
+    "comp": "cn",
+    "height": 48,
+    "width": 175,
+    "file": "assets/master-brand/png/default-cn-48.png",
+    "bytes": 4817
+  },
+  {
+    "variant": "default",
+    "comp": "cn",
+    "height": 96,
+    "width": 349,
+    "file": "assets/master-brand/png/default-cn-96.png",
+    "bytes": 11080
+  },
+  {
+    "variant": "default",
+    "comp": "cn",
+    "height": 192,
+    "width": 698,
+    "file": "assets/master-brand/png/default-cn-192.png",
+    "bytes": 24394
+  },
+  {
+    "variant": "default",
+    "comp": "cn",
+    "height": 512,
+    "width": 1862,
+    "file": "assets/master-brand/png/default-cn-512.png",
+    "bytes": 74445
+  },
+  {
+    "variant": "default",
+    "comp": "full",
+    "height": 24,
+    "width": 44,
+    "file": "assets/master-brand/png/default-full-24.png",
+    "bytes": 1199
+  },
+  {
+    "variant": "default",
+    "comp": "full",
+    "height": 48,
+    "width": 87,
+    "file": "assets/master-brand/png/default-full-48.png",
+    "bytes": 3201
+  },
+  {
+    "variant": "default",
+    "comp": "full",
+    "height": 96,
+    "width": 174,
+    "file": "assets/master-brand/png/default-full-96.png",
+    "bytes": 10070
+  },
+  {
+    "variant": "default",
+    "comp": "full",
+    "height": 192,
+    "width": 348,
+    "file": "assets/master-brand/png/default-full-192.png",
+    "bytes": 24257
+  },
+  {
+    "variant": "default",
+    "comp": "full",
+    "height": 512,
+    "width": 929,
+    "file": "assets/master-brand/png/default-full-512.png",
+    "bytes": 77247
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/reverse-en-24.png",
+    "bytes": 1450
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 48,
+    "width": 174,
+    "file": "assets/master-brand/png/reverse-en-48.png",
+    "bytes": 4404
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 96,
+    "width": 348,
+    "file": "assets/master-brand/png/reverse-en-96.png",
+    "bytes": 11784
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 192,
+    "width": 695,
+    "file": "assets/master-brand/png/reverse-en-192.png",
+    "bytes": 27810
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 512,
+    "width": 1855,
+    "file": "assets/master-brand/png/reverse-en-512.png",
+    "bytes": 84781
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 24,
+    "file": "assets/master-brand/png/reverse-en-24-on-dark.png",
+    "bytes": 1756,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 48,
+    "file": "assets/master-brand/png/reverse-en-48-on-dark.png",
+    "bytes": 4721,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 96,
+    "file": "assets/master-brand/png/reverse-en-96-on-dark.png",
+    "bytes": 11012,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 192,
+    "file": "assets/master-brand/png/reverse-en-192-on-dark.png",
+    "bytes": 25457,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "en",
+    "height": 512,
+    "file": "assets/master-brand/png/reverse-en-512-on-dark.png",
+    "bytes": 84651,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/reverse-cn-24.png",
+    "bytes": 1168
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 48,
+    "width": 175,
+    "file": "assets/master-brand/png/reverse-cn-48.png",
+    "bytes": 3657
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 96,
+    "width": 349,
+    "file": "assets/master-brand/png/reverse-cn-96.png",
+    "bytes": 9004
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 192,
+    "width": 698,
+    "file": "assets/master-brand/png/reverse-cn-192.png",
+    "bytes": 20939
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 512,
+    "width": 1862,
+    "file": "assets/master-brand/png/reverse-cn-512.png",
+    "bytes": 63290
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 24,
+    "file": "assets/master-brand/png/reverse-cn-24-on-dark.png",
+    "bytes": 1733,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 48,
+    "file": "assets/master-brand/png/reverse-cn-48-on-dark.png",
+    "bytes": 4784,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 96,
+    "file": "assets/master-brand/png/reverse-cn-96-on-dark.png",
+    "bytes": 11105,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 192,
+    "file": "assets/master-brand/png/reverse-cn-192-on-dark.png",
+    "bytes": 25893,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "cn",
+    "height": 512,
+    "file": "assets/master-brand/png/reverse-cn-512-on-dark.png",
+    "bytes": 85241,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 24,
+    "width": 44,
+    "file": "assets/master-brand/png/reverse-full-24.png",
+    "bytes": 883
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 48,
+    "width": 87,
+    "file": "assets/master-brand/png/reverse-full-48.png",
+    "bytes": 2509
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 96,
+    "width": 174,
+    "file": "assets/master-brand/png/reverse-full-96.png",
+    "bytes": 7930
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 192,
+    "width": 348,
+    "file": "assets/master-brand/png/reverse-full-192.png",
+    "bytes": 20702
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 512,
+    "width": 929,
+    "file": "assets/master-brand/png/reverse-full-512.png",
+    "bytes": 67960
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 24,
+    "file": "assets/master-brand/png/reverse-full-24-on-dark.png",
+    "bytes": 1153,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 48,
+    "file": "assets/master-brand/png/reverse-full-48-on-dark.png",
+    "bytes": 2890,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 96,
+    "file": "assets/master-brand/png/reverse-full-96-on-dark.png",
+    "bytes": 8736,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 192,
+    "file": "assets/master-brand/png/reverse-full-192-on-dark.png",
+    "bytes": 20370,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "reverse",
+    "comp": "full",
+    "height": 512,
+    "file": "assets/master-brand/png/reverse-full-512-on-dark.png",
+    "bytes": 66132,
+    "backdrop": "#0B1220"
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "en",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/mono-navy-en-24.png",
+    "bytes": 1707
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "en",
+    "height": 48,
+    "width": 174,
+    "file": "assets/master-brand/png/mono-navy-en-48.png",
+    "bytes": 5064
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "en",
+    "height": 96,
+    "width": 348,
+    "file": "assets/master-brand/png/mono-navy-en-96.png",
+    "bytes": 12445
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "en",
+    "height": 192,
+    "width": 695,
+    "file": "assets/master-brand/png/mono-navy-en-192.png",
+    "bytes": 27437
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "en",
+    "height": 512,
+    "width": 1855,
+    "file": "assets/master-brand/png/mono-navy-en-512.png",
+    "bytes": 85406
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "cn",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/mono-navy-cn-24.png",
+    "bytes": 1365
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "cn",
+    "height": 48,
+    "width": 175,
+    "file": "assets/master-brand/png/mono-navy-cn-48.png",
+    "bytes": 4539
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "cn",
+    "height": 96,
+    "width": 349,
+    "file": "assets/master-brand/png/mono-navy-cn-96.png",
+    "bytes": 10597
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "cn",
+    "height": 192,
+    "width": 698,
+    "file": "assets/master-brand/png/mono-navy-cn-192.png",
+    "bytes": 23009
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "cn",
+    "height": 512,
+    "width": 1862,
+    "file": "assets/master-brand/png/mono-navy-cn-512.png",
+    "bytes": 70912
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "full",
+    "height": 24,
+    "width": 44,
+    "file": "assets/master-brand/png/mono-navy-full-24.png",
+    "bytes": 1082
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "full",
+    "height": 48,
+    "width": 87,
+    "file": "assets/master-brand/png/mono-navy-full-48.png",
+    "bytes": 2876
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "full",
+    "height": 96,
+    "width": 174,
+    "file": "assets/master-brand/png/mono-navy-full-96.png",
+    "bytes": 9415
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "full",
+    "height": 192,
+    "width": 348,
+    "file": "assets/master-brand/png/mono-navy-full-192.png",
+    "bytes": 22982
+  },
+  {
+    "variant": "mono-navy",
+    "comp": "full",
+    "height": 512,
+    "width": 929,
+    "file": "assets/master-brand/png/mono-navy-full-512.png",
+    "bytes": 71286
+  },
+  {
+    "variant": "mono-black",
+    "comp": "en",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/mono-black-en-24.png",
+    "bytes": 1186
+  },
+  {
+    "variant": "mono-black",
+    "comp": "en",
+    "height": 48,
+    "width": 174,
+    "file": "assets/master-brand/png/mono-black-en-48.png",
+    "bytes": 3508
+  },
+  {
+    "variant": "mono-black",
+    "comp": "en",
+    "height": 96,
+    "width": 348,
+    "file": "assets/master-brand/png/mono-black-en-96.png",
+    "bytes": 9140
+  },
+  {
+    "variant": "mono-black",
+    "comp": "en",
+    "height": 192,
+    "width": 695,
+    "file": "assets/master-brand/png/mono-black-en-192.png",
+    "bytes": 21851
+  },
+  {
+    "variant": "mono-black",
+    "comp": "en",
+    "height": 512,
+    "width": 1855,
+    "file": "assets/master-brand/png/mono-black-en-512.png",
+    "bytes": 68562
+  },
+  {
+    "variant": "mono-black",
+    "comp": "cn",
+    "height": 24,
+    "width": 87,
+    "file": "assets/master-brand/png/mono-black-cn-24.png",
+    "bytes": 932
+  },
+  {
+    "variant": "mono-black",
+    "comp": "cn",
+    "height": 48,
+    "width": 175,
+    "file": "assets/master-brand/png/mono-black-cn-48.png",
+    "bytes": 2959
+  },
+  {
+    "variant": "mono-black",
+    "comp": "cn",
+    "height": 96,
+    "width": 349,
+    "file": "assets/master-brand/png/mono-black-cn-96.png",
+    "bytes": 7170
+  },
+  {
+    "variant": "mono-black",
+    "comp": "cn",
+    "height": 192,
+    "width": 698,
+    "file": "assets/master-brand/png/mono-black-cn-192.png",
+    "bytes": 16919
+  },
+  {
+    "variant": "mono-black",
+    "comp": "cn",
+    "height": 512,
+    "width": 1862,
+    "file": "assets/master-brand/png/mono-black-cn-512.png",
+    "bytes": 51678
+  },
+  {
+    "variant": "mono-black",
+    "comp": "full",
+    "height": 24,
+    "width": 44,
+    "file": "assets/master-brand/png/mono-black-full-24.png",
+    "bytes": 736
+  },
+  {
+    "variant": "mono-black",
+    "comp": "full",
+    "height": 48,
+    "width": 87,
+    "file": "assets/master-brand/png/mono-black-full-48.png",
+    "bytes": 2017
+  },
+  {
+    "variant": "mono-black",
+    "comp": "full",
+    "height": 96,
+    "width": 174,
+    "file": "assets/master-brand/png/mono-black-full-96.png",
+    "bytes": 6325
+  },
+  {
+    "variant": "mono-black",
+    "comp": "full",
+    "height": 192,
+    "width": 348,
+    "file": "assets/master-brand/png/mono-black-full-192.png",
+    "bytes": 16263
+  },
+  {
+    "variant": "mono-black",
+    "comp": "full",
+    "height": 512,
+    "width": 929,
+    "file": "assets/master-brand/png/mono-black-full-512.png",
+    "bytes": 54775
+  }
+]

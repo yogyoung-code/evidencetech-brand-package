@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Rapid Clinical Pulse · 锐脉 icon
+  梅斯健康 AI Brand Kit v1.0 — production asset
+  Color: #FFFFFF
+  Generated: 2026-05-06 by build-rcp-svg.mjs
+-->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-label="Rapid Clinical Pulse">
+  <path d="M 2 12 L 8.2192 12 A 1 1 0 0 0 9.1894 11.2425 L 10.3033 6.787 A 0.5 0.5 0 0 1 11.2858 6.8585 L 12.1017 15.0174 A 0.5 0.5 0 0 0 13.0937 15.0418 L 13.7713 10.5248 A 0.4 0.4 0 0 1 14.5414 10.4437 L 15.2567 12.3511 A 1 1 0 0 0 16.193 13 L 22 13" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

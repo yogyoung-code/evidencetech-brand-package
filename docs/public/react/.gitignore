@@ -1,0 +1,14 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# CSS 镜像（由 scripts/copy-css.mjs 生成；source-of-truth 是上一级 ai-tokens.css）
+src/styles/ai-tokens.css
+
+# 沙盒环境产生的 tsup 配置中间文件（构建用 --no-config 跳过；安全删除）
+tsup.config.bundled_*.mjs
+tsup.config.bundled_*.cjs
+tsup.config.ts.bak
+_tsup.config.cjs
+_b1.cjs
