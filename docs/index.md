@@ -36,7 +36,7 @@ features:
 
   - icon: 🅰
     title: Wordmark + Endorsement
-    details: Teko Bold mixed-case · 双色配方 · 由 梅斯健康 出品 · #666666 灰
+    details: Teko Medium mixed-case · 双色配方 · 由 梅斯健康 出品 · #666666 灰
     link: /architecture/brand-architecture
     linkText: 查看 Brand Architecture
 
@@ -75,7 +75,7 @@ features:
 
 四个 AI 产品在并排时通过 4 件事被识别为同一家族：
 
-1. 同一 wordmark 字体（Teko Bold mixed-case，RCP 例外为缩写）
+1. 同一 wordmark 字体（Teko Medium mixed-case，RCP 例外为缩写）
 2. 同一 endorsement signature（"由 梅斯健康 出品" / "by MedSci Healthcare"，固定 `#666666`）
 3. 同一信任层（PITL Verified / AIO Official / VGI™），通过 `--product-primary` 自动着色
 4. 同一交互模式（纳米引用 [n] / CoT 动画 / Diff View 红绿 / Progressive Disclosure）

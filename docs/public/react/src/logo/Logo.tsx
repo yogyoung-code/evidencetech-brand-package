@@ -120,9 +120,9 @@ export function Logo({
             className="rcp-text"
             style={{
               fontFamily: "var(--wordmark-font, 'Teko', system-ui, sans-serif)",
-              fontWeight: "var(--wordmark-weight, 600)" as unknown as number,
-              lineHeight: "var(--wordmark-line-height, 0.85)" as unknown as number,
-              letterSpacing: "var(--wordmark-letter-spacing, 0)",
+              fontWeight: "var(--wordmark-weight, 500)" as unknown as number,
+              lineHeight: "var(--wordmark-line-height, 1.2)" as unknown as number,
+              letterSpacing: "var(--wordmark-letter-spacing, -0.025em)",
               fontSize: `${fontPx}px`,
               color: reverse ? "#FFFFFF" : "#000000",
               position: "relative",
@@ -190,9 +190,9 @@ export function Logo({
           className="wordmark"
           style={{
             fontFamily: "var(--wordmark-font, 'Teko', system-ui, sans-serif)",
-            fontWeight: "var(--wordmark-weight, 600)" as unknown as number,
-            lineHeight: "var(--wordmark-line-height, 0.85)" as unknown as number,
-            letterSpacing: "var(--wordmark-letter-spacing, 0)",
+            fontWeight: "var(--wordmark-weight, 500)" as unknown as number,
+            lineHeight: "var(--wordmark-line-height, 1.2)" as unknown as number,
+            letterSpacing: "var(--wordmark-letter-spacing, -0.025em)",
             fontSize: `${fontPx}px`,
             paddingLeft: gapPx,
             whiteSpace: "nowrap",

@@ -25,9 +25,9 @@
 
 | 产品 | 现状 | 缺口 | 置信 |
 |---|---|---|---|
-| DeepEvidence | 推断使用 Inter Bold 渲染 "DeepEvidence"（shadcn 默认） | 替换为 Teko Bold，全大写，色值 `#2563EB` | 🟡 |
-| SeekEvidence | 推断使用 Inter Bold 渲染 "SeekEvidence" | 替换为 Teko Bold，全大写，色值 `#9333EA` | 🟡 |
-| RCP | `fontFamily.display` = IBM Plex Sans，wordmark 推断使用 Plex Sans 700/600 | **破例**：wordmark 改为 Teko Bold，色值 `#0F62FE`；产品内部 UI 仍保留 Plex | 🟢 |
+| DeepEvidence | 推断使用 Inter Bold 渲染 "DeepEvidence"（shadcn 默认） | 替换为 Teko Medium，全大写，色值 `#2563EB` | 🟡 |
+| SeekEvidence | 推断使用 Inter Bold 渲染 "SeekEvidence" | 替换为 Teko Medium，全大写，色值 `#9333EA` | 🟡 |
+| RCP | `fontFamily.display` = IBM Plex Sans，wordmark 推断使用 Plex Sans 700/600 | **破例**：wordmark 改为 Teko Medium，色值 `#0F62FE`；产品内部 UI 仍保留 Plex | 🟢 |
 
 **整改优先级**：P1（Teko 是把四产品绑成家族的关键视觉锚点）
 

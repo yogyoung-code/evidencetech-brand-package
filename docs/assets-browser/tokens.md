@@ -204,9 +204,9 @@ onMounted(async () => {
       title: 'Wordmark',
       tokens: [
         { name: '--wordmark-font', value: '"Teko", system-ui, sans-serif' },
-        { name: '--wordmark-weight', value: '600' },
-        { name: '--wordmark-line-height', value: '0.85' },
-        { name: '--wordmark-letter-spacing', value: '0' },
+        { name: '--wordmark-weight', value: '500' },
+        { name: '--wordmark-line-height', value: '1.2' },
+        { name: '--wordmark-letter-spacing', value: '-0.025em' },
         { name: '--wordmark-icon-gap-ratio', value: '0.20' },
       ],
     },

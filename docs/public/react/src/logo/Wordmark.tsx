@@ -44,9 +44,9 @@ export function Wordmark({
 
   const baseStyle: CSSProperties = {
     fontFamily: "var(--wordmark-font, 'Teko', system-ui, sans-serif)",
-    fontWeight: "var(--wordmark-weight, 600)" as unknown as number,
-    lineHeight: "var(--wordmark-line-height, 0.85)" as unknown as number,
-    letterSpacing: "var(--wordmark-letter-spacing, 0)",
+    fontWeight: "var(--wordmark-weight, 500)" as unknown as number,
+    lineHeight: "var(--wordmark-line-height, 1.2)" as unknown as number,
+    letterSpacing: "var(--wordmark-letter-spacing, -0.025em)",
     fontSize: `${fontPx}px`,
     whiteSpace: "nowrap",
     display: "inline-block",

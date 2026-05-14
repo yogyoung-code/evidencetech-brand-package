@@ -55,7 +55,7 @@
 |---|---|---|
 | 品牌架构 | branded house with shared trust layer | README §1 |
 | 四产品主色 | DE `#2563EB` · SE `#9333EA` · DI `#0891B2` · RCP `#0F62FE` | README §4 |
-| Wordmark 字体 | Teko Bold（mixed-case） | `02` §1.1 |
+| Wordmark 字体 | Teko Medium（mixed-case） | `02` §1.1 |
 | Wordmark 结构 | DE/SE/DI = 双色（产品色 prefix + 黑 suffix）；RCP = 三字母全黑 + 彩色贯穿横线 | `02` §1.2 |
 | Endorsement signature | "由 梅斯健康 出品" / "by MedSci Healthcare"，色 `#666666`，与 icon 左对齐 | `02` §2 |
 | 主语言 | 中文为主，英文为辅 | README §2 偏离条款 |

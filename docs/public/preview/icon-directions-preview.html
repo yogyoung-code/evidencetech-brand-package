@@ -57,9 +57,10 @@
   }
   .product-eyebrow {
     font-family: "Teko", sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 32px;
-    line-height: 0.85;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
   }
   .product-eyebrow .prefix { /* color set per section */ }
   .product-eyebrow .suffix { color: #000; }
@@ -158,16 +159,17 @@
   .lockup {
     display: inline-flex;
     align-items: center;
-    line-height: 0.85;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     gap: 7px;
     font-family: "Teko", sans-serif;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 32px;
   }
   .lockup .lock-icon { width: 34px; height: 34px; flex-shrink: 0; }
   .lockup .lock-icon svg { width: 100%; height: 100%; overflow: visible; }
-  .lockup .lock-prefix { line-height: 0.85; }
-  .lockup .lock-suffix { color: #000; line-height: 0.85; }
+  .lockup .lock-prefix { line-height: 1.2; }
+  .lockup .lock-suffix { color: #000; line-height: 1.2; }
   .lockup--reverse .lock-prefix,
   .lockup--reverse .lock-suffix { color: #fff !important; }
 
@@ -251,8 +253,9 @@
     display: inline-flex;
     align-items: center;
     font-family: "Teko", sans-serif;
-    font-weight: 600;
-    line-height: 0.85;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
     position: relative;
     white-space: nowrap;
     /* isolation 创建独立堆叠上下文，让横线 z-index:-1 不会穿透到外层 */
@@ -440,14 +443,14 @@
     <div style="display: flex; flex-wrap: wrap; gap: 48px; padding: 32px; background: #fff; border: 1px solid var(--neutral-300);">
       <div>
         <div style="font-size: 11px; color: var(--neutral-500); margin-bottom: 12px;">DE · 单笔描线（ECG）</div>
-        <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Teko', sans-serif; font-weight: 600; font-size: 32px; line-height: 0.85;">
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Teko', sans-serif; font-weight: 500; font-size: 32px; line-height: 1.2; letter-spacing: -0.025em;">
           <span style="display: inline-flex; width: 34px; height: 34px; color: var(--de);"><svg style="width:100%;height:100%;overflow:visible"><use href="#ic-de"/></svg></span>
           <span><span style="color: var(--de)">Deep</span><span style="color:#000">Evidence</span></span>
         </span>
       </div>
       <div>
         <div style="font-size: 11px; color: var(--neutral-500); margin-bottom: 12px;">SE · 块体几何（5 柱波形）</div>
-        <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Teko', sans-serif; font-weight: 600; font-size: 32px; line-height: 0.85;">
+        <span style="display: inline-flex; align-items: center; gap: 7px; font-family: 'Teko', sans-serif; font-weight: 500; font-size: 32px; line-height: 1.2; letter-spacing: -0.025em;">
           <span style="display: inline-flex; width: 38px; height: 34px; color: var(--se);"><svg style="width:100%;height:100%;overflow:visible"><use href="#ic-se"/></svg></span>
           <span><span style="color: var(--se)">Seek</span><span style="color:#000">Evidence</span></span>
         </span>

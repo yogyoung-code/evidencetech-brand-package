@@ -150,9 +150,9 @@
    * 9. Logo / Wordmark 共享
    * ========================================================================= */
   --wordmark-font:         "Teko", system-ui, sans-serif;
-  --wordmark-weight:       600;
-  --wordmark-line-height:  0.85;
-  --wordmark-letter-spacing: 0;
+  --wordmark-weight:       500;
+  --wordmark-line-height:  1.2;
+  --wordmark-letter-spacing: -0.025em;
 
   /* icon 与 wordmark 间距 = wordmark 字号 × 0.20 */
   --wordmark-icon-gap-ratio: 0.20;

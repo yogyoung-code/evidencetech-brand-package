@@ -43,9 +43,9 @@
 - 工作量：< 1h
 
 #### B. Wordmark 替换
-- 任务：替换现有 wordmark 渲染为新规范（Teko Bold mixed-case + Deep prefix 着色）
+- 任务：替换现有 wordmark 渲染为新规范（Teko Medium mixed-case + Deep prefix 着色）
 - 删除：旧的 `#2c65c9` 色值（logo 动效文件中的旧色），统一为 `#2563EB`
-- 引入：Google Fonts Teko 字重 600（Hero 大字号备 500）
+- 引入：Google Fonts Teko 字重 500
 - 涉及文件：`app/components/Logo.tsx`、字体加载层（next/font 或 link 标签）
 - 工作量：2–3h
 
@@ -159,13 +159,13 @@ RCP 已建立完整 IBM Carbon 设计系统，不需要改 UI 内部视觉。整
 
 #### B. Wordmark 替换（**关键变化**）
 - 当前 RCP wordmark 推断使用 IBM Plex Sans 渲染 "Rapid Clinical Pulse" 全称
-- **新规范**：仅 "RCP" 三字母 + Teko Bold + 锐脉 icon + 彩色贯穿横线
+- **新规范**：仅 "RCP" 三字母 + Teko Medium + 锐脉 icon + 彩色贯穿横线
 - 引入 Teko 字体到 next/font 配置：
 
 ```ts
 // next.config.ts 或 fonts.ts
 import { Teko } from 'next/font/google';
-export const teko = Teko({ subsets: ['latin'], weight: ['600'] });
+export const teko = Teko({ subsets: ['latin'], weight: ['500'] });
 ```
 
 - 注意：Teko 仅用于 wordmark 组件内部，**不污染** RCP 内部 IBM Plex 字体栈
@@ -200,7 +200,7 @@ export const teko = Teko({ subsets: ['latin'], weight: ['600'] });
   - 工作量：1h
 - J. Diff View：A/B 对比页 → 用 `.diff-removed` / `.diff-added`
   - 工作量：2h
-- **RCP wordmark 字重例外说明**：RCP 内部 UI 字重纪律是"禁用 Bold 700"，但 wordmark 组件的 Teko Bold 600 视为 wordmark 层例外，不受 UI 字重纪律约束
+- **RCP wordmark 字重例外说明**：RCP 内部 UI 字重纪律是"禁用 Bold 700"，但 wordmark 组件的 Teko Medium 500 视为 wordmark 层例外，不受 UI 字重纪律约束
   - 工作量：仅文档说明，0h
 
 ### 4.3 P2

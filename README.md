@@ -99,7 +99,7 @@ cd evidencetech-brand-package
 ## 4. 30 秒速读
 
 **家族识别度**：四产品 logo 在并排时通过四件事被识别为同一家族——
-1. 同一 wordmark 字体（Teko Bold mixed-case，RCP 例外为缩写）
+1. 同一 wordmark 字体（Teko Medium mixed-case，RCP 例外为缩写）
 2. 同一 endorsement signature 格式（"由 梅斯健康 出品" / "by MedSci Healthcare"，固定 `#666666`）
 3. 同一信任层（PITL Verified / AIO Official / VGI ingredient mark），通过 `--product-primary` CSS 变量自动着色
 4. 同一交互模式（纳米级引用 [n] / CoT 思维链动画 / Diff View 红绿 / Progressive Disclosure L1-L3）

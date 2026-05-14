@@ -49,7 +49,7 @@
 并排时四产品通过以下四件事被识别为同一家族：
 *When placed side-by-side, the four products are identified as one family via:*
 
-1. **同一 wordmark 字体**：Teko Bold 600, mixed-case (RCP 例外为缩写 / RCP is abbreviation-only)
+1. **同一 wordmark 字体**：Teko Medium 500, mixed-case (RCP 例外为缩写 / RCP is abbreviation-only)
 2. **同一 endorsement signature**：`由 梅斯健康 出品` / `by MedSci Healthcare`，固定 `#666666`
 3. **同一信任层**：PITL Verified / AIO Official / VGI™，通过 `--product-primary` CSS 变量自动着色
 4. **同一交互模式**：Nano-Citation `[n]` / CoT 动画 / Diff View 红绿 / Progressive Disclosure L1-L3
@@ -89,10 +89,10 @@
 
 **Wordmark 字体（所有产品）**：
 - Family: **Teko** (Google Fonts, OFL)
-- Weight: SemiBold (600) default; Medium (500) for hero
+- Weight: Medium (500)
 - Style: **Mixed case** (do NOT apply `text-transform: uppercase`)
-- letter-spacing: 0
-- line-height: 0.85
+- letter-spacing: -0.025em
+- line-height: 1.2
 
 **正文字体 / Body fonts**：
 - CN: Noto Sans SC
@@ -205,9 +205,9 @@
 
   /* ===== 9. Logo / Wordmark ===== */
   --wordmark-font:           "Teko", system-ui, sans-serif;
-  --wordmark-weight:         600;
-  --wordmark-line-height:    0.85;
-  --wordmark-letter-spacing: 0;
+  --wordmark-weight:         500;
+  --wordmark-line-height:    1.2;
+  --wordmark-letter-spacing: -0.025em;
   --wordmark-icon-gap-ratio: 0.20;
 
   /* ===== 10. Motion Tokens (04b) ===== */

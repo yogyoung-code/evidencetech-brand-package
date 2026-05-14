@@ -37,10 +37,10 @@
 
 | 产品 | Primary | Secondary/Text | 产品内字体 | Wordmark 字体 | 形状语言 |
 |---|---|---|---|---|---|
-| **DeepEvidence** | `#2563EB`（Tailwind blue-600） | `#334155`（slate-700） | Inter（推断） | **Teko Bold** | 圆角 + 阴影 |
-| **SeekEvidence** | `#9333EA`（Tailwind purple-600） | `#0F172A`（slate-900） | Inter（推断） | **Teko Bold** | 圆角 + 阴影 |
-| **DeepInsight** | `#0891B2`（teal-600） | TBD（建议 slate-700） | TBD（建议 Inter） | **Teko Bold** | TBD（建议圆角 + 阴影） |
-| **Rapid Clinical Pulse** | `#0F62FE`（IBM Blue 60） | slate-700/800 + IBM Gray | **IBM Plex Sans/Mono** | **Teko Bold**（破例，与产品内 Plex 不同） | Carbon 扁平：0 圆角输入、12px 圆角卡 |
+| **DeepEvidence** | `#2563EB`（Tailwind blue-600） | `#334155`（slate-700） | Inter（推断） | **Teko Medium** | 圆角 + 阴影 |
+| **SeekEvidence** | `#9333EA`（Tailwind purple-600） | `#0F172A`（slate-900） | Inter（推断） | **Teko Medium** | 圆角 + 阴影 |
+| **DeepInsight** | `#0891B2`（teal-600） | TBD（建议 slate-700） | TBD（建议 Inter） | **Teko Medium** | TBD（建议圆角 + 阴影） |
+| **Rapid Clinical Pulse** | `#0F62FE`（IBM Blue 60） | slate-700/800 + IBM Gray | **IBM Plex Sans/Mono** | **Teko Medium**（破例，与产品内 Plex 不同） | Carbon 扁平：0 圆角输入、12px 圆角卡 |
 
 **已知遗留事项**：
 - DE 与 RCP 的"主交互蓝"色值不同（`#2563EB` vs `#0F62FE`）。Branded house 模型下可接受，不强制统一。
@@ -54,7 +54,7 @@
 ### 4.1 Lockup 结构
 
 ```
-[PRODUCT WORDMARK]              ← Teko Bold, 产品主色
+[PRODUCT WORDMARK]              ← Teko Medium, 产品主色
 由 梅斯健康 出品                  ← 思源黑体 Medium 14px, neutral-700
                                  (英文版: by MedSci Healthcare, Inter Medium 14px)
 ```
@@ -121,7 +121,7 @@
 ## 6. 命名系统
 
 - **统一前缀**：`Deep-`（DeepEvidence / DeepInsight）；SeekEvidence 与 Rapid Clinical Pulse 为命名例外，不强制改名
-- **wordmark 字体**：**Teko Bold**，全大写，字距 +0.02em
+- **wordmark 字体**：**Teko Medium**，全大写，字距 -0.025em
 - **代号**：DeepEvidence 内部代号 Hippocrates 仅限内部沟通，不出现在对外物料
 
 ---
